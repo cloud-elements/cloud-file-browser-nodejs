@@ -28,53 +28,15 @@
     <script>
 
         //Caller Callback function for post operations
-        function mycallback(type, data) {
-            var res = '';
-            for (property in data)
-            {
-                var val = data[property];
-                if(typeof val == 'string')
-                {
-                    res += property + ':' + val+'<br>';
-                }
-                else
-                {
-                    res += property + ':' + JSON.stringify(val)+'<br>';
-                }
-            }
+        function mycallback(type, response) {
 
-            console.log('Callback for type ' + type + ' with response ' + res);
+          console.log('Callback for type ' + type + ' with response ' + JSON.stringify(response));
         };
 
+
         $('.cloudFileBrowser').cloudFileBrowser({
-            documents: {
-                'box': {
-                    'elementToken' : 'd2d3ec396a33f70d00f91a27e46bdb24'
-                },
-                
-                'dropbox': {
-                    'elementToken' : 'QutQPpIwc64HNzdvafBd6uFumBUxnPHzYsr/wC1LrXM='
-                },
-                
-                'googledrive': {
-                    'elementToken' : '35689a6747e4cb66001c9cf075f33db8'
-                },
-                
-                'onedrive' : {
-
-                },
-
-                'sharepoint' : {
-
-                }
-            },
-            options: {
-                callback: mycallback,
-                oSec : '98c89f16608df03b0248b74ecaf6a79b',
-                uSec : '846708bb4a1da71d70286bc5bb0c51bf',
-                aKey : 'ramana.kathek@gmail.com',
-                env: 'https://qa.cloud-elements.com/elements/'
-            }
+            callback: mycallback,
+            env: 'http://localhost:8888/elements/'
         });
 
     </script>

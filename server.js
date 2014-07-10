@@ -264,11 +264,12 @@ app.use(connect.session({ secret: organizationSecret }));
 
             callAPI('POST', '/elements/api-v2/instances', getHeaders(ele, postdata), params, function(data) {
 
-                console.log('CFB: Retrieved Instances: ', util.inpsect(data))
+                console.log('CFB: Retrieved Instances: ', data);
 
                 setElementToken(ele, data.token);
                 res.json(data);
-            }, postdata);
+            },
+            postdata);
         }
 
         /////////////////////////////////////////
@@ -322,7 +323,13 @@ getHeaders = function(element, postdata) {
     var header = {
         'Authorization' : authVal
     };
-    
+
+    if(postdata != null)
+    {
+        header['Content-Length']= postdata.length;
+        header['Content-Type'] = 'application/json';
+    }
+
     return header;
 },
 
@@ -338,7 +345,7 @@ getElementDetails = function(element) {
     return documents[element];
 },
 
-callAPI = function(method, path, headers, params, cb) {
+callAPI = function(method, path, headers, params, cb, jsondata) {
 
     if(params != null) {
         path +='?'+qs.stringify(params);
@@ -363,7 +370,13 @@ callAPI = function(method, path, headers, params, cb) {
 
     req.on('error', function(e) {
         console.log('problem with request: ' + e);
-    }); 
+    });
+
+    //For POST requests
+    if(jsondata != null)
+    {
+        req.write(jsondata);
+    }
 
     req.end();
     

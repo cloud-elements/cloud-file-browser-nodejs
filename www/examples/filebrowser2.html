@@ -99,54 +99,12 @@
 
         //Caller Callback function for post operations
         function mycallback(type, data) {
-            var res = '';
-            for (property in data)
-            {
-                var val = data[property];
-                if(typeof val == 'string')
-                {
-                    res += property + ':' + val+'<br>';
-                }
-                else
-                {
-                    res += property + ':' + JSON.stringify(val)+'<br>';
-                }
-            }
-
-            console.log('Callback for type ' + type + ' with response ' + res);
+          console.log('Callback for type ' + type + ' with response ' + JSON.stringify(response));
         };
 
         $('.cloudFileBrowser').cloudFileBrowser({
-            documents: {
-                'box': {
-                    'elementToken' : 'd2d3ec396a33f70d00f91a27e46bdb24'
-                },
-
-                'dropbox': {
-                    'elementTemplate': '98db55dd43c319f446d1fdcba26d5ee9'
-                },
-
-                'googledrive': {
-                    'apiKey': '282923532784-nd8p5qnn6kubs8tc0b5flllcmo3jvn4a.apps.googleusercontent.com',
-                    'apiSecret': 'eOUYQmEqOpw-P9Lscna5Felk',
-                    'callbackUrl': '../callback.html'
-                },
-
-                'onedrive' : {
-
-                },
-
-                'sharepoint' : {
-
-                }
-            },
-            options: {
-                callback: mycallback,
-                oSec : '98c89f16608df03b0248b74ecaf6a79b',
-                uSec : '846708bb4a1da71d70286bc5bb0c51bf',
-                aKey : 'ramana.kathek@gmail.com',
-                env: 'https://qa.cloud-elements.com/elements/'
-            }
+            callback: mycallback,
+            env: 'http://localhost:8888/elements/'
         });
 
     </script>

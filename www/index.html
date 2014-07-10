@@ -19,7 +19,8 @@
     <script>
 
         $('.cloudFileBrowser').cloudFileBrowser({
-              callback: mycallback
+              callback: mycallback,
+              env: 'http://localhost:8888/elements/'
         });
         
         
@@ -28,22 +29,9 @@
         //Caller Callback function for post operations//
         ////////////////////////////////////////////////
         
-        function mycallback(type, data) {
-            var res = '';
-            for (property in data)
-            {
-                var val = data[property];
-                if(typeof val == 'string')
-                {
-                    res += property + ':' + val+'<br>';
-                }
-                else
-                {
-                    res += property + ':' + JSON.stringify(val)+'<br>';
-                }
-            }
-
-            console.log('Callback for type ' + type + ' with response ' + res);
+        function mycallback(type, response)
+        {
+            console.log('Callback for type ' + type + ' with response ' + JSON.stringify(response));
         };
 
 

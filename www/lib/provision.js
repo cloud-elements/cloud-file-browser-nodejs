@@ -40,21 +40,17 @@ var CloudElements = (function() {
             return envUrl;
         },
 
-        setNotification: function(element, token, action) {
+        setNotification: function(response, action) {
 
             if(callback != null || callback != undefined) {
-                callback(action, {element:token});
+                callback(action, response);
             }
 
             if(notif == null || notif == undefined) {
-                notif = new Object;
+                notif = new Array();
             }
 
-            if(notif.action == null || notif.action == undefined) {
-                notif[action] = new Object;
-            }
-
-            notif[action][element] = token;
+            notif.push(response);
         },
 
         getNotification: function() {
@@ -64,7 +60,7 @@ var CloudElements = (function() {
         init: function(config) {
 
             if(config.env == null || config.env == undefined) {
-                envUrl = 'http://localhost:8888/elements/'
+                envUrl = 'https://node.cloudfilebrowser/elements/'
             }
             else {
                 envUrl = config.env;
@@ -123,7 +119,13 @@ var provision = (function() {
             var eleObj = CloudElements.getConfig()[element];
             eleObj['present'] = true;
 
-            CloudElements.setNotification(element, token, 'create');
+            var response = {
+                'element': element,
+                'elementToken': token,
+                'action' : 'create'
+            };
+
+            CloudElements.setNotification(response, 'create');
         },
 
         getParamsFromURI: function(queryparams) {
@@ -217,7 +219,15 @@ var provision = (function() {
         },
 
         fileSelected: function(element, filepath) {
-            CloudElements.setNotification(element, filepath, 'select');
+
+            var response = {
+                'element': element,
+                'selectedFile': filepath,
+                'action' : 'select'
+            };
+
+            CloudElements.setNotification(response, 'select');
+
         },
 
         downloadFile: function(element, filepath) {
