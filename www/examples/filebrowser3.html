@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Cloud File Browser</title>
+
+    <!-- JS -->
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src="http://code.cloudfilebrowser.io/lib/cfb.js"></script>
+
+</head>
+
+<body>
+
+<section class="cloudFileBrowser"></section>
+
+</body>
+
+<script>
+
+    $('.cloudFileBrowser').cloudFileBrowser({
+        documents: {
+            'box': {
+                'elementToken' : 'd2d3ec396a33f70d00f91a27e46bdb24'
+            },
+
+            'dropbox': {
+                'elementToken' : 'QutQPpIwc64HNzdvafBd6uFumBUxnPHzYsr/wC1LrXM='
+            },
+
+            'googledrive': {
+                'elementToken' : '35689a6747e4cb66001c9cf075f33db8'
+            },
+
+            'onedrive' : {
+
+            },
+
+            'sharepoint' : {
+
+            }
+        },
+        options: {
+            callback: mycallback,
+            oSec : '98c89f16608df03b0248b74ecaf6a79b',
+            uSec : '846708bb4a1da71d70286bc5bb0c51bf',
+            aKey : 'ramana.kathek@gmail.com'
+        }
+    });
+
+
+
+    ////////////////////////////////////////////////
+    //Caller Callback function for post operations//
+    ////////////////////////////////////////////////
+
+    function mycallback(type, data) {
+        var res = '';
+        for (property in data)
+        {
+            var val = data[property];
+            if(typeof val == 'string')
+            {
+                res += property + ':' + val+'<br>';
+            }
+            else
+            {
+                res += property + ':' + JSON.stringify(val)+'<br>';
+            }
+        }
+
+        console.log('Callback for type ' + type + ' with response ' + res);
+    };
+
+
+</script>
+
+</html>

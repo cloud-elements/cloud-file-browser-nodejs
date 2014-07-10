@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Cloud File Browser</title>
+
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+        <script src="lib/cfb.js"></script>
+        
+    </head>
+
+    <body>
+        
+        <section class="cloudFileBrowser"></section>
+
+    </body>
+
+    <script>
+
+        $('.cloudFileBrowser').cloudFileBrowser({
+              callback: mycallback
+        });
+        
+        
+        
+        ////////////////////////////////////////////////
+        //Caller Callback function for post operations//
+        ////////////////////////////////////////////////
+        
+        function mycallback(type, data) {
+            var res = '';
+            for (property in data)
+            {
+                var val = data[property];
+                if(typeof val == 'string')
+                {
+                    res += property + ':' + val+'<br>';
+                }
+                else
+                {
+                    res += property + ':' + JSON.stringify(val)+'<br>';
+                }
+            }
+
+            console.log('Callback for type ' + type + ' with response ' + res);
+        };
+
+
+    </script>
+
+</html>

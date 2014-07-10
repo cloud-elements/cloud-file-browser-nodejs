@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Cloud File Browser Modal Window Demo</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="../css/normalize.css" />
+        <link rel="stylesheet" href="../css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../css/styles.css" />
+        <link rel="stylesheet" href="lib/css/no-theme/jquery-ui-1.10.4.custom.min.css">
+
+        <!--[if lt IE 9]>
+          <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        
+        <!-- JS -->
+        <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script src="lib/js/jquery-ui-1.10.4.custom.min.js"></script>
+
+        <script src="../lib/cloudfilebrowser.js"></script>
+        <script src="../lib/provision.js"></script>
+        
+        <style>
+            body {
+                background:
+                radial-gradient(black 15%, transparent 16%) 0 0,
+                radial-gradient(black 15%, transparent 16%) 8px 8px,
+                radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+                radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+                background-color:#282828;
+                background-size:16px 16px;
+            }
+            #tab-container {
+                bottom: -1px;
+            }
+            button#show-documents {
+                margin: 0 auto;
+                text-align: center;
+                display: block;
+                margin-top: 65px;
+                height: 70px;
+                padding: 15px 25px;
+                color: #444;
+                text-transform: uppercase;
+                font-size: 13px;
+                font-weight: bold;
+            }
+            header {
+                background:none !important;
+                color:#fff;
+            }
+            #dialog-form {
+                border: 9px solid rgba(255,255,255,.5);
+                border-radius: 6px;
+            }
+            .ui-dialog-titlebar-close {
+                background: none;
+                border: none;
+                color: #fff;
+                width: 50px !important;
+                height: 30px !important;
+            }
+            .ui-dialog-titlebar-close span.ui-button-text {
+                text-indent:0;
+            }
+        </style>
+        
+    </head>
+
+    <body>
+
+        <header>
+            <h1>Cloud File Browser</h1>
+        </header>
+
+        <div id="dialog-form">
+            <section class="cloudFileBrowser no-margin"></section>
+        </div>
+
+        <button id="show-documents">Show Documents</button>
+
+    </body>
+
+    <script>
+
+        $( "#show-documents" )
+                .button()
+                .click(function() {
+                    $( "#dialog-form" ).dialog( "open" );
+                });
+
+        $( "#dialog-form" ).dialog({
+            autoOpen: false,
+            height: 750,
+            width: 1050,
+            modal: true
+        });
+
+        //Caller Callback function for post operations
+        function mycallback(type, data) {
+            var res = '';
+            for (property in data)
+            {
+                var val = data[property];
+                if(typeof val == 'string')
+                {
+                    res += property + ':' + val+'<br>';
+                }
+                else
+                {
+                    res += property + ':' + JSON.stringify(val)+'<br>';
+                }
+            }
+
+            console.log('Callback for type ' + type + ' with response ' + res);
+        };
+
+        $('.cloudFileBrowser').cloudFileBrowser({
+            documents: {
+                'box': {
+                    'elementToken' : 'd2d3ec396a33f70d00f91a27e46bdb24'
+                },
+
+                'dropbox': {
+                    'elementTemplate': '98db55dd43c319f446d1fdcba26d5ee9'
+                },
+
+                'googledrive': {
+                    'apiKey': '282923532784-nd8p5qnn6kubs8tc0b5flllcmo3jvn4a.apps.googleusercontent.com',
+                    'apiSecret': 'eOUYQmEqOpw-P9Lscna5Felk',
+                    'callbackUrl': '../callback.html'
+                },
+
+                'onedrive' : {
+
+                },
+
+                'sharepoint' : {
+
+                }
+            },
+            options: {
+                callback: mycallback,
+                oSec : '98c89f16608df03b0248b74ecaf6a79b',
+                uSec : '846708bb4a1da71d70286bc5bb0c51bf',
+                aKey : 'ramana.kathek@gmail.com',
+                env: 'https://qa.cloud-elements.com/elements/'
+            }
+        });
+
+    </script>
+
+</html>
