@@ -34,9 +34,9 @@ Elements API by not exposing any keys or tokens to outside world.
 ##########################
 ##     Requirements     ##
 ##########################
-⋅⋅*Node.js <http://nodejs.org/>
-⋅⋅*Express <http://expressjs.com/>
-⋅⋅*jQuery 2+ <http://code.jquery.com/jquery-2.1.0.min.js>
+* Node.js <http://nodejs.org/>
+* Express <http://expressjs.com/>
+* jQuery 2+ <http://code.jquery.com/jquery-2.1.0.min.js>
 
 Setup and create of application for the each document provider. Find the document for setting up application for the
 provider  <http://cloudfilebrowser.io/documentprovidersetup>
