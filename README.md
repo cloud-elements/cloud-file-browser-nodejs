@@ -34,9 +34,9 @@ Elements API by not exposing any keys or tokens to outside world.
 ##########################
 ##     Requirements     ##
 ##########################
-Node.js <http://nodejs.org/>
-Express <http://expressjs.com/>
-jQuery 2+ <http://code.jquery.com/jquery-2.1.0.min.js>
+⋅⋅*Node.js <http://nodejs.org/>
+⋅⋅*Express <http://expressjs.com/>
+⋅⋅*jQuery 2+ <http://code.jquery.com/jquery-2.1.0.min.js>
 
 Setup and create of application for the each document provider. Find the document for setting up application for the
 provider  <http://cloudfilebrowser.io/documentprovidersetup>
@@ -57,7 +57,8 @@ and the script will build all the required client-side scripts on your page.
 <script src="http://code.cloudfilebrowser.io/nodejs/cfb.min.js"></script>
 ```
 
-2. or alternatively, you may host the plugin by including the lib, img, fonts, css folders and callback.html in your web application.
+2. or alternatively, you may host the plugin by including the lib, img, fonts, css folders and callback.html in your
+web application.
 
 ```html
 
