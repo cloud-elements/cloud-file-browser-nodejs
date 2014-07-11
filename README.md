@@ -151,11 +151,12 @@ documents = {
 }
 ```
 ### Configuration Options ###
-| ------------- |:-------------:|
+
+| Key        | Description |
+| ----------------- |:-------------:|
 | **apiKey**        | The client ID or API key or App key of your provider application. |
 | **apiSecret**     | The client secret or App secret of your provider application.     |
-| **callbackUrl**   | The redirect uri once the OAuth2 approval is done by the user to come back to the application,
-this needs to be callback.html|
+| **callbackUrl**   | The redirect uri once the OAuth2 approval is done,this needs to be callback.html|
 | **elementToken**  | This is the Cloud Elements instance token, if an elementToken is present it takes the priority over
  the other configs. You can pass in the elementToken based on user login to your application|
 
