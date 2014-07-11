@@ -85,9 +85,10 @@ $('.cloudFileBrowser').cloudFileBrowser({
 });
 ```
 ### Configuration Options ###
-| **callback**        | Function that gets invoked when an action happens, 'select' - when a file is selected by
+ **callback** - Function that gets invoked when an action happens, 'select' - when a file is selected by
 user, 'create' - when an element instance is created when user authorizes your application. Format of callback
 function is
+
 ```javascript
     function mycallback(type, response)
     {
@@ -108,8 +109,8 @@ response in callback example
         'selectedFile': '/fakepath/fakefile.jpg',
         'action' : 'select'
     }
-```|
-| **env**             | The node server URL that running at.|
+```
+ **env** - The node server URL that running at.
 
 ## STEP 3 ##
 Obtain your Organization Secret key and User Secret key from your Cloud-Elements account, and place them in your server.js file (line 84-85)
@@ -157,8 +158,7 @@ documents = {
 | **apiKey**        | The client ID or API key or App key of your provider application. |
 | **apiSecret**     | The client secret or App secret of your provider application.     |
 | **callbackUrl**   | The redirect uri once the OAuth2 approval is done,this needs to be callback.html|
-| **elementToken**  | This is the Cloud Elements instance token, if an elementToken is present it takes the priority over
- the other configs. You can pass in the elementToken based on user login to your application|
+| **elementToken**  | This is the Cloud Elements instance token, if an elementToken is present it takes the priority over the other configs. You can pass in the elementToken based on user login to your application|
 
 The required scripts and markup are ready to go! Start up your node server by opening your terminal and finding the directory you've downloaded the Cloud File Browser to, and type:
 
