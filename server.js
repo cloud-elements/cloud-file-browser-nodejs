@@ -306,6 +306,7 @@ app.use(connect.session({ secret: organizationSecret }));
         console.log('** REST Server started on port: ', restPort, ' **');
     });
 
+
 /////////////////////////////////////////////////
 // AJAX METHODS & HELPERS ///////////////////////
 /////////////////////////////////////////////////
@@ -347,6 +348,8 @@ getElementDetails = function(element) {
 
 callAPI = function(method, path, headers, params, cb, jsondata) {
 
+    var json = '';
+    
     if(params != null) {
         path +='?'+qs.stringify(params);
     }
@@ -362,9 +365,16 @@ callAPI = function(method, path, headers, params, cb, jsondata) {
     var req = https.request(options, function(res) {
 
         res.setEncoding('utf8');
-        res.on('data', function (data) {
-            //console.log('BODY: ' + data);
-            cb(JSON.parse(data));
+        res.on('data', function (data) {            
+            json += data;
+        });
+        res.on('end', function (data) {
+            try {
+                cb(JSON.parse(json));
+            }
+            catch(e) {
+                console.log('error: ', e);
+            }
         });
     });
 
@@ -395,7 +405,7 @@ uploadFile = function(path, ele, req, cb) {
     var options = {
         hostname: 'qa.cloud-elements.com',
         port: 443,
-        path: '/elements/api-v2/hubs/documents/files' + uploadParams,
+        path: '/elements/api-v2/hubs/documents/files' + uploadParams + '?overwrite=true',
         method: 'POST',
         headers : headers
     };
@@ -414,7 +424,12 @@ uploadFile = function(path, ele, req, cb) {
         });
         res.on('end', function() {
             console.log("CFB: End of Response");
-            cb(JSON.parse(jsonData));
+            try {
+                cb(JSON.parse(jsonData));
+            }
+            catch(e) {
+                console.error('invalid filetype');
+            }
         });
     });
 

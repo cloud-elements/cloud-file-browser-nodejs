@@ -432,7 +432,7 @@ a.provision {
 }
 
 #services-containers > div.provisioned > div.listTable {
-    bottom: 0;
+    bottom: 32px;
     left: 0;
     opacity: 1;
     position: absolute;

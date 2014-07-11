@@ -315,7 +315,7 @@ var cloudFileBrowser = (function() {
         },
 
         buildTable: function(data, isNew, path, element) {
-
+            
             if (isNew == true) {
 
                 var tableHTML = '';
@@ -398,7 +398,8 @@ var cloudFileBrowser = (function() {
                 var currentIndex = $('.listTable ul').length;
 
                 for (var i=0; i < data.length; i++) {
-                    tableHTML += '<ul draggable="true" class="loading '+ data[i].name+'">' +
+                    
+                    tableHTML += '<ul draggable="true" class="loading on '+ data[i].name+'">' +
                                     '<li class="checkbox"><input type="checkbox"></li>' +
                                     '<li class="filename">' + data[i].name + '</li>' +
                                     '<li>Uploading...</li>' +
@@ -423,6 +424,8 @@ var cloudFileBrowser = (function() {
 
         handleUploadComplete: function(cbArgs) {
 
+            debugger;
+            
             var tableList = $('.listTable ul');
             var ulElement = tableList[cbArgs.currentIndex];
             
@@ -527,7 +530,7 @@ var cloudFileBrowser = (function() {
 
             var tableHTML = this.buildTable(files, false, path, element);
 
-            $('div.' + element + ' .listTable').append(tableHTML);
+            $('div.' + element + ' .listTable .scrollPanel').append(tableHTML);
             
             this.animateTable(element);
 
