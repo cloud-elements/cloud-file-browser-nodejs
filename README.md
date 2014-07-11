@@ -151,6 +151,7 @@ documents = {
 }
 ```
 ### Configuration Options ###
+| ------------- |:-------------:|
 | **apiKey**        | The client ID or API key or App key of your provider application. |
 | **apiSecret**     | The client secret or App secret of your provider application.     |
 | **callbackUrl**   | The redirect uri once the OAuth2 approval is done by the user to come back to the application,
