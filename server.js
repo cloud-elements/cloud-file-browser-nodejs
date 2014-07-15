@@ -45,6 +45,7 @@ var connect = require("connect");
 var express = require("express");
 var cookieParser = require("cookie-parser");
 var serveStatic = require("serve-static");
+var limits = require("limits");
 var url = require("url");
 var qs = require('querystring');
 var util = require('util');
@@ -115,6 +116,12 @@ var allowCrossDomain = function(req, res, next) {
             }
     }
     
+    
+    var limits_config = {
+        enable: true,
+        file_uploads:true,
+        post_max_size:2000000
+    }
 
 /////////////////////////////////////////////////
 // SERVER INIT //////////////////////////////////
@@ -123,6 +130,7 @@ var allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 app.use(connect.cookieParser());
 app.use(connect.session({ secret: organizationSecret }));
+app.use(limits(limits_config));
 
 
 /////////////////////////////////////////////////

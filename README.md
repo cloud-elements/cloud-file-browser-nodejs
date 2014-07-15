@@ -20,7 +20,7 @@ the License.
 ##########################
 ##         DEMO         ##
 ##########################
-Cloud File Browser Demo  <http://cloudfilebrowser.io>
+Cloud File Browser Demo 
 
 
 ##########################
@@ -39,7 +39,7 @@ Elements API by not exposing any keys or tokens to outside world.
 * jQuery 2+ <http://code.jquery.com/jquery-2.1.0.min.js>
 
 Setup and create of application for the each document provider. Find the document for setting up application for the
-provider  <http://cloudfilebrowser.io/documentprovidersetup>
+provider 
 
 
 ##########################
