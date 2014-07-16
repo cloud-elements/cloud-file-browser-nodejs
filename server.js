@@ -444,7 +444,7 @@ uploadFile = function(path, ele, req, cb) {
 
     req.on('data', function(chunk) {
         //console.log('chunk to string: ', chunk.toString());
-        reqOut.write(chunk.toString());
+        reqOut.write(chunk);
     });
 
     req.on('end', function() {
