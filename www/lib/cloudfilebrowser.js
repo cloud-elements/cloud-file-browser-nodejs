@@ -423,7 +423,7 @@ var cloudFileBrowser = (function() {
         },
 
         handleUploadComplete: function(cbArgs) {
-
+            
             var tableList = $('.listTable ul');
             var ulElement = tableList[cbArgs.currentIndex];
             
@@ -440,10 +440,14 @@ var cloudFileBrowser = (function() {
             else if(ulElement != null)
             {
                 ulElement.innerHTML = '<li class="checkbox"><input type="checkbox"></li>' +
-                    '<li class="fileName">' + cbArgs.data.name + '</li>' +
+                    '<li class="filename">' + cbArgs.data.name + '</li>' +
                     '<li>' + cbArgs.data.path + '</li>' +
                     '<li>' + cbArgs.data.modifiedDate + '</li>';
             }
+            
+            $('.listTable ul li.filename').off('click', function() {
+                cloudFileBrowser.bindFileInfo(cbArgs.element);
+            });
         },
 
         animateTable: function(element) {

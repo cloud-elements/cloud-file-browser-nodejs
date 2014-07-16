@@ -44,7 +44,6 @@ var https = require("https");
 var connect = require("connect");
 var express = require("express");
 var cookieParser = require("cookie-parser");
-var serveStatic = require("serve-static");
 var limits = require("limits");
 var url = require("url");
 var qs = require('querystring');
@@ -131,6 +130,7 @@ app.use(allowCrossDomain);
 app.use(connect.cookieParser());
 app.use(connect.session({ secret: organizationSecret }));
 app.use(limits(limits_config));
+app.use('/', express.static(__dirname + '/www'));
 
 
 /////////////////////////////////////////////////
@@ -142,7 +142,7 @@ app.use(limits(limits_config));
     /////////////////////////////////////////////////////////
 
     var restPort = process.env.port || 8888;
-    var httpPort = 8080;
+    var httpPort = 8888;
 
     /////////////////////////////////////////////////////////////
     // Catch all requests and route to Cloud Elements API V2   //
@@ -307,11 +307,12 @@ app.use(limits(limits_config));
 
     app.listen(restPort, function() {
         console.log(' ');
-        console.log('*****************************************');
-        console.log('***** Cloud File Browser - 0.8 BETA *****');
-        console.log('*****     http://filebrowser.io     *****');
-        console.log('*****************************************');
-        console.log('** REST Server started on port: ', restPort, ' **');
+        console.log('**********************************************');
+        console.log('******* Cloud File Browser - 0.8 BETA ********');
+        console.log('*******     http://filebrowser.io     ********');
+        console.log('**********************************************');
+        console.log('** REST/HTTP Server started on port: ', restPort, ' **');
+        console.log('**********************************************');
     });
 
 
@@ -455,12 +456,3 @@ uploadFile = function(path, ele, req, cb) {
         console.log('CFB: problem with request: ' + e);
     });
 }
-
-/////////////////////////////////////////////////
-// SERVER START /////////////////////////////////
-/////////////////////////////////////////////////
-
-connect().use(serveStatic('www')).listen(httpPort, function() {
-    console.log('** HTTP Server started on port: ', httpPort, ' **');
-    console.log('*****************************************');
-});
