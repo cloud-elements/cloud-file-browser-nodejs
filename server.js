@@ -137,7 +137,7 @@ app.use(allowCrossDomain);
 app.use(connect.cookieParser());
 app.use(connect.session({ secret: organizationSecret }));
 app.use(limits(limits_config));
-app.use('localhost' + restPort, express.static(__dirname + '/www'));
+app.use('/', express.static(__dirname + '/www'));
 
 
 /////////////////////////////////////////////////
@@ -198,7 +198,7 @@ app.use('localhost' + restPort, express.static(__dirname + '/www'));
                 'path' : parts.query['path']
             }
 
-            callAPI('Get', '/elements/api-v2/hubs/documents/folders/contents', getHeaders(ele), params, function(data) {
+            callAPI('Get', '/elements/api-v2/hubs/documents/folders/contents', getHeaders(ele, req), params, function(data) {
                 console.log('CFB: Retrieved Listing for', ele);
                 res.json(data);
             });
@@ -214,7 +214,7 @@ app.use('localhost' + restPort, express.static(__dirname + '/www'));
                 'path' : parts.query['path']
             }
 
-            callAPI('Get', '/elements/api-v2/hubs/documents/files/links', getHeaders(ele), params, function(data) {
+            callAPI('Get', '/elements/api-v2/hubs/documents/files/links', getHeaders(ele, req), params, function(data) {
                 console.log('CFB: Retrieved download links', ele);
                 res.json(data);
             });
@@ -234,7 +234,7 @@ app.use('localhost' + restPort, express.static(__dirname + '/www'));
                 'callbackUrl': elementDetails.callbackUrl
             } 
 
-            callAPI('Get', '/elements/api-v2/elements/'+ele+'/oauth', getHeaders(ele), params, function(data) {
+            callAPI('Get', '/elements/api-v2/elements/'+ele+'/oauth', getHeaders(ele, req), params, function(data) {
                 res.json(data);
             });
         }
@@ -270,11 +270,11 @@ app.use('localhost' + restPort, express.static(__dirname + '/www'));
                 'code': parts.query['code']
             }
 
-            callAPI('POST', '/elements/api-v2/instances', getHeaders(ele, postdata), params, function(data) {
+            callAPI('POST', '/elements/api-v2/instances', getHeaders(ele, req, postdata), params, function(data) {
 
                 console.log('CFB: Retrieved Instances: ', data);
 
-                setElementToken(ele, data.token);
+                setElementToken(ele, data.token, req);
                 res.json(data);
             },
             postdata);
@@ -320,12 +320,12 @@ app.use('localhost' + restPort, express.static(__dirname + '/www'));
 // AJAX METHODS & HELPERS ///////////////////////
 /////////////////////////////////////////////////
 
-getHeaders = function(element, postdata) {
+getHeaders = function(element, request, postdata) {
     
     var authVal = '';
 
-    if(element != null && this.getElementToken(element) != null) {
-        authVal +=  'Element ' + this.getElementToken(element)+ ', ';
+    if(element != null && this.getElementToken(element, request) != null) {
+        authVal +=  'Element ' + this.getElementToken(element, request)+ ', ';
     }
 
     authVal += 'User ' + userSecret + ', Organization ' +organizationSecret
@@ -343,12 +343,19 @@ getHeaders = function(element, postdata) {
     return header;
 },
 
-getElementToken = function(element) {
-    return documents[element].elementToken;
+getElementToken = function(element, request) {
+    var tkn = request.session[element];
+
+    if(tkn == null || tkn == undefined)
+    {
+        tkn = documents[element].elementToken;
+    }
+
+    return tkn;
 },
 
-setElementToken = function(element, token) {
-    documents[element].elementToken = token;
+setElementToken = function(element, token, request) {
+    request.session[element] = token;
 },
 
 getElementDetails = function(element) {
@@ -403,7 +410,7 @@ callAPI = function(method, path, headers, params, cb, jsondata) {
     
 uploadFile = function(path, ele, req, cb) {
         
-    var headers = getHeaders(ele);
+    var headers = getHeaders(ele, req);
     var uploadParams = url.parse(req.url).search;
 
     headers['content-type'] = req.headers['content-type']

@@ -374,7 +374,7 @@ var server = (function() {
     return {
 
         getUrl: function(additionalParams) {
-            return CloudElements.getEnvUrl() + additionalParams;
+            return '/elements/' + additionalParams;
         },
 
         isNullAndUndef: function(variable) {
