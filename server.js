@@ -409,11 +409,12 @@ uploadFile = function(path, ele, req, cb) {
     headers['content-length'] = req.headers['content-length']
 
     console.log('out headers: ', headers);
+    console.log('out uploadParams: ', uploadParams);
 
     var options = {
         hostname: 'qa.cloud-elements.com',
         port: 443,
-        path: '/elements/api-v2/hubs/documents/files' + uploadParams + '?overwrite=true',
+        path: '/elements/api-v2/hubs/documents/files' + uploadParams ,
         method: 'POST',
         headers : headers
     };
@@ -424,14 +425,14 @@ uploadFile = function(path, ele, req, cb) {
 
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
-            console.log('CFB: Data Recieved: ', chunk);
+            //console.log('CFB: Data Recieved: ', chunk);
             jsonData += chunk;
         });
         res.on('error', function (err) {
             console.log('CFB: Outgoing Error', err);
         });
         res.on('end', function() {
-            console.log("CFB: End of Response");
+            //console.log("CFB: End of Response");
             try {
                 cb(JSON.parse(jsonData));
             }
@@ -442,7 +443,7 @@ uploadFile = function(path, ele, req, cb) {
     });
 
     req.on('data', function(chunk) {
-        console.log('chunk to string: ', chunk.toString());
+        //console.log('chunk to string: ', chunk.toString());
         reqOut.write(chunk.toString());
     });
 
