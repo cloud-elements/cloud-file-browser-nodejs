@@ -103,7 +103,7 @@ var allowCrossDomain = function(req, res, next) {
             'googledrive': {
                 'apiKey': '282923532784-t89r45pvo4nuo49l6clpfa6b8mkkgnnu.apps.googleusercontent.com',
                 'apiSecret': 'uErA1R7L4BAxZdgKW20VcqpE',
-                'callbackUrl': 'http://localhost:8080/callback.html'
+                'callbackUrl': 'http://localhost:8888/callback.html'
             },
 
             'onedrive' : {
@@ -246,31 +246,22 @@ app.use('/', express.static(__dirname + '/www'));
 
             var elementDetails = getElementDetails(ele);
             var elementProvision = {
-                'configs': [
-                    {
-                        'key' : 'oauth.api.key',
-                        propertyValue : elementDetails.apiKey
-                    },
-                    {
-                        'key' : 'oauth.api.secret',
-                        propertyValue : elementDetails.apiSecret
-                    },
-                    {
-                        'key' : 'oauth.callback.url',
-                        propertyValue : elementDetails.callbackUrl
-                    }
-                ],
+                'configuration': {
+                    'oauth.api.key' : elementDetails.apiKey,
+                    'oauth.api.secret': elementDetails.apiSecret,
+                    'oauth.callback.url': elementDetails.callbackUrl
+                },
+                'providerData': {
+                    'code': parts.query['code']
+                },
                 'element': {
                     "key" : ele
                 },
                 'name': ele
             };
             var postdata = JSON.stringify(elementProvision);
-            var params = {
-                'code': parts.query['code']
-            }
 
-            callAPI('POST', '/elements/api-v2/instances', getHeaders(ele, req, postdata), params, function(data) {
+            callAPI('POST', '/elements/api-v2/instances', getHeaders(ele, req, postdata), null, function(data) {
 
                 console.log('CFB: Retrieved Instances: ', data);
 
