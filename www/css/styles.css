@@ -83,6 +83,7 @@ a.provision {
     background: #666;
     box-shadow: -1px 0 3px rgba(0,0,0,.2);
     flex: none;
+    -webkit-flex:none;
     margin: 25px 25px 25px -25px;
     width: 0;
 }
@@ -99,12 +100,14 @@ a.provision {
 #tab-container > #file-info > .fileDetails > ul li {
     display: block;
     flex: 1;
+    -webkit-flex:1;
     margin-right: 10px;
     word-wrap: break-word;
 }
 
 #tab-container > #file-info > .fileDetails > ul li:first-child {
     flex: none;
+    -webkit-flex:none;
     width: 60px;
 }
 
@@ -184,6 +187,7 @@ a.provision {
     box-shadow: inset 0 -1px 0 #fff;
     color: #333;
     flex: 1;
+    -webkit-flex:1;
     margin: 25px 25px 25px 0;
     overflow-y: auto;
     position: relative;
@@ -517,6 +521,8 @@ a.provision {
 #services-containers > div.provisioned > div.listTable ul {
     -webkit-transition: all 150ms linear;
     display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
     font-size: 70%;
     list-style: none;
     margin: 0;
@@ -525,6 +531,7 @@ a.provision {
 
 #services-containers > div.provisioned > div.listTable ul li {
     flex: 1;
+    -webkit-flex:1;
     overflow: hidden;
     padding: 10px 15px;
     text-align: left;
@@ -537,6 +544,7 @@ a.provision {
 
 #services-containers > div.provisioned > div.listTable ul li:first-child {
     flex: none;
+    -webkit-flex:none;
     width: 10px;
 }
 

@@ -83,6 +83,6 @@ _cfb.loadjscssfile("css/font-awesome.min.css", "css");
 _cfb.loadjscssfile("css/styles-min.css", "css");
 
 _cfb.loadjscssfile("http://html5shiv.googlecode.com/svn/trunk/html5.js", "js", 'html5');
-_cfb.loadjscssfile("lib/provision.js", "js", 'cloudfilebrowser', _cfb.load);
-_cfb.loadjscssfile("lib/cloudfilebrowser.js", "js", 'cloudfilebrowser', _cfb.load);
+_cfb.loadjscssfile("lib/provision-min.js", "js", 'cloudfilebrowser', _cfb.load);
+_cfb.loadjscssfile("lib/cloudfilebrowser-min.js", "js", 'cloudfilebrowser', _cfb.load);
 
