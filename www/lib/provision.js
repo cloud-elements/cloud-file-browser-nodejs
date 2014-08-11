@@ -78,16 +78,18 @@ var CloudElements = (function() {
 
             var docservices = [];
             var docservicesnames = [];
-            
+            var docservicesimages = [];
+
             cedocumentconfig = data;
             
             for(var x in data)
             {
                 docservices.push(x);
-                docservicesnames.push(servicemapping[x]);
+                docservicesnames.push(data[x].name);
+                docservicesimages.push(data[x].image);
             }
 
-            cloudFileBrowser.init(docservices, docservicesnames);
+            cloudFileBrowser.init(docservices, docservicesnames, docservicesimages);
         },
 
         updateCallback: function(pagequery) {

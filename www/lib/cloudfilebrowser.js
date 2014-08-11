@@ -38,6 +38,7 @@ var cloudFileBrowser = (function() {
 
     var services = null,
         servicesDisplay = null,
+        servicesImage = null,
         tabs = '#services-tabs',
         container = '#services-containers',
         selectedFiles = {},
@@ -50,10 +51,11 @@ var cloudFileBrowser = (function() {
         // and setup binding methods                            //
         //////////////////////////////////////////////////////////
         
-        init: function(srvs, srvsDis) {
+        init: function(srvs, srvsDis, srvsImg) {
             
             services = srvs;
             servicesDisplay = srvsDis;
+            servicesImage = srvsImg;
 
             console.log('Services Installed: ', services);
 

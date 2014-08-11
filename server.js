@@ -122,6 +122,8 @@ var allowCrossDomain = function(req, res, next) {
         post_max_size:2000000
     }
 
+    var documentsHub = null
+    var hostname = 'qa.cloud-elements.com';
 /////////////////////////////////////////////////////////
 // Define port for Node.js ajax requests & HTTP Server //
 /////////////////////////////////////////////////////////
@@ -179,10 +181,21 @@ app.use('/', express.static(__dirname + '/www'));
 
             for(var x in documents)
             {
-                respdocuments[x] = new Object;
-                if(documents[x].elementToken != null)
+                for(var y in documentsHub)
                 {
-                    respdocuments[x].present = true;
+                    var provider = documentsHub[y];
+
+                    if(provider.key == x)
+                    {
+                        respdocuments[x] = new Object;
+                        respdocuments[x].image = 'https://'+hostname+'/elements/images/'+provider.image;
+                        respdocuments[x].name = provider.name;
+
+                        if(documents[x].elementToken != null)
+                        {
+                            respdocuments[x].present = true;
+                        }
+                    }
                 }
             }
             res.json(respdocuments);
@@ -297,13 +310,21 @@ app.use('/', express.static(__dirname + '/www'));
 //////////////////////
 
     app.listen(restPort, function() {
-        console.log(' ');
-        console.log('**********************************************');
-        console.log('******* Cloud File Browser - 0.8 BETA ********');
-        console.log('*******     http://filebrowser.io     ********');
-        console.log('**********************************************');
-        console.log('** REST/HTTP Server started on port: ', restPort, ' **');
-        console.log('**********************************************');
+
+        callAPI('Get', '/elements/api-v2/hubs/documents/elements', null, null, function(data) {
+            console.log('CFB: Documents elements : ', data);
+
+            documentsHub = data;
+
+
+            console.log(' ');
+            console.log('**********************************************');
+            console.log('******* Cloud File Browser - 0.8 BETA ********');
+            console.log('*******     http://filebrowser.io     ********');
+            console.log('**********************************************');
+            console.log('** REST/HTTP Server started on port: ', restPort, ' **');
+            console.log('**********************************************');
+        });
     });
 
 
@@ -362,7 +383,7 @@ callAPI = function(method, path, headers, params, cb, jsondata) {
     }
 
     var options = {
-        hostname: 'qa.cloud-elements.com',
+        hostname: hostname,
         port: 443,
         path: path,
         method: method,
@@ -411,7 +432,7 @@ uploadFile = function(path, ele, req, cb) {
     console.log('out uploadParams: ', uploadParams);
 
     var options = {
-        hostname: 'qa.cloud-elements.com',
+        hostname: hostname,
         port: 443,
         path: '/elements/api-v2/hubs/documents/files' + uploadParams ,
         method: 'POST',
