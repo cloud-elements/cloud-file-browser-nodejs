@@ -247,7 +247,7 @@ app.use('/', express.static(__dirname + '/www'));
                 'callbackUrl': elementDetails.callbackUrl
             } 
 
-            callAPI('Get', '/elements/api-v2/elements/'+ele+'/oauth', getHeaders(ele, req), params, function(data) {
+            callAPI('Get', '/elements/api-v2/elements/'+ele+'/oauth/url', getHeaders(ele, req), params, function(data) {
                 res.json(data);
             });
         }
