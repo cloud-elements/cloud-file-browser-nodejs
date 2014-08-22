@@ -99,13 +99,14 @@ var cloudFileBrowser = (function() {
 
             var tabsHTML = '',
                 containerHTML = '';
+            
 
             for (var i=0; i<services.length; i++) {
-                tabsHTML += '<li class="' + services[i] + (i == 0 ? ' on' : '' )+ '">' + servicesDisplay[i] + '</li>';
+                tabsHTML += '<li class="' + services[i] + (i == 0 ? ' on' : '' )+ '"><img src="' + servicesImage[i] + '">' + servicesDisplay[i] + '</li>';
                 containerHTML +=    '<div class="' + services[i] + (i == 0 ? ' on' : '' ) + ' drop-zone" aria-element="' + services[i] + '">'+
-                    '<h2></h2>' +
-                    '<a href="#" class="provision" aria-element="' + services[i] + '">Connect to your ' + servicesDisplay[i] + ' account</a>' +
-                    '</div>';
+                                    '<h2><img src="' + servicesImage[i] + '"></h2>' +
+                                    '<a href="#" class="provision" aria-element="' + services[i] + '">Connect to your ' + servicesDisplay[i] + ' account</a>' +
+                                    '</div>';
             }
 
             $(tabs).append(tabsHTML);

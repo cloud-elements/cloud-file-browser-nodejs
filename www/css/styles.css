@@ -263,7 +263,7 @@ a.provision {
 
 /* ICONS FOR SERVICES TABS */
 #tab-container > ul > li:before {
-    background: url(../img/services-icons-sprite.png) no-repeat;
+    /*background: url(../img/services-icons-sprite.png) no-repeat;*/
     display:block;
     content: '';
     width:35px;
@@ -273,6 +273,7 @@ a.provision {
     left:0px;
     top:-2px;
 }
+/*
 #tab-container > ul > li.dropbox:before {
     background-position:-35px 0;
 }
@@ -285,7 +286,17 @@ a.provision {
 #tab-container > ul > li.sharepoint:before {
     background-position:-139px 0;
 }
+*/
 
+#tab-container > ul > li > img {
+    height: 28px;
+    margin-right: 7px;
+    padding: 0;
+    position: absolute;
+    left: 7px;
+    top: 3px;
+    border-radius: 6px;
+}
 /**********************/
 /* LOGOS FOR SERVICES */
 /**********************/
@@ -309,7 +320,7 @@ a.provision {
     transition: all 250ms ease;
     background-size: 85%;
     border-radius: 6px;
-    box-shadow: 0 1px 6px rgba(0,0,0,.2);
+   /* box-shadow: 0 1px 6px rgba(0,0,0,.2);*/
     content: '';
     display: inline-block;
     height: 150px;
@@ -319,6 +330,25 @@ a.provision {
     position: absolute;
     top: 50%;
     width: 230px;
+}
+
+#services-containers > div > h2 > img {
+    position: absolute;
+    top: 50%;
+    margin-top: -107px;
+    left: 50%;
+    margin-left: -75px;
+    height: 150px;
+    width: 150px;
+}
+
+#services-containers > div.provisioned > h2 > img {
+    top: 5px !important;
+    margin-top: 0px !important;
+    left: 50% !important;
+    margin-left: -35px !important;
+    height: 54px !important;
+    width: 54px !important;
 }
 
 #services-containers > div > a { position: absolute }
@@ -333,6 +363,7 @@ a.provision {
 
 #services-containers div.listTable { opacity: 0 }
 
+/*
 .box > h2:before { background: url(../img/logo-box.png) no-repeat center center }
 
 .dropbox > h2:before { background: url(../img/logo-dropbox.png) no-repeat center center }
@@ -342,6 +373,7 @@ a.provision {
 .onedrive > h2:before { background: url(../img/logo-onedrive.png) no-repeat center center }
 
 .sharepoint > h2:before { background: url(../img/logo-sharepoint.png) no-repeat center center }
+*/
 
 /**********************/
 /* AFTER PROVISIONING */
