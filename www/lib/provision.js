@@ -60,7 +60,7 @@ var CloudElements = (function() {
         init: function(config) {
 
             if(config.env == null || config.env == undefined) {
-                envUrl = 'https://node.cloudfilebrowser/elements/'
+                envUrl = 'https://node.filebrowser.io/elements/'
             }
             else {
                 envUrl = config.env;
@@ -376,7 +376,7 @@ var server = (function() {
     return {
 
         getUrl: function(additionalParams) {
-            return '/elements/' + additionalParams;
+            return CloudElements.getEnvUrl() + additionalParams;
         },
 
         isNullAndUndef: function(variable) {
