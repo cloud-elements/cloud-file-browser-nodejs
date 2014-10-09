@@ -548,3 +548,9 @@ var cloudFileBrowser = (function() {
     };
 
 })();
+
+if (typeof module !== 'undefined') {
+    module.exports = {
+        cloudFileBrowser: cloudFileBrowser
+    };
+}
