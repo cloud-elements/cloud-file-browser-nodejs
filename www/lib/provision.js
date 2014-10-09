@@ -477,3 +477,10 @@ var server = (function() {
 
     }
 })();
+
+if (typeof module !== 'undefined') {
+    module.exports = {
+        CloudElements: CloudElements,
+        provision: provision
+    };
+}
