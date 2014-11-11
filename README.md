@@ -54,7 +54,7 @@ and the script will build all the required client-side scripts on your page.
 
 ```html
 <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-<script src="http://code.cloudfilebrowser.io/nodejs/cfb.min.js"></script>
+<script src="https://filebrowser.io/v1/cfb.js"></script>
 ```
 
 2. or alternatively, you may host the plugin by including the lib, img, fonts, css folders and callback.html in your
