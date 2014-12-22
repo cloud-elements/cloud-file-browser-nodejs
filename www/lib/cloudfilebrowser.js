@@ -154,7 +154,7 @@ var cloudFileBrowser = (function() {
 
                 var callbackArgs = {
                     'element' : element,
-                    'path' : '/'
+                    'path' : ''
                 };
 
                 provision.getDocuments(element, '/', function(data, cbArgs) {
@@ -287,7 +287,7 @@ var cloudFileBrowser = (function() {
 
             var callbackArgs = {
                 'element' : element,
-                'path' : '/'
+                'path' : ''
             };
 
             provision.getDocuments(element, '/', function(data, cbArgs) {
