@@ -4,36 +4,40 @@
         <meta charset="utf-8" />
         <title>Cloud File Browser</title>
 
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <!-- CSS -->
+        <link rel="stylesheet" href="../css/normalize.css" />
+        <link rel="stylesheet" href="../css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../css/styles.css" />
+        <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 
-        <script src="lib/cfb.js"></script>
-        
+        <!-- JS -->
+        <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script src="../lib/cloudfilebrowser.js"></script>
+        <script src="../lib/provision.js"></script>
+
     </head>
 
     <body>
-        
-        <section class="cloudFileBrowser"></section>
+
+    <section class="cloudFileBrowser"></section>
 
     </body>
 
     <script>
 
-        $('.cloudFileBrowser').cloudFileBrowser({
-              callback: mycallback,
-              env: 'https://node.filebrowser.io/elements/'
-        });
-        
-        
-        
-        ////////////////////////////////////////////////
-        //Caller Callback function for post operations//
-        ////////////////////////////////////////////////
-        
-        function mycallback(type, response)
-        {
-            console.log('Callback for type ' + type + ' with response ' + JSON.stringify(response));
+        //Caller Callback function for post operations
+        function mycallback(type, response) {
+
+          console.log('Callback for type ' + type + ' with response ' + JSON.stringify(response));
         };
 
+
+        $('.cloudFileBrowser').cloudFileBrowser({
+            callback: mycallback,
+            env: 'http://localhost:8888/elements/'
+        });
 
     </script>
 

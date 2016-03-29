@@ -28,7 +28,8 @@ var CloudElements = (function() {
             'dropbox': 'Dropbox',
             'googledrive': 'Google Drive',
             'onedrive': 'OneDrive',
-            'sharepoint': 'SharePoint'
+            'sharepoint': 'SharePoint',
+            'sfdcdocuments': 'SalesForce Files'
         };
 
     return {
@@ -81,7 +82,7 @@ var CloudElements = (function() {
             var docservicesimages = [];
 
             cedocumentconfig = data;
-            
+
             for(var x in data)
             {
                 docservices.push(x);
@@ -104,20 +105,20 @@ var provision = (function() {
     var lastCallbackArgs = null;
     _provision = {
         isTokenPresentForElement: function(element) {
-            
+
             var eleObj = CloudElements.getConfig()[element];
             return eleObj.present;
 
         },
 
         getElementDetails: function(element) {
-            
+
             var eleObj = CloudElements.getConfig()[element];
             return eleObj;
         },
 
         setTokenToElement: function(element, token) {
-            
+
             var eleObj = CloudElements.getConfig()[element];
             eleObj['present'] = true;
 
@@ -131,23 +132,23 @@ var provision = (function() {
         },
 
         getParamsFromURI: function(queryparams) {
-            
+
             var uri = decodeURI(queryparams);
             var chunks = uri.split('&');
             var params = Object();
 
             for (var i=0; i < chunks.length ; i++) {
-                
+
                 var chunk = chunks[i].split('=');
-                
+
                 if(chunk[0].search("\\[\\]") !== -1) {
                     if( typeof params[chunk[0]] === 'undefined' ) {
                         params[chunk[0]] = [chunk[1]];
-                    } 
+                    }
                     else {
                         params[chunk[0]].push(chunk[1]);
                     }
-                } 
+                }
                 else {
                     params[chunk[0]] = chunk[1];
                 }
@@ -398,7 +399,7 @@ var server = (function() {
         },
 
         _downloadCallback: function(data) {
-            
+
             var hiddenIFrameID = 'hiddenDownloader',
                 iframe = document.getElementById(hiddenIFrameID);
             if (iframe === null) {
@@ -438,7 +439,7 @@ var server = (function() {
         uploadFile: function(element, path, file, cb, cbArgs) {
 
             var params = new FormData();
-            
+
             params.append('file', file);
 
             var callbackArgs = {
@@ -446,7 +447,7 @@ var server = (function() {
                 'cbArgs': cbArgs
             };
 
-            _server.callUpload('upload?element='+element+'&path='+path+ '/' + file.name, 'POST', null, params, this._uploadCallback, callbackArgs);
+            _server.callUpload('upload?element='+element+'&path='+path + file.name, 'POST', null, params, this._uploadCallback, callbackArgs);
         },
 
         _uploadCallback: function(data, callbackArgs) {

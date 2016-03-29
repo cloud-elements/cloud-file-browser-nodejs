@@ -3,7 +3,7 @@
 ##     Cloud File Browser                                                        ##
 ###################################################################################
 
-Copyright 2012-2014 Cloud Elements <http://www.cloud-elements.com>          
+Copyright 2012-2014 Cloud Elements <http://www.cloud-elements.com>
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not
 use this file except in compliance with the License. You may obtain a copy of
@@ -28,7 +28,7 @@ the License.
     REST calls from the Cloud File Browser to the Cloud
     Elements API while keeping your User Secret and
     Organization Secret hidden from the end user.
-    
+
     For this example, we're using Node.js in combination
     with Express and Connect. The basics of what we're
     doing here is catching ANY request that comes into
@@ -71,7 +71,7 @@ var allowCrossDomain = function(req, res, next) {
 // CONFIG ///////////////////////////////////////
 /////////////////////////////////////////////////
 
-    
+
     //////////////////////////////////////////////////////////////////////////////////
     // EXAMPLE USE ONLY                                                             //
     //                                                                              //
@@ -81,23 +81,23 @@ var allowCrossDomain = function(req, res, next) {
     //       would work with populated oSec and uSec variables.                     //
     //////////////////////////////////////////////////////////////////////////////////
 
-    organizationSecret = '98c89f16608df03b0248b74ecaf6a79b',
-    userSecret = '846708bb4a1da71d70286bc5bb0c51bf',
-        
+    organizationSecret = 'ce7f1f9be0d8a8b1f37bdfa6d72eda20',
+    userSecret = '7OpR4MRo7wnpnVKkKFXHhHBUPRzQutoem/d+WEnR1kY=',
+
     //////////////////////////////////////////////////////////////////////////////////
     // HOW TO DEFINE ELEMENTS                                                       //
     //                                                                              //
     // Note: Here is where we define which elements will be visible on the File     //
     //       Browser UI. Example usage shown below.                                 //
     //////////////////////////////////////////////////////////////////////////////////
-    
+
         documents = {
             'box': {
-                'elementToken' : 'd2d3ec396a33f70d00f91a27e46bdb24'
+                'elementToken' : 'H4RloSBE1GlF7IRrK3Hr0z/giPNNkiaRq+wyhnz/oM0='
             },
 
             'dropbox': {
-                'elementToken' : 'd2d3ec396a33f70d00f91a27e46bdb24'
+                'elementToken' : 'K/4SDRusp2PbpKGst22J+AXDLwjmA7HA4xHD5DVEwAk='
             },
 
             'googledrive': {
@@ -107,15 +107,19 @@ var allowCrossDomain = function(req, res, next) {
             },
 
             'onedrive' : {
-                
+
+            },
+
+            'sfdcdocuments': {
+                'elementToken' : '1v1qlskAvxjIs9fPKU2sp3PObcFfroLwjn+XtZvhsa4='
             },
 
             'sharepoint' : {
 
             }
     }
-    
-    
+
+
     var limits_config = {
         enable: true,
         file_uploads:true,
@@ -123,7 +127,7 @@ var allowCrossDomain = function(req, res, next) {
     }
 
     var documentsHub = null
-    var hostname = 'qa.cloud-elements.com';
+    var hostname = 'console.cloud-elements.com';
 /////////////////////////////////////////////////////////
 // Define port for Node.js ajax requests & HTTP Server //
 /////////////////////////////////////////////////////////
@@ -134,7 +138,7 @@ var httpPort = 8888;
 /////////////////////////////////////////////////
 // SERVER INIT //////////////////////////////////
 /////////////////////////////////////////////////
-    
+
 app.use(allowCrossDomain);
 app.use(connect.cookieParser());
 app.use(connect.session({ secret: organizationSecret }));
@@ -245,7 +249,7 @@ app.use('/', express.static(__dirname + '/www'));
                 'apiKey' : elementDetails.apiKey,
                 'apiSecret': elementDetails.apiSecret,
                 'callbackUrl': elementDetails.callbackUrl
-            } 
+            }
 
             callAPI('Get', '/elements/api-v2/elements/'+ele+'/oauth/url', getHeaders(ele, req), params, function(data) {
                 res.json(data);
@@ -333,7 +337,7 @@ app.use('/', express.static(__dirname + '/www'));
 /////////////////////////////////////////////////
 
 getHeaders = function(element, request, postdata) {
-    
+
     var authVal = '';
 
     if(element != null && this.getElementToken(element, request) != null) {
@@ -377,7 +381,7 @@ getElementDetails = function(element) {
 callAPI = function(method, path, headers, params, cb, jsondata) {
 
     var json = '';
-    
+
     if(params != null) {
         path +='?'+qs.stringify(params);
     }
@@ -393,7 +397,7 @@ callAPI = function(method, path, headers, params, cb, jsondata) {
     var req = https.request(options, function(res) {
 
         res.setEncoding('utf8');
-        res.on('data', function (data) {            
+        res.on('data', function (data) {
             json += data;
         });
         res.on('end', function (data) {
@@ -417,11 +421,11 @@ callAPI = function(method, path, headers, params, cb, jsondata) {
     }
 
     req.end();
-    
+
 },
-    
+
 uploadFile = function(path, ele, req, cb) {
-        
+
     var headers = getHeaders(ele, req);
     var uploadParams = url.parse(req.url).search;
 
