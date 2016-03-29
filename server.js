@@ -111,7 +111,9 @@ var allowCrossDomain = function(req, res, next) {
             },
 
             'sfdcdocuments': {
-                'elementToken' : '1v1qlskAvxjIs9fPKU2sp3PObcFfroLwjn+XtZvhsa4='
+                'apiKey':'3MVG9A2kN3Bn17huqpbZ.99EPdnkwrZnbe7pjdRgJQiexBHm4gvGNZpkkhO5x.eMnoROab.uFYmXVfbaPrGVd',
+                'apiSecret':'8957586086356087365',
+                'callbackUrl':'http://localhost:8888/callback.html'
             },
 
             'sharepoint' : {
