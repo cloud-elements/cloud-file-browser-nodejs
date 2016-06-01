@@ -2,7 +2,7 @@
 ##     Cloud File Browser                                                        ##
 ###################################################################################
 
-Copyright 2012-2015 Cloud Elements <http://www.cloud-elements.com>          
+Copyright 2012-2016 Cloud Elements <http://www.cloud-elements.com>          
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not
 use this file except in compliance with the License. You may obtain a copy of
@@ -20,7 +20,7 @@ the License.
 ##########################
 ##         DEMO         ##
 ##########################
-Cloud File Browser Demo 
+[Cloud File Browser Demo](http://filebrowser.io/) 
 
 
 ##########################
@@ -217,7 +217,7 @@ This JS file is a single import script which loads all the required JS and CSS f
 ##########################
 
 ```
-Copyright 2012-2014 Cloud Elements <http://www.cloud-elements.com>
+Copyright 2012-2016 Cloud Elements <http://www.cloud-elements.com>
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not
 use this file except in compliance with the License. You may obtain a copy of
