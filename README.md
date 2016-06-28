@@ -1,6 +1,7 @@
 ###################################################################################
 ##     Cloud File Browser                                                        ##
 ###################################################################################
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/cloud-elements/cloud-file-browser-nodejs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Copyright 2012-2016 Cloud Elements <http://www.cloud-elements.com>          
 
