@@ -1,52 +1,50 @@
-###################################################################################
-##     Cloud File Browser                                                        ##
-###################################################################################
+###  Cloud File Browser
 
 Copyright 2012-2016 Cloud Elements <http://www.cloud-elements.com>          
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not
-use this file except in compliance with the License. You may obtain a copy of
-the License at
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
     http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-License for the specific language governing permissions and limitations under
-the License.
+distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.  
 
+---
+#### :clock1: Deprecation & Repository Status
 
-##########################
-##         DEMO         ##
-##########################
+**Update June 28, 2016:** This library has not been in active development for quite some time, but may still serve as a basic boilerplate for how to connect a middleware server such as Express to the Cloud Elements services. As of 2016, the NPM world offers many different ways of distributing your applications via middleware and creating RESTful services that hide authorization keys. 
+
+You may still find the application useful, however I would strongly reccommend including build tools, tests, and using this code as a starting point to further expand upon. I am keeping this repository at it's current state for posterity, and for those who may find it's functionality useful. In the future, we may bring this to an actual major point release, but for now -- we are leaving this for posterity at 0.8 beta.
+
+Thank you,
+@cephil
+
+---
+### DEMO
 [Cloud File Browser Demo](http://filebrowser.io/) 
 
 
-##########################
-##     Description      ##
-##########################
+
+### Description
 Cloud File Browser is a javascript library to connect to Document Hub provider (e.g. Dropbox, Box,
 Google Drive) by creating Cloud Elements instances, this library uses nodejs on the backend for connecting to Cloud
 Elements API by not exposing any keys or tokens to outside world.
 
-
-##########################
-##     Requirements     ##
-##########################
+---
+### Requirements  
 * Node.js <http://nodejs.org/>
 * Express <http://expressjs.com/>
 * jQuery 2+ <http://code.jquery.com/jquery-2.1.0.min.js>
-
-Setup and create of application for the each document provider. Find the document for setting up application for the
+  
+ Setup and create of application for the each document provider. Find the document for setting up application for the
 provider 
 
 
-##########################
-##         Setup        ##
-##########################
 
-## STEP 1 ##
+## Setup
+
+
+### STEP 1
 There are two ways of installing the required scripts for the Cloud File Browser:
 
 1. Include the desired version of jQuery & minified cfb.min.js script in your HTML HEAD tag,
@@ -70,7 +68,7 @@ web application.
 <script src="lib/cloudfilebrowser.js"></script>
 <script src="lib//provision.js"></script>
 ```
-## STEP 2 ##
+### STEP 2
 Define the HTML section where you would like the file browser to appear:
 
 ```html
@@ -85,7 +83,7 @@ $('.cloudFileBrowser').cloudFileBrowser({
       env: 'http://localhost:8888/elements/'
 });
 ```
-### Configuration Options ###
+#### Configuration Options  
  **callback** - Function that gets invoked when an action happens, 'select' - when a file is selected by
 user, 'create' - when an element instance is created when user authorizes your application. Format of callback
 function is
@@ -113,15 +111,16 @@ response in callback example
 ```
  **env** - The node server URL that running at.
 
-## STEP 3 ##
-Obtain your Organization Secret key and User Secret key from your Cloud-Elements account, and place them in your server.js file (line 84-85)
-These keys are the required Authorization headers for invoking the Cloud Elemnts API
+### STEP 3
+Obtain your Organization Secret key and User Secret key from your Cloud-Elements account, and place them in your server.js file (line 84-85)  
 
-## STEP 4 ##
-Set up the providers you would like to use in server.js, if you don't mention the provider in the documents it
-doesn't show up on the screen.
-Supported documents providers are box, dropbox, googledrive, onedrive, sharepoint
-example:
+These keys are the required Authorization headers for invoking the Cloud Elemnts API
+  
+---  
+### STEP 4  
+Set up the providers you would like to use in server.js, if you don't mention the provider in the documents it doesn't show up on the screen.  
+
+Supported documents providers are box, dropbox, googledrive, onedrive, sharepoint example:
 
 ```javascript
 documents = {
@@ -152,7 +151,7 @@ documents = {
         }
 }
 ```
-### Configuration Options ###
+### Configuration Options
 
 | Key        | Description |
 | ----------------- |:-------------:|
@@ -167,55 +166,55 @@ The required scripts and markup are ready to go! Start up your node server by op
 node server.js
 ```
 
-And you're all set!
+####And you're all set!
 
+---
+## Examples
 
-##########################
-##       Examples       ##
-##########################
+You can find the examples of using the Cloud File Browser under examples folder and in index.html  
 
-You can find the examples of using the Cloud File Browser under examples folder and in index.html
-###Example1
+---
+####Example1
 index.html shows you how to use Cloud File Browser, by just including the cfb.js which loads all the client side
 sources
 
-###Example2
+---
+####Example2
 filebrowser1.html shows you how to use Cloud File Browser by downloading the source and using it in your web application.
 
-###Example3
+---
+####Example3
 filebrowser2.html shows you how to use Cloud File Browser in a modal window.
 
+---
+## Code
 
-##########################
-##          Code        ##
-##########################
-
-####server.js
+####**server.js**
 This is the Node.js server that handles the Organization Secret and User Secret, and routes them to the appropriate Cloud-Elements API call.
 
-####lib/provision.js
+####**lib/provision.js**
 This JS file acts as a wrapper JS and nodejs by calling the required nodejs API calls which in turn
 connect to Cloud Elements API.
 
-####lib/cloudfilebrowser.js
+####**lib/cloudfilebrowser.js**
 This JS file has the complete UI design of the Cloud File Browser, you can customize this according to your needs.
 
-####css/styles.css
+####**css/styles.css**
 This CSS file has the styling of Cloud File Browser, you can customize this according to your application.
 There are two methods of customizing the styles, one by modifying 'styles.css', or by introducing a custom stylesheet with your application.
 
-####css/normalize.css
-This CSS file is a browser normalization stylesheet, helping make all browsers read default styles similarly.
-More information can be found at: http://necolas.github.io/normalize.css/3.0.1/normalize.css
+####**css/normalize.css**
+This CSS file is a browser normalization stylesheet, helping make all browsers read default styles similarly.  
+  
+**More information can be found at:**  
+http://necolas.github.io/normalize.css/3.0.1/normalize.css
 
-####lib/cfb.js
+####**lib/cfb.js**
 This JS file is a single import script which loads all the required JS and CSS files for the Cloud File Browser.
 
+---
 
-##########################
-##        License       ##
-##########################
-
+## License
 ```
 Copyright 2012-2016 Cloud Elements <http://www.cloud-elements.com>
 
