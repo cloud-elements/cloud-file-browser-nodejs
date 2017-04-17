@@ -166,7 +166,7 @@ The required scripts and markup are ready to go! Start up your node server by op
 node server.js
 ```
 
-####And you're all set!
+#### And you're all set!
 
 ---
 ## Examples
@@ -174,42 +174,42 @@ node server.js
 You can find the examples of using the Cloud File Browser under examples folder and in index.html  
 
 ---
-####Example1
+#### Example1
 index.html shows you how to use Cloud File Browser, by just including the cfb.js which loads all the client side
 sources
 
 ---
-####Example2
+#### Example2
 filebrowser1.html shows you how to use Cloud File Browser by downloading the source and using it in your web application.
 
 ---
-####Example3
+#### Example3
 filebrowser2.html shows you how to use Cloud File Browser in a modal window.
 
 ---
 ## Code
 
-####**server.js**
+#### **server.js**
 This is the Node.js server that handles the Organization Secret and User Secret, and routes them to the appropriate Cloud-Elements API call.
 
-####**lib/provision.js**
+#### **lib/provision.js**
 This JS file acts as a wrapper JS and nodejs by calling the required nodejs API calls which in turn
 connect to Cloud Elements API.
 
-####**lib/cloudfilebrowser.js**
+#### **lib/cloudfilebrowser.js**
 This JS file has the complete UI design of the Cloud File Browser, you can customize this according to your needs.
 
-####**css/styles.css**
+#### **css/styles.css**
 This CSS file has the styling of Cloud File Browser, you can customize this according to your application.
 There are two methods of customizing the styles, one by modifying 'styles.css', or by introducing a custom stylesheet with your application.
 
-####**css/normalize.css**
+#### **css/normalize.css**
 This CSS file is a browser normalization stylesheet, helping make all browsers read default styles similarly.  
   
 **More information can be found at:**  
 http://necolas.github.io/normalize.css/3.0.1/normalize.css
 
-####**lib/cfb.js**
+#### **lib/cfb.js**
 This JS file is a single import script which loads all the required JS and CSS files for the Cloud File Browser.
 
 ---
