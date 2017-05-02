@@ -1,6 +1,7 @@
 {
   "name": "divvyhq-cloudfilebrowser",
-  "version": "0.8",
+  "license": "MIT",
+  "version": "0.0.8",
   "main" : "divvy/cloudfilebrowser.js",
   "repository": {
     "type": "git",
