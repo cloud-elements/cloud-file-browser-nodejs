@@ -1,5 +1,5 @@
 {
-  "name": "DivvyHQ - Cloud File Browser",
+  "name": "divvyhq-cloudfilebrowser",
   "version": "0.8",
   "main" : "divvy/cloudfilebrowser.js",
   "repository": {
