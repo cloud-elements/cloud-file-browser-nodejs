@@ -70,6 +70,17 @@ var CloudElements = (function() {
             return notif;
         },
 
+        validateToken: function(element) {
+            provision.getDocuments(element, '/', function(response, args){
+                console.log(response);
+                console.log(args);
+            });
+        },
+
+        setTokenToNull: function(element) {
+
+        },
+
         init: function(config) {
 
             cedocumentconfig = config.documents;
@@ -391,7 +402,7 @@ var server = (function() {
         {
             // status 0: this is a timeout.
             // status -1: this is a network error of some kind (connection lost for example)
-            if (response.status >= 400 || response.status <= 0)
+            if (response.status >= 400 && response.status != 401 || response.status <= 0)
             {
                 cloudFileBrowser.displayError(response.statusText);
             }
