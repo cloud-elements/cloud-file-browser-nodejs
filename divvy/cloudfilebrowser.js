@@ -73,13 +73,9 @@ var CloudElements = (function() {
         validateToken: function(element) {
             provision.getDocuments(element, '/', function(response, args){
                 if (response.status == 401) {
-                    this.setTokenToNull(element);
+                    delete cedocumentconfig[element].elementToken;
                 }
             });
-        },
-
-        setTokenToNull: function(element) {
-            delete cedocumentconfig[element].elementToken;
         },
 
         init: function(config) {
