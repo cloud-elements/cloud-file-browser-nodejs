@@ -70,6 +70,14 @@ var CloudElements = (function() {
             return notif;
         },
 
+        validateToken: function(element) {
+            provision.getDocuments(element, '/', function(response, args){
+                if (response.status == 401) {
+                    delete cedocumentconfig[element].elementToken;
+                }
+            });
+        },
+
         init: function(config) {
 
             cedocumentconfig = config.documents;
@@ -95,13 +103,10 @@ var CloudElements = (function() {
             var docservicesnames = [];
             var docservicesimages = [];
 
-            //cedocumentconfig = data;
-
-            for(var x in data)
-            {
+            for (var x in data) {
                 var elementKey = data[x].key;
-                if(cedocumentconfig[elementKey] != null)
-                {
+                if (cedocumentconfig[elementKey] != null) {
+                    CloudElements.validateToken(elementKey)
                     docservices.push(elementKey);
                     docservicesnames.push(data[x].name);
                     docservicesimages.push(envUrl+'images/'+data[x].image);
@@ -112,7 +117,6 @@ var CloudElements = (function() {
         },
 
         updateCallback: function(pagequery) {
-
             provision.processNextOnCallback(pagequery);
         }
     };
@@ -391,7 +395,7 @@ var server = (function() {
         {
             // status 0: this is a timeout.
             // status -1: this is a network error of some kind (connection lost for example)
-            if (response.status >= 400 || response.status <= 0)
+            if (response.status >= 400 && response.status != 401 || response.status <= 0)
             {
                 cloudFileBrowser.displayError(response.statusText);
             }
