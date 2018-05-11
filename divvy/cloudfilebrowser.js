@@ -103,13 +103,10 @@ var CloudElements = (function() {
             var docservicesnames = [];
             var docservicesimages = [];
 
-            //cedocumentconfig = data;
-
-            for(var x in data)
-            {
+            for (var x in data) {
                 var elementKey = data[x].key;
-                if(cedocumentconfig[elementKey] != null)
-                {
+                if (cedocumentconfig[elementKey] != null) {
+                    CloudElements.validateToken(elementKey)
                     docservices.push(elementKey);
                     docservicesnames.push(data[x].name);
                     docservicesimages.push(envUrl+'images/'+data[x].image);
@@ -120,7 +117,6 @@ var CloudElements = (function() {
         },
 
         updateCallback: function(pagequery) {
-
             provision.processNextOnCallback(pagequery);
         }
     };
