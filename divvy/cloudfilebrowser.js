@@ -73,7 +73,7 @@ var CloudElements = (function() {
         validateToken: function(element) {
             provision.getDocuments(element, '/', function(response, args){
                 if (response.status == 401) {
-                    delete cedocumentconfig[element].elementToken;
+                    delete cedocumentconfig[element];
                 }
             });
         },
@@ -105,8 +105,8 @@ var CloudElements = (function() {
 
             for (var x in data) {
                 var elementKey = data[x].key;
+                CloudElements.validateToken(elementKey);
                 if (cedocumentconfig[elementKey] != null) {
-                    CloudElements.validateToken(elementKey)
                     docservices.push(elementKey);
                     docservicesnames.push(data[x].name);
                     docservicesimages.push(envUrl+'images/'+data[x].image);
