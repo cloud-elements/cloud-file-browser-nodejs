@@ -105,7 +105,6 @@ var CloudElements = (function() {
 
             for (var x in data) {
                 var elementKey = data[x].key;
-                CloudElements.validateToken(elementKey);
                 if (cedocumentconfig[elementKey] != null) {
                     docservices.push(elementKey);
                     docservicesnames.push(data[x].name);
@@ -671,6 +670,14 @@ var cloudFileBrowser = (function() {
             this.initDragDropHandlers();
 
             var firstElement = services[0];
+
+            // loop over services
+            // call validateToken
+            for (var x in services) {
+                var elementKey = data[x].key;
+                CloudElements.validateToken(elementKey);
+            }
+
             this.initElement(firstElement);
         },
 
