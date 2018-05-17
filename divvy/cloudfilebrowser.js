@@ -669,7 +669,7 @@ var cloudFileBrowser = (function() {
             this.bindProvisionButtons();
             this.initDragDropHandlers();
 
-            var firstElement = services[0];
+            var firstElement = services[1];
 
             // loop over services
             // call validateToken
