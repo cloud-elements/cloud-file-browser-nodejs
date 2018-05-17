@@ -673,9 +673,9 @@ var cloudFileBrowser = (function() {
 
             // loop over services
             // call validateToken
-            for (var element in services) {
-                console.log(element);
-                CloudElements.validateToken(element);
+            for (var index in services) {
+                console.log(services[index]);
+                CloudElements.validateToken(services[index]);
             }
 
             this.initElement(firstElement);
