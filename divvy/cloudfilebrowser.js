@@ -674,7 +674,6 @@ var cloudFileBrowser = (function() {
             // loop over services
             // call validateToken
             for (var index in services) {
-                console.log(services[index]);
                 CloudElements.validateToken(services[index]);
             }
 
@@ -733,6 +732,7 @@ var cloudFileBrowser = (function() {
             };
 
             if (provision.isAuthorized(element)) {
+                console.log('authorized');
                 $('#loading').addClass('show');
                 provision.createInstance(element, cloudFileBrowser.handleOnProvision, callbackArgs);
             }
