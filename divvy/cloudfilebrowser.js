@@ -73,7 +73,7 @@ var CloudElements = (function() {
         validateToken: function(element) {
             provision.getDocuments(element, '/', function(response, args){
                 if (response.status == 401) {
-                    cedocumentconfig[element].elementToken = null;
+                    cedocumentconfig[element] = null;
                 }
             });
         },
@@ -674,6 +674,7 @@ var cloudFileBrowser = (function() {
             // loop over services
             // call validateToken
             for (var element in services) {
+                console.log(element);
                 CloudElements.validateToken(element);
             }
 
