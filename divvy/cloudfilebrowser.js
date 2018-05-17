@@ -669,8 +669,8 @@ var cloudFileBrowser = (function() {
             this.bindProvisionButtons();
             this.initDragDropHandlers();
 
-            // loop over services
-            // call validateToken
+            // This is a loop that runs validateToken over all of the
+            // different CloudElements and deletes bad tokens
             for (var index in services) {
                 CloudElements.validateToken(services[index]);
             }
