@@ -669,15 +669,15 @@ var cloudFileBrowser = (function() {
             this.bindProvisionButtons();
             this.initDragDropHandlers();
 
-            var firstElement = services[1];
-
             // loop over services
             // call validateToken
             for (var index in services) {
                 CloudElements.validateToken(services[index]);
             }
 
-            this.initElement(firstElement);
+            var firstElement = services[0];
+
+            setTimeout(function(){this.initElement(firstElement);}, 1000);
         },
 
         initDragDropHandlers: function() {
@@ -732,7 +732,6 @@ var cloudFileBrowser = (function() {
             };
 
             if (provision.isAuthorized(element)) {
-                console.log('authorized');
                 $('#loading').addClass('show');
                 provision.createInstance(element, cloudFileBrowser.handleOnProvision, callbackArgs);
             }
