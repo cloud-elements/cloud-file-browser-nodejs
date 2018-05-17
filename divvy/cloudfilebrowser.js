@@ -677,7 +677,7 @@ var cloudFileBrowser = (function() {
 
             var firstElement = services[0];
 
-            setTimeout(function(){this.initElement(firstElement);}, 1000);
+            setTimeout(function(){cloudFileBrowser.initElement(firstElement);}, 1000);
         },
 
         initDragDropHandlers: function() {
