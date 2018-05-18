@@ -71,11 +71,17 @@ var CloudElements = (function() {
         },
 
         validateToken: function(element) {
-            provision.getDocuments(element, '/', function(response, args){
+
+            var deferred = $.Deferred();
+
+            provision.getDocuments(element, '/', function(response, args) {
                 if (response.status == 401) {
                     delete cedocumentconfig[element].elementToken;
                 }
+                deferred.resolve();
             });
+
+            return deferred;
         },
 
         init: function(config) {
@@ -106,7 +112,6 @@ var CloudElements = (function() {
             for (var x in data) {
                 var elementKey = data[x].key;
                 if (cedocumentconfig[elementKey] != null) {
-                    CloudElements.validateToken(elementKey)
                     docservices.push(elementKey);
                     docservicesnames.push(data[x].name);
                     docservicesimages.push(envUrl+'images/'+data[x].image);
@@ -671,7 +676,21 @@ var cloudFileBrowser = (function() {
             this.initDragDropHandlers();
 
             var firstElement = services[0];
-            this.initElement(firstElement);
+
+            // This is a loop that runs validateToken over all of the
+            // different CloudElements and deletes bad tokens
+            var deferreds = [];
+
+            for (var index in services) {
+                var check = CloudElements.validateToken(services[index]);
+                deferreds.push(check);
+            }
+
+            $.when.apply($, deferreds).done(function() {
+                //Initialize the first CloudElement
+                cloudFileBrowser.initElement(firstElement);
+            });
+
         },
 
         initDragDropHandlers: function() {
