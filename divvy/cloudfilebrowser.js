@@ -677,13 +677,8 @@ var cloudFileBrowser = (function() {
 
             var firstElement = services[0];
 
-            runFirstElement = function() {
-                cloudFileBrowser.initElement(firstElement);
-            };
-
             // This is a loop that runs validateToken over all of the
             // different CloudElements and deletes bad tokens
-
             var deferreds = [];
 
             for (var index in services) {
@@ -691,7 +686,10 @@ var cloudFileBrowser = (function() {
                 deferreds.push(check);
             }
 
-            $.when.apply($, deferreds).done(runFirstElement);
+            $.when.apply($, deferreds).done(function() {
+                //Initialize the first CloudElement
+                cloudFileBrowser.initElement(firstElement);
+            });
 
         },
 
