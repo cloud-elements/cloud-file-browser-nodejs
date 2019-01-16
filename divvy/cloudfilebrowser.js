@@ -343,7 +343,7 @@ var server = (function() {
                     cb(data.results, cbArgs);
 
             })
-            .error(function(data){
+            .fail(function(data){
                 _server.handleFailure(data, cb, cbArgs);
             });
         },
@@ -367,7 +367,7 @@ var server = (function() {
                         cb(data.results, cbArgs);
 
                 })
-                .error(function(data){
+                .fail(function(data){
                     _server.handleFailure(data, cb, cbArgs);
                 });
         },
@@ -382,7 +382,7 @@ var server = (function() {
                 .done(function(data) {
                     cb('true');
                 })
-                .error(function(data) {
+                .fail(function(data) {
 
                     // Temporary catch for X-DOMAIN
                     if (data.status === 0) {
@@ -400,16 +400,11 @@ var server = (function() {
         {
             // status 0: this is a timeout.
             // status -1: this is a network error of some kind (connection lost for example)
-            if (response.status >= 400 && response.status != 401 || response.status <= 0)
-            {
+            if (response.status >= 400 && response.status != 401 || response.status <= 0) {
                 cloudFileBrowser.displayError(response.statusText);
-            }
-            else if (server.isNullAndUndef(response.responseText))
-            {
+            } else if (server.isNullAndUndef(response.responseText)) {
                 cloudFileBrowser.displayError(response.statusText);
-            }
-            else
-            {
+            } else {
                 cb(response, cbArgs);
             }
         }
