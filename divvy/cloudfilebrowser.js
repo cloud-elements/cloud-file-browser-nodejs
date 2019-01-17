@@ -684,7 +684,6 @@ var cloudFileBrowser = (function() {
             $.when.apply($, deferreds).done(function() {
                 //Initialize the first CloudElement
                 cloudFileBrowser.initElement(firstElement);
-                $('#services-tabs').removeClass('disable-element');
             });
 
         },
