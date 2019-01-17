@@ -692,12 +692,14 @@ var cloudFileBrowser = (function() {
             console.log('show loading');
             $('#loading').addClass('show');
             $('#services-tabs').addClass('disable-element');
+            $('.listTable div').addClass('disable-element');
         },
 
         hideLoading: function() {
             console.log('hide loading');
             $('#loading').removeClass('show');
             $('#services-tabs').removeClass('disable-element');
+            $('.listTable div').removeClass('disable-element');
         },
 
         initDragDropHandlers: function() {
