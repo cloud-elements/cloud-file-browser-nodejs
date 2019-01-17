@@ -628,10 +628,10 @@ the License.
 // JQUERY WRAPPER FOR EASY PARAMS //
 ////////////////////////////////////
 
-(function($1) {
+(function($) {
     'use strict';
     var exports = module.exports = {};
-    $1.fn.cloudFileBrowser = function(options) {
+    $.fn.cloudFileBrowser = function(options) {
         cloudFileBrowser.buildDomEls(this.selector, function() {
              CloudElements.init(options);
         });
@@ -639,7 +639,7 @@ the License.
     exports.provision = provision;
     exports.CloudElements = CloudElements;
     return module.exports;
-}(jQuery1))
+}(jQuery))
 
 var cloudFileBrowser = (function() {
     'use strict';
@@ -681,7 +681,7 @@ var cloudFileBrowser = (function() {
                 deferreds.push(check);
             }
 
-            $1.when.apply($1, deferreds).done(function() {
+            $.when.apply($, deferreds).done(function() {
                 //Initialize the first CloudElement
                 cloudFileBrowser.initElement(firstElement);
             });
@@ -692,12 +692,12 @@ var cloudFileBrowser = (function() {
 
             if (window.File) {
 
-                $1('.drop-zone').on('dragover', function(e) {
+                $('.drop-zone').on('dragover', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                 });
 
-                $1('.drop-zone').on('dragenter', function(e) {
+                $('.drop-zone').on('dragenter', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                 });
@@ -708,7 +708,7 @@ var cloudFileBrowser = (function() {
         buildDomEls: function(selector, cb) {
 
             var HTML = '<section id="tab-container"><ul id="services-tabs"></ul><section id="services-containers"></section><section id="file-info"><div class="preview"><a class="close" href="#"></a></div><h2>File Details</h2><div class="fileDetails"></div></section></section><section id="loading"><span><i></i></span></section><section id="error"></section>';
-            $1(selector).append(HTML);
+            $(selector).append(HTML);
             cb();
         },
 
@@ -729,8 +729,8 @@ var cloudFileBrowser = (function() {
                                     '</div>';
             }
 
-            $1(tabs).append(tabsHTML);
-            $1(container).append(containerHTML);
+            $(tabs).append(tabsHTML);
+            $(container).append(containerHTML);
 
         },
 
@@ -740,7 +740,7 @@ var cloudFileBrowser = (function() {
             };
 
             if (provision.isAuthorized(element)) {
-                $1('#loading').addClass('show');
+                $('#loading').addClass('show');
                 provision.createInstance(element, cloudFileBrowser.handleOnProvision, callbackArgs);
             }
         },
@@ -749,16 +749,16 @@ var cloudFileBrowser = (function() {
 
             // Set the bind method for tab switches
 
-            $1(tabs + ' li').on('click', function (event) {
+            $(tabs + ' li').on('click', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
 
-                var index = $1(this).index();
+                var index = $(this).index();
 
-                $1('#file-info').removeClass('show');
-                $1('div.on, li.on').removeClass('on');
-                $1(this).addClass('on');
-                $1(container + ' > div').eq(index).addClass('on');
+                $('#file-info').removeClass('show');
+                $('div.on, li.on').removeClass('on');
+                $(this).addClass('on');
+                $(container + ' > div').eq(index).addClass('on');
 
                 cloudFileBrowser.initElement(services[index]);
 
@@ -767,11 +767,11 @@ var cloudFileBrowser = (function() {
 
         bindProvisionButtons: function() {
 
-            $1('.provision').on('click', function(event) {
+            $('.provision').on('click', function(event) {
                 event.preventDefault();
                 event.stopPropagation();
 
-                var element = $1(this).attr('aria-element');
+                var element = $(this).attr('aria-element');
 
                 cloudFileBrowser.provisionEl(element);
             });
@@ -781,15 +781,15 @@ var cloudFileBrowser = (function() {
         bindBreadCrumbClick: function(element) {
 
             //Onclick of breadcrumb, fetch the files under breadcrumb folder
-            $1('.breadcrumb ul li.home').on('click', function (event) {
+            $('.breadcrumb ul li.home').on('click', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
 
-                $1('#file-info').removeClass('show');
+                $('#file-info').removeClass('show');
 
-                $1('.addFiles, .addFilesButton, .selectFilesButton').remove();
+                $('.addFiles, .addFilesButton, .selectFilesButton').remove();
 
-                $1('#loading').addClass('show');
+                $('#loading').addClass('show');
 
                 var callbackArgs = {
                     'element' : element,
@@ -801,13 +801,13 @@ var cloudFileBrowser = (function() {
                 }, callbackArgs);
             });
 
-            $1('.breadcrumb ul li.selectedPath').on('click', function (event) {
+            $('.breadcrumb ul li.selectedPath').on('click', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
 
                 var pathResourse = this.getAttribute('name');
 
-                $1('#loading').addClass('show');
+                $('#loading').addClass('show');
 
                 var callbackArgs = {
                     'element' : element,
@@ -823,19 +823,19 @@ var cloudFileBrowser = (function() {
         bindFileInfo: function(element) {
 
             //Onclick of folder, fetch the files under folder
-            $1('.listTable ul li.foldername').one('click', function (event) {
+            $('.listTable ul li.foldername').one('click', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
 
-                $1('#file-info').removeClass('show');
+                $('#file-info').removeClass('show');
 
-                $1('.addFiles, .addFilesButton, .selectFilesButton').remove();
+                $('.addFiles, .addFilesButton, .selectFilesButton').remove();
 
-                 $1('#loading').addClass('show');
+                 $('#loading').addClass('show');
 
                 // ? Does folderName ever get used ?
-                var folderName = $1(this).text()
-                var location = $1(this).next().text();
+                var folderName = $(this).text()
+                var location = $(this).next().text();
 
                 var callbackArgs = {
                     'element' : element,
@@ -847,14 +847,14 @@ var cloudFileBrowser = (function() {
                 }, callbackArgs);
             });
 
-            $1('.listTable ul li.filename').on('click', function (event) {
+            $('.listTable ul li.filename').on('click', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
 
-                var fileId = $1(this).closest('ul').data('file-id');
+                var fileId = $(this).closest('ul').data('file-id');
                 var fileInfo = '#file-info';
-                var fileName = $1(this).text();
-                var location = $1(this).next().text();
+                var fileName = $(this).text();
+                var location = $(this).next().text();
                 var listHTML = '<ul><li>Filename:</li><li>' + fileName + '</li></ul>' +
                                 '<ul><li>Location:</li><li>' + location + '</li></ul>' +
                                 '<a href="#" class="selectbutton" data-file-id="' +
@@ -863,7 +863,7 @@ var cloudFileBrowser = (function() {
                 extension = fileName.split('.').pop();
 
                 //Get the thumbnail of the image only when the extension is of type image
-                $1('#file-info .preview img').remove();
+                $('#file-info .preview img').remove();
 
                 var extlower = extension.toLowerCase();
                 if (extlower == "jpg" | extlower == "gif" | extlower == "jpeg" | extlower == "png")
@@ -872,17 +872,17 @@ var cloudFileBrowser = (function() {
                     provision.displayFile(element, location, cloudFileBrowser.displayThumbnail);
                 }
 
-                $1(fileInfo).addClass('show').find('.fileDetails').html(listHTML);
+                $(fileInfo).addClass('show').find('.fileDetails').html(listHTML);
 
 
-                $1(fileInfo).find('.selectbutton').on('click', function (event) {
+                $(fileInfo).find('.selectbutton').on('click', function (event) {
                     event.preventDefault();
                     event.stopPropagation();
 
                     provision.fileSelected(element, location, fileId);
                 });
 
-                $1(fileInfo).find('.downloadbutton').on('click', function (event) {
+                $(fileInfo).find('.downloadbutton').on('click', function (event) {
                     event.preventDefault();
                     event.stopPropagation();
 
@@ -891,14 +891,14 @@ var cloudFileBrowser = (function() {
 
             });
 
-            $1('div.preview a.close').on('click', function (event) {
+            $('div.preview a.close').on('click', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
 
-                $1('#file-info').removeClass('show');
+                $('#file-info').removeClass('show');
             });
 
-            $1('.listTable ul li.checkbox').on('change', function() {
+            $('.listTable ul li.checkbox').on('change', function() {
                 var selectedPath = this.nextSibling.nextSibling.textContent;
                 if(cloudFileBrowser.selectedFiles[element] == null
                     || cloudFileBrowser.selectedFiles[element] == undefined)
@@ -906,7 +906,7 @@ var cloudFileBrowser = (function() {
                     cloudFileBrowser.selectedFiles[element] = new Array();
                 }
 
-                var position = $1.inArray(selectedPath, cloudFileBrowser.selectedFiles[element]);
+                var position = $.inArray(selectedPath, cloudFileBrowser.selectedFiles[element]);
                 if(~position)
                 {
                     cloudFileBrowser.selectedFiles[element].splice(position, 1);
@@ -930,7 +930,7 @@ var cloudFileBrowser = (function() {
                     if (extlower == "jpg" | extlower == "gif" | extlower == "jpeg" | extlower == "png")
                     {
 
-                        $1('#file-info .preview').append('<img src="' + data.cloudElementsLink + '">');
+                        $('#file-info .preview').append('<img src="' + data.cloudElementsLink + '">');
                     }
 
                 }
@@ -944,7 +944,7 @@ var cloudFileBrowser = (function() {
             // Provision the element based upon its service array name
             // Note -- Demo only, always returns successful
 
-            $1('#loading').addClass('show');
+            $('#loading').addClass('show');
 
             var callbackArgs = {
                 'element' : element
@@ -968,15 +968,15 @@ var cloudFileBrowser = (function() {
 
         drawEl: function(data, element, path) {
             // Clean up load screen
-            $1('#loading').removeClass('show');
+            $('#loading').removeClass('show');
 
-            $1('div.' + element + ' .listTable, div.' + element + ' .breadcrumb').remove();
+            $('div.' + element + ' .listTable, div.' + element + ' .breadcrumb').remove();
 
             // Call for table from helper class
             var tableHTML = this.buildTable(data, true, path, element);
 
             // Append data returned and start screen adjustment via CSS3 class
-            $1(container + ' .' + element).addClass('provisioned').append(tableHTML);
+            $(container + ' .' + element).addClass('provisioned').append(tableHTML);
 
             this.animateTable(element);
             this.bindFileDragDrop(element, path);
@@ -1065,7 +1065,7 @@ var cloudFileBrowser = (function() {
 
                 var tableHTML = '';
 
-                var currentIndex = $1('.listTable ul').length;
+                var currentIndex = $('.listTable ul').length;
 
                 for (var i=0; i < data.length; i++) {
                     tableHTML += '<ul draggable="true" class="loading on '+ data[i].name+'">' +
@@ -1094,12 +1094,12 @@ var cloudFileBrowser = (function() {
 
         handleUploadComplete: function(cbArgs) {
 
-            if($1('.listTable ul.loading') != null)
+            if($('.listTable ul.loading') != null)
             {
-                $1('.listTable ul.loading').removeClass('loading');
+                $('.listTable ul.loading').removeClass('loading');
             }
 
-            var tableList = $1('.listTable ul');
+            var tableList = $('.listTable ul');
             var ulElement = tableList[cbArgs.currentIndex];
 
             if(cbArgs.data.name == null || cbArgs.data.name == undefined)
@@ -1119,39 +1119,39 @@ var cloudFileBrowser = (function() {
 
         animateTable: function(element) {
 
-            var len = $1('div.' + element + ' .listTable .scrollPanel ul:not(".on")').length;
+            var len = $('div.' + element + ' .listTable .scrollPanel ul:not(".on")').length;
             var delay = 100;
 
             for (var i=0; i < len; i++) {
 
-                $1('.' + element + ' .listTable .scrollPanel  ul:not(".on"):eq('+i+')').attr('style', '-webkit-transition-delay: ' + delay + 'ms');
+                $('.' + element + ' .listTable .scrollPanel  ul:not(".on"):eq('+i+')').attr('style', '-webkit-transition-delay: ' + delay + 'ms');
                 delay += 50;
 
             }
             setTimeout(function() {
-                $1('.' + element + ' .listTable .scrollPanel > ul').addClass('on');
+                $('.' + element + ' .listTable .scrollPanel > ul').addClass('on');
             }, 50);
 
         },
 
         bindAddFiles: function(element, path) {
 
-            $1('.addFilesButton').unbind('click');
-            $1('.addFiles').unbind('change');
+            $('.addFilesButton').unbind('click');
+            $('.addFiles').unbind('change');
 
-            $1('.addFilesButton').on('click', function() {
+            $('.addFilesButton').on('click', function() {
 
-                $1('.' + element + ' .addFiles').trigger('click');
+                $('.' + element + ' .addFiles').trigger('click');
 
             });
 
-            $1('.addFiles').on('change', function(e) {
+            $('.addFiles').on('change', function(e) {
 
                 cloudFileBrowser.uploadFiles(element, path, this.files);
 
             });
 
-            $1('.selectFilesButton').on('click', function (event) {
+            $('.selectFilesButton').on('click', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
 
@@ -1162,14 +1162,14 @@ var cloudFileBrowser = (function() {
 
         bindFileDragDrop: function(element, path) {
 
-            $1('.drop-zone').unbind('drop');
+            $('.drop-zone').unbind('drop');
 
-            $1('.drop-zone').on('drop', function(e) {
+            $('.drop-zone').on('drop', function(e) {
 
                 var files = e.originalEvent.dataTransfer.files
-                var element = $1(this).attr('aria-element');
+                var element = $(this).attr('aria-element');
 
-                $1(this).removeClass('drop-helper');
+                $(this).removeClass('drop-helper');
 
                 // Prevent default events & propogation
 
@@ -1180,7 +1180,7 @@ var cloudFileBrowser = (function() {
 
             });
 
-            $1('.drop-zone').on('dragover', function(e) {
+            $('.drop-zone').on('dragover', function(e) {
 
                 // Check for ONLY files dragged into view,
                 // otherwise ignore if an el from the screen
@@ -1189,7 +1189,7 @@ var cloudFileBrowser = (function() {
                     e.preventDefault();
                     e.stopPropagation();
 
-                    $1(this).addClass('drop-helper');
+                    $(this).addClass('drop-helper');
                // }
 
             });
@@ -1198,11 +1198,11 @@ var cloudFileBrowser = (function() {
 
         displayError: function(err) {
 
-            $1('#loading').removeClass('show');
-            $1('#error').html('<span>' + err + '</span>').addClass('show');
+            $('#loading').removeClass('show');
+            $('#error').html('<span>' + err + '</span>').addClass('show');
 
             setTimeout(function() {
-                $1('#error').removeClass('show');
+                $('#error').removeClass('show');
             }, 2500);
 
 
@@ -1212,8 +1212,8 @@ var cloudFileBrowser = (function() {
 
             var tableHTML = this.buildTable(files, false, path, element);
 
-            //$1('div.' + element + ' .listTable').append(tableHTML);
-            $1('div.' + element + ' .listTable .scrollPanel').append(tableHTML);
+            //$('div.' + element + ' .listTable').append(tableHTML);
+            $('div.' + element + ' .listTable .scrollPanel').append(tableHTML);
             this.animateTable(element);
 
         }
