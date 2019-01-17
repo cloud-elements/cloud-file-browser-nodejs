@@ -632,7 +632,7 @@ the License.
     'use strict';
     var exports = module.exports = {};
     $.fn.cloudFileBrowser = function(options) {
-        cloudFileBrowser.buildDomEls(this.selector, function() {
+        cloudFileBrowser.buildDomEls(this, function() {
              CloudElements.init(options);
         });
     };
