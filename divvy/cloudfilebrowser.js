@@ -684,6 +684,7 @@ var cloudFileBrowser = (function() {
             $.when.apply($, deferreds).done(function() {
                 //Initialize the first CloudElement
                 cloudFileBrowser.initElement(firstElement);
+                $('#services-tabs').removeClass('disable-element');
             });
 
         },
@@ -725,6 +726,7 @@ var cloudFileBrowser = (function() {
         },
 
         buildTabs: function() {
+            $('#services-tabs').addClass('disable-element');
 
             // Inspect services object, and build a tab + trigger
             // for each service installed
@@ -743,7 +745,6 @@ var cloudFileBrowser = (function() {
 
             $(tabs).append(tabsHTML);
             $(container).append(containerHTML);
-
         },
 
         initElement: function(element) {
