@@ -688,6 +688,18 @@ var cloudFileBrowser = (function() {
 
         },
 
+        showLoading: function() {
+            console.log('show loading');
+            $('#loading').addClass('show');
+            $('#services-tabs').addClass('disable-element');
+        },
+
+        hideLoading: function() {
+            console.log('hide loading');
+            $('#loading').removeClass('show');
+            $('#services-tabs').removeClass('disable-element');
+        },
+
         initDragDropHandlers: function() {
 
             if (window.File) {
@@ -740,7 +752,7 @@ var cloudFileBrowser = (function() {
             };
 
             if (provision.isAuthorized(element)) {
-                $('#loading').addClass('show');
+                cloudFileBrowser.showLoading();
                 provision.createInstance(element, cloudFileBrowser.handleOnProvision, callbackArgs);
             }
         },
@@ -789,7 +801,7 @@ var cloudFileBrowser = (function() {
 
                 $('.addFiles, .addFilesButton, .selectFilesButton').remove();
 
-                $('#loading').addClass('show');
+                cloudFileBrowser.showLoading();
 
                 var callbackArgs = {
                     'element' : element,
@@ -807,7 +819,7 @@ var cloudFileBrowser = (function() {
 
                 var pathResourse = this.getAttribute('name');
 
-                $('#loading').addClass('show');
+                cloudFileBrowser.showLoading();
 
                 var callbackArgs = {
                     'element' : element,
@@ -831,7 +843,7 @@ var cloudFileBrowser = (function() {
 
                 $('.addFiles, .addFilesButton, .selectFilesButton').remove();
 
-                 $('#loading').addClass('show');
+                 cloudFileBrowser.showLoading();
 
                 // ? Does folderName ever get used ?
                 var folderName = $(this).text()
@@ -944,7 +956,7 @@ var cloudFileBrowser = (function() {
             // Provision the element based upon its service array name
             // Note -- Demo only, always returns successful
 
-            $('#loading').addClass('show');
+            cloudFileBrowser.showLoading();
 
             var callbackArgs = {
                 'element' : element
@@ -968,7 +980,8 @@ var cloudFileBrowser = (function() {
 
         drawEl: function(data, element, path) {
             // Clean up load screen
-            $('#loading').removeClass('show');
+            cloudFileBrowser.hideLoading();
+
 
             $('div.' + element + ' .listTable, div.' + element + ' .breadcrumb').remove();
 
@@ -1198,7 +1211,7 @@ var cloudFileBrowser = (function() {
 
         displayError: function(err) {
 
-            $('#loading').removeClass('show');
+            cloudFileBrowser.hideLoading();
             $('#error').html('<span>' + err + '</span>').addClass('show');
 
             setTimeout(function() {
