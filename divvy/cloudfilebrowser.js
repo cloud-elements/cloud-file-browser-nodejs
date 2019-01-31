@@ -973,7 +973,7 @@ var cloudFileBrowser = (function() {
                 'path' : '/'
             };
 
-            provision.getDocuments(element, '/', function(data, cbArgs) {
+            provision.getDocuments(element, '/my-drive', function(data, cbArgs) {
                 cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path);
             }, callbackArgs);
         },
