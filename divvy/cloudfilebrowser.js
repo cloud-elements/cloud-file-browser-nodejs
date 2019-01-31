@@ -970,10 +970,11 @@ var cloudFileBrowser = (function() {
 
             var callbackArgs = {
                 'element' : element,
-                'path' : '/'
+                'path' : '/',
+                'orderBy' : 'modifiedDate desc'
             };
 
-            provision.getDocuments(element, '/Untitled%20folder', function(data, cbArgs) {
+            provision.getDocuments(element, '/', function(data, cbArgs) {
                 cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path);
             }, callbackArgs);
         },
