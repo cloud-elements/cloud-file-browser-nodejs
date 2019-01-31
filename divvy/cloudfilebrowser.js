@@ -456,7 +456,8 @@ var server = (function() {
 
         list: function(tkn, path, cb, cbArgs) {
             var params = {
-                'path' : path
+                'path' : path,
+                'orderBy' : 'modifiedDate desc'
             }
 
             _server.call('api-v2/hubs/documents/folders/contents', 'Get',
@@ -970,8 +971,7 @@ var cloudFileBrowser = (function() {
 
             var callbackArgs = {
                 'element' : element,
-                'path' : '/',
-                'orderBy' : 'modifiedDate desc'
+                'path' : '/'
             };
 
             provision.getDocuments(element, '/', function(data, cbArgs) {
