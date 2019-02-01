@@ -135,9 +135,6 @@ var provision = (function() {
      var _provision = {
         getTokenForElement: function(element) {
             var eleObj = CloudElements.getConfig()[element];
-
-            console.log(eleObj);
-
             return eleObj['elementToken'];
         },
 
@@ -755,12 +752,7 @@ var cloudFileBrowser = (function() {
                 'element' : element
             };
 
-            // Manually validate token before calling isAuthorized?
-            token = _provision.getTokenForElement(element);
-            CloudElements.validateToken(token);
-
             if (provision.isAuthorized(element)) {
-                console.log('provision isAuthorized');
                 cloudFileBrowser.showLoading();
                 provision.createInstance(element, cloudFileBrowser.handleOnProvision, callbackArgs);
             }
