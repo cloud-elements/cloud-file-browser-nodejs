@@ -726,8 +726,6 @@ var cloudFileBrowser = (function() {
         },
 
         buildTabs: function() {
-            $('#services-tabs').addClass('disable-element');
-
             // Inspect services object, and build a tab + trigger
             // for each service installed
 
