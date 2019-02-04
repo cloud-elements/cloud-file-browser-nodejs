@@ -422,10 +422,10 @@ the License.
     }
 
     #services-containers > div.provisioned > div.breadcrumb ul li.caret { padding: 0 }
-    #services-containers > div.provisioned > div.breadcrumb ul li.caret:before {
-        content: '\f105';
-        font-family: 'FontAwesome';
-    }
+    // #services-containers > div.provisioned > div.breadcrumb ul li.caret:before {
+    //     content: '\f105';
+    //     font-family: 'FontAwesome';
+    // }
 
     #services-containers > div.provisioned > div.breadcrumb ul li {
         border-bottom: 1px solid rgba(0,0,0,.3);
