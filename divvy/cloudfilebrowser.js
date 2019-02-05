@@ -1034,7 +1034,7 @@ var cloudFileBrowser = (function() {
                                 trailingpath = trailingpath + '/' + selectedPathResRec;
                             }
 
-                            tableHTML += '<li class="caret"></li>';
+                            tableHTML += '<li class="breadcrumb-caret">&gt</li>';
                             tableHTML += '<li class="selectedPath" name="'+trailingpath+'">'+selectedPathResRec +'</li>';
                         }
                     }
