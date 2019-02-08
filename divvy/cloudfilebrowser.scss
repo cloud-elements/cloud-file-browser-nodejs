@@ -531,7 +531,7 @@ the License.
         margin-right: 8px;
     }
 
-    #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul li.foldername:before { content: '\f07b' }
+    #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul li.foldername:before { content: '\f07b'; color: peru }
     #services-containers > div.provisioned > div.listTable > ul:first-child {
         /*position: fixed;*/
         background: linear-gradient(#555, #333);
