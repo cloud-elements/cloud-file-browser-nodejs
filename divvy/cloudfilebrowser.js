@@ -19,6 +19,8 @@ the License.
 
 */
 
+import Moment from 'moment';
+
 var CloudElements = (function() {
     'use strict';
     var cedocumentconfig = null, oSec = null,
@@ -1071,9 +1073,8 @@ var cloudFileBrowser = (function() {
 
                     tableHTML += objItm.name + '</li>' +
                         '<li>' + objItm.path + '</li>' +
-                        '<li>' + objItm.modifiedDate + '</li></ul>';
+                        '<li>' + moment(objItm.modifiedDate).format('MM/DD/YY h:mm a') + '</li></ul>';
                 }
-
             }
             else {
 
