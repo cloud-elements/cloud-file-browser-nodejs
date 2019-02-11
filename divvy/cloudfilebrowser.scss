@@ -570,6 +570,11 @@ the License.
         text-align: left;
     }
 
+    #services-containers > div.provisioned > div.listTable ul li:nth-child(3),
+    #services-containers > div.provisioned > div.listTable ul li:nth-child(4){
+        display: none
+    }
+
     #services-containers > div.provisioned > div.listTable ul li:first-child {
         flex: none;
         -webkit-flex:none;
