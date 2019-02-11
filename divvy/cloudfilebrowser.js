@@ -1071,7 +1071,7 @@ var cloudFileBrowser = (function() {
                         tableHTML += '<li class="checkbox"></li>' +
                                      '<li class="filename">';
 
-                    var modifiedDate = moment(objItm.modifiedDate);
+                    var modifiedDate = moment(objItm.modifiedDate).format('MM/DD/YYYY');
 
                     tableHTML += objItm.name + '</li>' +
                         '<li>' + objItm.path + '</li>' +
