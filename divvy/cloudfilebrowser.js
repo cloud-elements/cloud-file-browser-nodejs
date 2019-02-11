@@ -19,6 +19,8 @@ the License.
 
 */
 
+var moment = require("moment");
+
 var CloudElements = (function() {
     'use strict';
     var cedocumentconfig = null, oSec = null,
@@ -1069,9 +1071,11 @@ var cloudFileBrowser = (function() {
                         tableHTML += '<li class="checkbox"></li>' +
                                      '<li class="filename">';
 
+                    modifiedDate = moment(objItm.modifiedDate);
+
                     tableHTML += objItm.name + '</li>' +
                         '<li>' + objItm.path + '</li>' +
-                        '<li>' + objItm.modifiedDate + '</li></ul>';
+                        '<li>' + modifiedDate + '</li></ul>';
                 }
             }
             else {
