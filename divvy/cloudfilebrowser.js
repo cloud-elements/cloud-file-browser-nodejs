@@ -1071,11 +1071,11 @@ var cloudFileBrowser = (function() {
                         tableHTML += '<li class="checkbox"></li>' +
                                      '<li class="filename">';
 
-                    let modifiedDate = new Moment(objItm.modifiedDate).format('MM/DD/YY h:mm a')
+                    // let modifiedDate = new Moment(objItm.modifiedDate).format('MM/DD/YY h:mm a');
 
                     tableHTML += objItm.name + '</li>' +
                         '<li>' + objItm.path + '</li>' +
-                        '<li>' + modifiedDate + '</li></ul>';
+                        '<li>' + objItm.modifiedDate + '</li></ul>';
                 }
             }
             else {
