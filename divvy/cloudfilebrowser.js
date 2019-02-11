@@ -19,7 +19,7 @@ the License.
 
 */
 
-import moment from 'moment';
+import Moment from 'moment';
 
 var CloudElements = (function() {
     'use strict';
@@ -1071,9 +1071,11 @@ var cloudFileBrowser = (function() {
                         tableHTML += '<li class="checkbox"></li>' +
                                      '<li class="filename">';
 
+                    let modifiedDate = new Moment(objItm.modifiedDate).format('MM/DD/YY h:mm a')
+
                     tableHTML += objItm.name + '</li>' +
                         '<li>' + objItm.path + '</li>' +
-                        '<li>' + moment(objItm.modifiedDate).format('MM/DD/YY h:mm a') + '</li></ul>';
+                        '<li>' + modifiedDate + '</li></ul>';
                 }
             }
             else {
