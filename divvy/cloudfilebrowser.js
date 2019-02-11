@@ -1071,7 +1071,7 @@ var cloudFileBrowser = (function() {
 
                     tableHTML += objItm.name + '</li>' +
                         '<li>' + objItm.path + '</li>' +
-                        '<li>' + objItm.modifiedDate.toLocaleDateString('en-US') + '</li></ul>';
+                        '<li>' + objItm.modifiedDate + '</li></ul>';
                 }
             }
             else {
