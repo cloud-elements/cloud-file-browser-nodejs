@@ -19,7 +19,7 @@ the License.
 
 */
 
-import Moment from 'moment';
+import moment from 'moment';
 
 var CloudElements = (function() {
     'use strict';
