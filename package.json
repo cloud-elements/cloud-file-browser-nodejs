@@ -2,19 +2,20 @@
   "name": "cloudfilebrowser",
   "license": "MIT",
   "version": "0.0.8",
-  "main": "divvy/cloudfilebrowser.js",
+  "main" : "divvy/cloudfilebrowser.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/DivvyHQ/cloud-file-browser-nodejs"
   },
-  "scripts": {},
-  "dependencies": {
-    "connect": "2.21.1",
-    "cookie-parser": "1.3.2",
-    "express": "1.0.0",
-    "http": "0.0.0",
-    "moment": "^2.24.0",
-    "serve-static": "1.2.3"
+  "scripts": {
   },
-  "devDependencies": {}
+  "dependencies" : {
+    "express" : "1.0.0",
+    "http"    : "0.0.0",
+    "connect" : "2.21.1",
+    "cookie-parser" : "1.3.2",
+    "serve-static" : "1.2.3"
+  },
+  "devDependencies": {
+  }
 }
