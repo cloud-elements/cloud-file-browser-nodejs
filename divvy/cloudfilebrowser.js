@@ -1032,7 +1032,7 @@ var cloudFileBrowser = (function() {
                                 trailingpath = trailingpath + '/' + selectedPathResRec;
                             }
 
-                            tableHTML += '<li class="caret"></li>';
+                            tableHTML += '<li class="breadcrumb-caret">&gt</li>';
                             tableHTML += '<li class="selectedPath" name="'+trailingpath+'">'+selectedPathResRec +'</li>';
                         }
                     }
@@ -1067,11 +1067,12 @@ var cloudFileBrowser = (function() {
                         tableHTML += '<li class="checkbox"></li>' +
                                      '<li class="filename">';
 
+                    var modifiedDate = moment(objItm.modifiedDate).format('MM/DD/YYYY');
+
                     tableHTML += objItm.name + '</li>' +
                         '<li>' + objItm.path + '</li>' +
-                        '<li>' + objItm.modifiedDate + '</li></ul>';
+                        '<li>' + modifiedDate + '</li></ul>';
                 }
-
             }
             else {
 
