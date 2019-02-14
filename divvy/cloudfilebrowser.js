@@ -19,6 +19,8 @@ the License.
 
 */
 
+var moment = require("moment");
+
 var CloudElements = (function() {
     'use strict';
     var cedocumentconfig = null, oSec = null,
