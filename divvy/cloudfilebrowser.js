@@ -284,6 +284,10 @@ var provision = (function() {
             server.downloadFile(_provision.getTokenForElement(element), filepath);
         },
 
+        displayFile: function(element, filepath, cb, cbArgs) {
+            server.displayThumbnail(_provision.getTokenForElement(element), filepath, cb, cbArgs);
+        },
+
         getLinks: function(tkn, filepath, cb, cbArgs) {
             server.getLinks(tkn, filepath, cb, cbArgs);
         },
@@ -494,6 +498,16 @@ var server = (function() {
                 this.authHeader(CloudElements.getUTkn(), CloudElements.getOTkn(), tkn), params, this._downloadCallback, cbArgs);
         },
 
+        displayThumbnail: function(tkn, path, cb, cbArgs) {
+
+            var params = {
+                'path' : path
+            }
+
+            _server.call('api-v2/hubs/documents/files/links', 'Get',
+                this.authHeader(CloudElements.getUTkn(), CloudElements.getOTkn(), tkn), params, cb, cbArgs);
+        },
+
         getMetadata: function(tkn, path, cb, cbArgs) {
             var params = {
                 'path' : path
@@ -620,6 +634,11 @@ the License.
 (function($) {
     'use strict';
     var exports = module.exports = {};
+    $.fn.cloudFileBrowser = function(options) {
+        cloudFileBrowser.buildDomEls(this, function() {
+             CloudElements.init(options);
+        });
+    };
     exports.provision = provision;
     exports.CloudElements = CloudElements;
     return module.exports;
@@ -701,6 +720,13 @@ var cloudFileBrowser = (function() {
             }
         },
 
+        buildDomEls: function(selector, cb) {
+
+            var HTML = '<section id="tab-container"><ul id="services-tabs"></ul><section id="services-containers"></section></section><section id="loading"><span><i></i></span></section><section id="error"></section>';
+            $(selector).append(HTML);
+            cb();
+        },
+
         buildTabs: function() {
             // Inspect services object, and build a tab + trigger
             // for each service installed
@@ -742,6 +768,7 @@ var cloudFileBrowser = (function() {
 
                 var index = $(this).index();
 
+                $('#file-info').removeClass('show');
                 $('div.on, li.on').removeClass('on');
                 $(this).addClass('on');
                 $(container + ' > div').eq(index).addClass('on');
@@ -770,6 +797,8 @@ var cloudFileBrowser = (function() {
             $('.breadcrumb ul li.home').on('click', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
+
+                $('#file-info').removeClass('show');
 
                 $('.addFiles, .addFilesButton, .selectFilesButton').remove();
 
@@ -803,6 +832,125 @@ var cloudFileBrowser = (function() {
                 }, callbackArgs);
             });
         },
+
+        bindFileInfo: function(element) {
+
+            //Onclick of folder, fetch the files under folder
+            $('.listTable ul li.foldername').one('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                $('#file-info').removeClass('show');
+
+                $('.addFiles, .addFilesButton, .selectFilesButton').remove();
+
+                 cloudFileBrowser.showLoading();
+
+                // ? Does folderName ever get used ?
+                var folderName = $(this).text()
+                var location = $(this).next().text();
+
+                var callbackArgs = {
+                    'element' : element,
+                    'path' : location
+                };
+
+                provision.getDocuments(element, location, function(data, cbArgs) {
+                    cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path);
+                }, callbackArgs);
+            });
+
+            // $('.listTable ul li.filename').on('click', function (event) {
+            //     event.preventDefault();
+            //     event.stopPropagation();
+
+            //     var fileId = $(this).closest('ul').data('file-id');
+            //     var fileInfo = '#file-info';
+            //     var fileName = $(this).text();
+            //     var location = $(this).next().text();
+            //     var listHTML = '<ul><li>Filename:</li><li>' + fileName + '</li></ul>' +
+            //                     '<ul><li>Location:</li><li>' + location + '</li></ul>' +
+            //                     '<a href="#" class="selectbutton" data-file-id="' +
+            //                     fileId +'">Select File</a>';
+
+            //     extension = fileName.split('.').pop();
+
+            //     //Get the thumbnail of the image only when the extension is of type image
+            //     $('#file-info .preview img').remove();
+
+            //     var extlower = extension.toLowerCase();
+            //     if (extlower == "jpg" | extlower == "gif" | extlower == "jpeg" | extlower == "png")
+            //     {
+            //         // Prepare thumbnail to be displayed
+            //         provision.displayFile(element, location, cloudFileBrowser.displayThumbnail);
+            //     }
+
+            //     $(fileInfo).addClass('show').find('.fileDetails').html(listHTML);
+
+
+            //     $(fileInfo).find('.selectbutton').on('click', function (event) {
+            //         event.preventDefault();
+            //         event.stopPropagation();
+
+            //         provision.fileSelected(element, location, fileId);
+            //     });
+
+            //     $(fileInfo).find('.downloadbutton').on('click', function (event) {
+            //         event.preventDefault();
+            //         event.stopPropagation();
+
+            //         provision.downloadFile(element, location);
+            //     });
+
+            // });
+
+            // $('div.preview a.close').on('click', function (event) {
+            //     event.preventDefault();
+            //     event.stopPropagation();
+
+            //     $('#file-info').removeClass('show');
+            // });
+
+            $('.listTable ul li.checkbox').on('change', function() {
+                var selectedPath = this.nextSibling.nextSibling.textContent;
+                if(cloudFileBrowser.selectedFiles[element] == null
+                    || cloudFileBrowser.selectedFiles[element] == undefined)
+                {
+                    cloudFileBrowser.selectedFiles[element] = new Array();
+                }
+
+                var position = $.inArray(selectedPath, cloudFileBrowser.selectedFiles[element]);
+                if(~position)
+                {
+                    cloudFileBrowser.selectedFiles[element].splice(position, 1);
+                }
+                else
+                {
+                    cloudFileBrowser.selectedFiles[element].push(selectedPath);
+                }
+            });
+        },
+
+        // displayThumbnail: function(data) {
+
+        //     // CALL TO TEST STATUS OF URL
+
+        //     provision.testThumbnail(data.value, function(status) {
+
+        //         if (status == 'true') {
+
+        //             var extlower = extension.toLowerCase();
+        //             if (extlower == "jpg" | extlower == "gif" | extlower == "jpeg" | extlower == "png")
+        //             {
+
+        //                 $('#file-info .preview').append('<img src="' + data.cloudElementsLink + '">');
+        //             }
+
+        //         }
+
+        //     });
+
+        // },
 
         provisionEl: function(element) {
 
@@ -848,6 +996,7 @@ var cloudFileBrowser = (function() {
             this.bindFileDragDrop(element, path);
             this.bindAddFiles(element, path);
             this.bindBreadCrumbClick(element);
+            this.bindFileInfo(element);
         },
 
         buildTable: function(data, isNew, path, element) {
