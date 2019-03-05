@@ -904,12 +904,12 @@ var cloudFileBrowser = (function() {
 
             // });
 
-            // $('div.preview a.close').on('click', function (event) {
-            //     event.preventDefault();
-            //     event.stopPropagation();
+            $('div.preview a.close').on('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
 
-            //     $('#file-info').removeClass('show');
-            // });
+                $('#file-info').removeClass('show');
+            });
 
             $('.listTable ul li.checkbox').on('change', function() {
                 var selectedPath = this.nextSibling.nextSibling.textContent;
@@ -931,26 +931,26 @@ var cloudFileBrowser = (function() {
             });
         },
 
-        // displayThumbnail: function(data) {
+        displayThumbnail: function(data) {
 
-        //     // CALL TO TEST STATUS OF URL
+            // CALL TO TEST STATUS OF URL
 
-        //     provision.testThumbnail(data.value, function(status) {
+            provision.testThumbnail(data.value, function(status) {
 
-        //         if (status == 'true') {
+                if (status == 'true') {
 
-        //             var extlower = extension.toLowerCase();
-        //             if (extlower == "jpg" | extlower == "gif" | extlower == "jpeg" | extlower == "png")
-        //             {
+                    var extlower = extension.toLowerCase();
+                    if (extlower == "jpg" | extlower == "gif" | extlower == "jpeg" | extlower == "png")
+                    {
 
-        //                 $('#file-info .preview').append('<img src="' + data.cloudElementsLink + '">');
-        //             }
+                        $('#file-info .preview').append('<img src="' + data.cloudElementsLink + '">');
+                    }
 
-        //         }
+                }
 
-        //     });
+            });
 
-        // },
+        },
 
         provisionEl: function(element) {
 
