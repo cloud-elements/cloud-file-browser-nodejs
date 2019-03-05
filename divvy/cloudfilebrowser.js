@@ -856,6 +856,14 @@ var cloudFileBrowser = (function() {
                 }, callbackArgs);
             });
 
+            $('.listTable ul li.filename').on('dblclick', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                var location = $(this).next().text();
+                provision.downloadFile(element, location);
+            });
+
             $('.listTable ul li.checkbox').on('change', function() {
                 var selectedPath = this.nextSibling.nextSibling.textContent;
                 if(cloudFileBrowser.selectedFiles[element] == null
