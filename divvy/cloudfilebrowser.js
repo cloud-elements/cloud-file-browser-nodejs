@@ -861,7 +861,7 @@ var cloudFileBrowser = (function() {
                 event.stopPropagation();
 
                 var location = $(this).next().text();
-                provision.downloadFile(element, location);
+                provision.fileSelected(element, location, fileId);
             });
 
             $('.listTable ul li.checkbox').on('change', function() {
