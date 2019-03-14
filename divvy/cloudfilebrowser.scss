@@ -239,7 +239,6 @@ the License.
     }
 
     #tab-container > ul {
-        background: linear-gradient(#222, #000);
         display: block;
         list-style-type: none;
         margin: 0px;
@@ -527,11 +526,9 @@ the License.
         content: '\f15c';
         display: inline;
         font-family: 'FontAwesome';
-        font-size: 13px;
+        font-size: 1.5rem;
         margin-right: 8px;
     }
-
-    #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul li.filename:before { color: white }
 
     #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul li.foldername:before { content: '\f07b'; color: burlywood }
     #services-containers > div.provisioned > div.listTable > ul:first-child {
@@ -553,7 +550,6 @@ the License.
 
     #services-containers > div.provisioned > div.listTable > ul:first-child li {
         box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.3);
-        padding: 10px 15px;
     }
 
     #services-containers > div.provisioned > div.listTable ul {
@@ -571,7 +567,7 @@ the License.
         flex: 1;
         -webkit-flex:1;
         overflow: hidden;
-        padding: 10px 15px;
+        padding: 3px 15px;
         text-align: left;
     }
 
