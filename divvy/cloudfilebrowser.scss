@@ -532,7 +532,7 @@ the License.
     }
 
     #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul li:nth-child(odd):before {
-        background: #f9f9f9;
+        background: #f9f9f9 !important;
     }
 
     #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul li.filename:before { color: white }
