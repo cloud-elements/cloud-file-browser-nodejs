@@ -842,8 +842,6 @@ var cloudFileBrowser = (function() {
 
                  cloudFileBrowser.showLoading();
 
-                // ? Does folderName ever get used ?
-                var folderName = $(this).text()
                 var location = $(this).next().text();
 
                 var callbackArgs = {
