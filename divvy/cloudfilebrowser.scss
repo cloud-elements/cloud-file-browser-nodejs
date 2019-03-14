@@ -249,7 +249,7 @@ the License.
 
     #tab-container > ul > li.on { background: #666 }
 
-    #tab-container > ul > li {
+    #tab-container > ul > li:not(:first-child) {
         background: #aaa;
         border-top: 1px solid #f9f9f9;
         color: #fff;
