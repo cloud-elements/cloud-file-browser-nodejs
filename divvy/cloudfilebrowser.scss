@@ -251,11 +251,10 @@ the License.
 
     #tab-container > ul > li {
         background: #aaa;
-        border-top: 1px solid #444;
+        border-top: 1px solid #f9f9f9;
         color: #fff;
         cursor: pointer;
         display: block;
-        font-size: .9em;
         padding: 10px 15px;
         text-indent: 30px;
         position:relative;
@@ -422,11 +421,9 @@ the License.
     #services-containers > div.provisioned > div.breadcrumb ul li.breadcrumb-caret { padding: 0 }
 
     #services-containers > div.provisioned > div.breadcrumb ul li {
-        border-bottom: 1px solid rgba(0,0,0,.3);
         color: #888;
         cursor: pointer;
         display: inline-block;
-        font-size: 78%;
         font-weight: bold;
         list-style-type: none;
         padding: 5px 10px;
@@ -556,7 +553,6 @@ the License.
         display: flex;
         display: -webkit-box;
         display: -webkit-flex;
-        font-size: 70%;
         list-style: none;
         margin: 0;
         padding: 0;
