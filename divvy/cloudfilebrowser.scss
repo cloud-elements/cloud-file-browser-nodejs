@@ -531,10 +531,6 @@ the License.
         margin-right: 8px;
     }
 
-    #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul li:nth-child(odd):before {
-        background: #f9f9f9 !important;
-    }
-
     #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul li.filename:before { color: white }
 
     #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul li.foldername:before { content: '\f07b'; color: burlywood }
@@ -545,6 +541,10 @@ the License.
         padding-top: 10px;
         text-transform: uppercase;
         width: 100%;
+    }
+
+    #services-containers > div.provisioned > div.listTable > ul:nth-child(odd):before {
+        background: #f9f9f9;
     }
 
     #services-containers > div.provisioned > div.listTable > ul:first-child li {
