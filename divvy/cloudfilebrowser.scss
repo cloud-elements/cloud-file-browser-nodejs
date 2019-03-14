@@ -544,12 +544,11 @@ the License.
     }
 
     #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul:nth-child(odd) {
-        // background: #f9f9f9;
-        background: green;
+        background: #f9f9f9;
     }
 
     #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul:nth-child(even) {
-        background: red;
+        background: white;
     }
 
     #services-containers > div.provisioned > div.listTable > ul:first-child li {
