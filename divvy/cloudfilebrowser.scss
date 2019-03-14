@@ -247,10 +247,10 @@ the License.
         width: 160px;
     }
 
-    #tab-container > ul > li.on { background: linear-gradient(#555, #444) }
+    #tab-container > ul > li.on { background: #666 }
 
     #tab-container > ul > li {
-        background: linear-gradient(#333, #222);
+        background: #aaa;
         border-top: 1px solid #444;
         color: #fff;
         cursor: pointer;
@@ -404,8 +404,7 @@ the License.
 
     #services-containers > div.provisioned > a.provision { display: none }
     #services-containers > div.provisioned > div.breadcrumb {
-        background: linear-gradient(#444, #222);
-        border-top: 1px solid #777;
+        border-bottom: 1px solid #777;
         height: 38px;
         position: absolute;
         top: 66px;
