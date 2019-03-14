@@ -543,12 +543,12 @@ the License.
         width: 100%;
     }
 
-    #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul li:nth-child(odd) {
+    #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul:nth-child(odd) {
         // background: #f9f9f9;
         background: green;
     }
 
-    #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul li:nth-child(even) {
+    #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul:nth-child(even) {
         background: red;
     }
 
