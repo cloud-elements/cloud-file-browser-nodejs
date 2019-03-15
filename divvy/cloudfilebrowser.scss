@@ -249,15 +249,18 @@ the License.
 
     #tab-container > ul > li.on { background: #666 }
 
-    #tab-container > ul > li:not(:first-child) {
+    #tab-container > ul > li {
         background: #aaa;
-        border-top: 1px solid #f9f9f9;
         color: #fff;
         cursor: pointer;
         display: block;
         padding: 10px 15px;
         text-indent: 30px;
         position:relative;
+    }
+
+    #tab-container > ul > li:not(:first-child) {
+        border-top: 1px solid #f9f9f9;
     }
 
     .no-margin #tab-container > ul,
