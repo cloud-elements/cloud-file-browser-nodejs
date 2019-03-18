@@ -859,9 +859,10 @@ var cloudFileBrowser = (function() {
                 event.stopPropagation();
 
                 var location = $(this).next().text();
-                var fileId = $(this).closest('ul').data('file-id');
+                // var fileId = $(this).closest('ul').data('file-id');
 
-                provision.fileSelected(element, location, fileId);
+                // provision.fileSelected(element, location, fileId);
+                provision.downloadFile(element, location);
             });
 
             $('.listTable ul li.checkbox').on('change', function() {
