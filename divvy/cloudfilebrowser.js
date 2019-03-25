@@ -722,7 +722,7 @@ var cloudFileBrowser = (function() {
 
         buildDomEls: function(selector, cb) {
 
-            var HTML = '<section id="tab-container"><ul id="services-tabs"></ul><section id="services-containers"></section><section id="file-info"><div class="preview"><a class="close" href="#"></a></div><h2>File Details</h2><div class="fileDetails"></div></section></section><section id="loading"><span><i></i></span></section><section id="error"></section>';
+            var HTML = '<section id="tab-container"><ul id="services-tabs"></ul><section id="services-containers"></section></section><section id="loading"><span><i></i></span></section><section id="error"></section>';
             $(selector).append(HTML);
             cb();
         },
@@ -768,7 +768,6 @@ var cloudFileBrowser = (function() {
 
                 var index = $(this).index();
 
-                $('#file-info').removeClass('show');
                 $('div.on, li.on').removeClass('on');
                 $(this).addClass('on');
                 $(container + ' > div').eq(index).addClass('on');
@@ -798,7 +797,6 @@ var cloudFileBrowser = (function() {
                 event.preventDefault();
                 event.stopPropagation();
 
-                $('#file-info').removeClass('show');
 
                 $('.addFiles, .addFilesButton, .selectFilesButton').remove();
 
@@ -840,14 +838,10 @@ var cloudFileBrowser = (function() {
                 event.preventDefault();
                 event.stopPropagation();
 
-                $('#file-info').removeClass('show');
-
                 $('.addFiles, .addFilesButton, .selectFilesButton').remove();
 
                  cloudFileBrowser.showLoading();
 
-                // ? Does folderName ever get used ?
-                var folderName = $(this).text()
                 var location = $(this).next().text();
 
                 var callbackArgs = {
@@ -860,55 +854,14 @@ var cloudFileBrowser = (function() {
                 }, callbackArgs);
             });
 
-            $('.listTable ul li.filename').on('click', function (event) {
+            $('.listTable ul li.filename').on('dblclick', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
 
-                var fileId = $(this).closest('ul').data('file-id');
-                var fileInfo = '#file-info';
-                var fileName = $(this).text();
                 var location = $(this).next().text();
-                var listHTML = '<ul><li>Filename:</li><li>' + fileName + '</li></ul>' +
-                                '<ul><li>Location:</li><li>' + location + '</li></ul>' +
-                                '<a href="#" class="selectbutton" data-file-id="' +
-                                fileId +'">Select File</a>';
+                var fileId = $(this).closest('ul').data('file-id');
 
-                extension = fileName.split('.').pop();
-
-                //Get the thumbnail of the image only when the extension is of type image
-                $('#file-info .preview img').remove();
-
-                var extlower = extension.toLowerCase();
-                if (extlower == "jpg" | extlower == "gif" | extlower == "jpeg" | extlower == "png")
-                {
-                    // Prepare thumbnail to be displayed
-                    provision.displayFile(element, location, cloudFileBrowser.displayThumbnail);
-                }
-
-                $(fileInfo).addClass('show').find('.fileDetails').html(listHTML);
-
-
-                $(fileInfo).find('.selectbutton').on('click', function (event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-
-                    provision.fileSelected(element, location, fileId);
-                });
-
-                $(fileInfo).find('.downloadbutton').on('click', function (event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-
-                    provision.downloadFile(element, location);
-                });
-
-            });
-
-            $('div.preview a.close').on('click', function (event) {
-                event.preventDefault();
-                event.stopPropagation();
-
-                $('#file-info').removeClass('show');
+                provision.fileSelected(element, location, fileId);
             });
 
             $('.listTable ul li.checkbox').on('change', function() {
@@ -929,27 +882,6 @@ var cloudFileBrowser = (function() {
                     cloudFileBrowser.selectedFiles[element].push(selectedPath);
                 }
             });
-        },
-
-        displayThumbnail: function(data) {
-
-            // CALL TO TEST STATUS OF URL
-
-            provision.testThumbnail(data.value, function(status) {
-
-                if (status == 'true') {
-
-                    var extlower = extension.toLowerCase();
-                    if (extlower == "jpg" | extlower == "gif" | extlower == "jpeg" | extlower == "png")
-                    {
-
-                        $('#file-info .preview').append('<img src="' + data.cloudElementsLink + '">');
-                    }
-
-                }
-
-            });
-
         },
 
         provisionEl: function(element) {

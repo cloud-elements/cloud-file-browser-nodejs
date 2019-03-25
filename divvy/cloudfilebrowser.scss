@@ -239,7 +239,6 @@ the License.
     }
 
     #tab-container > ul {
-        background: linear-gradient(#222, #000);
         display: block;
         list-style-type: none;
         margin: 0px;
@@ -248,18 +247,20 @@ the License.
         width: 160px;
     }
 
-    #tab-container > ul > li.on { background: linear-gradient(#555, #444) }
+    #tab-container > ul > li.on { background-color: #666 }
 
     #tab-container > ul > li {
-        background: linear-gradient(#333, #222);
-        border-top: 1px solid #444;
+        background-color: #aaa;
         color: #fff;
         cursor: pointer;
         display: block;
-        font-size: .9em;
         padding: 10px 15px;
         text-indent: 30px;
         position:relative;
+    }
+
+    #tab-container > ul > li:not(:first-child) {
+        border-top: 1px solid #f9f9f9;
     }
 
     .no-margin #tab-container > ul,
@@ -405,8 +406,7 @@ the License.
 
     #services-containers > div.provisioned > a.provision { display: none }
     #services-containers > div.provisioned > div.breadcrumb {
-        background: linear-gradient(#444, #222);
-        border-top: 1px solid #777;
+        border-bottom: 1px solid #777;
         height: 38px;
         position: absolute;
         top: 66px;
@@ -424,11 +424,9 @@ the License.
     #services-containers > div.provisioned > div.breadcrumb ul li.breadcrumb-caret { padding: 0 }
 
     #services-containers > div.provisioned > div.breadcrumb ul li {
-        border-bottom: 1px solid rgba(0,0,0,.3);
         color: #888;
         cursor: pointer;
         display: inline-block;
-        font-size: 78%;
         font-weight: bold;
         list-style-type: none;
         padding: 5px 10px;
@@ -527,28 +525,29 @@ the License.
         content: '\f15c';
         display: inline;
         font-family: 'FontAwesome';
-        font-size: 13px;
         margin-right: 8px;
     }
 
-    #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul li.filename:before { color: white }
-
-    #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul li.foldername:before { content: '\f07b'; color: burlywood }
+    #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul li.foldername:before { content: '\f07b'; color: #deb887 }
     #services-containers > div.provisioned > div.listTable > ul:first-child {
-        /*position: fixed;*/
-        background: linear-gradient(#555, #333);
-        border-left: 1px solid #777;
-        border-right: 1px solid #333;
-        box-shadow: inset 0 16px 2px rgba(255,255,255,.1), 0 -1px 0 rgba(255,255,255, .3), 0 -2px 0 rgba(0,0,0,.4), 0 1px 1px rgba(0,0,0,0.5);
-        color: #fff;
+        background-color: #fff;
+        color: #888;
         font-weight: bold;
+        padding-top: 10px;
         text-transform: uppercase;
         width: 100%;
     }
 
+    #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul:nth-child(odd) {
+        background: #f9f9f9;
+    }
+
+    #services-containers > div.provisioned > div.listTable > div.scrollPanel > ul:nth-child(even) {
+        background: #fff;
+    }
+
     #services-containers > div.provisioned > div.listTable > ul:first-child li {
         box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.3);
-        padding: 10px 15px;
     }
 
     #services-containers > div.provisioned > div.listTable ul {
@@ -556,7 +555,7 @@ the License.
         display: flex;
         display: -webkit-box;
         display: -webkit-flex;
-        font-size: 70%;
+        font-size: 1.5rem;
         list-style: none;
         margin: 0;
         padding: 0;
@@ -566,7 +565,7 @@ the License.
         flex: 1;
         -webkit-flex:1;
         overflow: hidden;
-        padding: 10px 15px;
+        padding: 3px 15px;
         text-align: left;
     }
 
