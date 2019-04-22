@@ -940,7 +940,10 @@ var cloudFileBrowser = (function() {
 
                 cloudFileBrowser.selectedFiles[element] = new Array();
 
-                tableHTML += '<input type="text" id="js-search-box" placeholder="Search..."/>';
+                tableHTML += '<div class="search-wrapper">' +
+                                '<input type="text" id="js-search-box" placeholder="Search..."/>' +
+                                '</div>';
+
                 tableHTML += '<div class="breadcrumb"><ul>';
 
                 if(path != null || path != undefined) {
