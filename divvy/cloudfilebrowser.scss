@@ -405,13 +405,22 @@ the License.
     }
 
     #services-containers > div.provisioned > a.provision { display: none }
+
+    #services-containers > div.provisioned > div.search-wrapper {
+        border-bottom: 1px solid #777;
+        height: 38px;
+        position: absolute;
+        top: 50px;
+        width: 100%;
+    }
+
     #services-containers > div.provisioned > div.breadcrumb {
         border-bottom: 1px solid #777;
         height: 38px;
         position: absolute;
         top: 66px;
         width: 100%;
-    }
+    }    
 
     #services-containers > div.provisioned > div.breadcrumb ul {
         list-style-type: none;
