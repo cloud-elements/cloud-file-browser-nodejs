@@ -922,6 +922,7 @@ var cloudFileBrowser = (function() {
             var tableHTML = this.buildTable(data, true, path, element);
 
             // Append data returned and start screen adjustment via CSS3 class
+            $(container + ' .' + element).addClass('provisioned').append(this.buildSearchBar());
             $(container + ' .' + element).addClass('provisioned').append(tableHTML);
 
             this.animateTable(element);
@@ -929,6 +930,10 @@ var cloudFileBrowser = (function() {
             this.bindAddFiles(element, path);
             this.bindBreadCrumbClick(element);
             this.bindFileInfo(element);
+        },
+
+        buildSearchBar: function () {
+            return '<input type="text" id="js-search-box" placeholder="Search..."/>';
         },
 
         buildTable: function(data, isNew, path, element) {
