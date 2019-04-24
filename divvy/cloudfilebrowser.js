@@ -720,7 +720,7 @@ var cloudFileBrowser = (function() {
             }
         },
 
-        performSearch: function (keywoard, data) {
+        performSearch: function(keywoard, data) {
             console.log('Performing search' + keywoard + '' + data);
         },
 
