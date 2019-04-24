@@ -407,11 +407,15 @@ the License.
     #services-containers > div.provisioned > a.provision { display: none }
 
     #services-containers > div.provisioned > div.search-wrapper {
-        border-bottom: 1px solid #777;
         height: 38px;
-        position: absolute;
-        top: 50px;
+        position: relative;
+        top: 42px;
         width: 100%;
+
+        .search-box {
+            position: absolute;
+            left: 0;
+        }
     }
 
     #services-containers > div.provisioned > div.breadcrumb {
