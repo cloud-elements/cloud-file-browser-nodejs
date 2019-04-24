@@ -748,7 +748,6 @@ var cloudFileBrowser = (function() {
         bindSearchBox: function(element, path) {
             var self = this;
             $('#js-search-box').on('keypress', function(event) {
-                console.log("Pressed " + event.keyCode);
                 if(event.keyCode === 13) {
                     var keywoard = $(this).val();
                     self.performSearch(keywoard, element, path);
