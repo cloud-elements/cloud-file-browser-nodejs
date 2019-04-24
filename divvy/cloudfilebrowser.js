@@ -728,7 +728,7 @@ var cloudFileBrowser = (function() {
             var self = this;
             $('#js-search-box').on('keyup', function() {
                 var keywoard = $(this).val();
-                this.performSearch(keywoard, {});
+                self.performSearch(keywoard, {});
             });
         },
 
