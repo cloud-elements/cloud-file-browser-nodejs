@@ -932,7 +932,7 @@ var cloudFileBrowser = (function() {
         },
 
         buildTable: function(data, isNew, path, element) {
-
+            debugger;
             if (isNew == true) {
 
                 var tableHTML = '',
