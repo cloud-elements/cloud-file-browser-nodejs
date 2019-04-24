@@ -725,6 +725,7 @@ var cloudFileBrowser = (function() {
         },
 
         bindSearchBox: function () {
+            var self = this;
             $('#js-search-box').on('keyup', function() {
                 var keywoard = $(this).val();
                 this.performSearch(keywoard, {});
