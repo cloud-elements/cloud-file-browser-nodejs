@@ -940,6 +940,7 @@ var cloudFileBrowser = (function() {
             this.bindAddFiles(element, path);
             this.bindBreadCrumbClick(element);
             this.bindFileInfo(element);
+            this.bindSearchBox(element);
         },
 
         buildTable: function(data, isNew, path, element) {
