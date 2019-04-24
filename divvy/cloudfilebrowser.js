@@ -748,6 +748,7 @@ var cloudFileBrowser = (function() {
         bindSearchBox: function(element, path) {
             var self = this;
             $('#js-search-box').on('keypress', function(event) {
+                console.log("Pressed " + event.keyCode);
                 if(event.keyCode === '13') {
                     var keywoard = $(this).val();
                     self.performSearch(keywoard, element, path);
@@ -967,7 +968,7 @@ var cloudFileBrowser = (function() {
             this.bindAddFiles(element, path);
             this.bindBreadCrumbClick(element);
             this.bindFileInfo(element);
-            this.bindSearchBox(data, element, path);
+            this.bindSearchBox(element, path);
         },
 
         buildTable: function(data, isNew, path, element, keywoard) {
