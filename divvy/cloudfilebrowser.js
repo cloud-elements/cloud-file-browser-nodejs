@@ -670,7 +670,6 @@ var cloudFileBrowser = (function() {
 
             this.buildTabs();
             this.bindTabs();
-            this.buildSearchBox();
             this.bindProvisionButtons();
             this.initDragDropHandlers();
 
@@ -733,16 +732,6 @@ var cloudFileBrowser = (function() {
             // provision.getDocuments(element, '/', function(data, cbArgs) {
             //     cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path);
             // }, callbackArgs);
-        },
-
-        buildSearchBox: function() {
-            var searchBoxHTML = '';
-            
-            searchBoxHTML += '<div class="search-wrapper">' +
-                '<input type="text" id="js-search-box" class="search-box" placeholder="Search..."/>' +
-                '</div>';
-
-            $('.breadcrumb').append(searchBoxHTML);
         },
 
         bindSearchBox: function (data, element, path) {
@@ -951,6 +940,9 @@ var cloudFileBrowser = (function() {
 
             $('div.' + element + ' .listTable, div.' + element + ' .breadcrumb').remove();
 
+            // remove search wrapper
+            $('.search-wrapper').remove();
+
             // Call for table from helper class
             var tableHTML = this.buildTable(data, true, path, element);
 
@@ -972,6 +964,10 @@ var cloudFileBrowser = (function() {
                     trailingpath;
 
                 cloudFileBrowser.selectedFiles[element] = new Array();
+
+                tableHTML += '<div class="search-wrapper">' +
+                                '<input type="text" id="js-search-box" class="search-box" placeholder="Search..."/>' +
+                                '</div>';
 
                 tableHTML += '<div class="breadcrumb"><ul>';
 
