@@ -742,7 +742,7 @@ var cloudFileBrowser = (function() {
                 '<input type="text" id="js-search-box" class="search-box" placeholder="Search..."/>' +
                 '</div>';
 
-            $(container).append(searchBoxHTML);
+            $('.breadcrumb').append(searchBoxHTML);
         },
 
         bindSearchBox: function (data, element, path) {
