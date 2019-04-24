@@ -979,6 +979,7 @@ var cloudFileBrowser = (function() {
                 cloudFileBrowser.selectedFiles[element] = new Array();
 
                 tableHTML += '<div class="search-wrapper">' +
+                                '<i class="fa fa-search fa-flip-horizontal" aria-hidden="true"></i>' +
                                 '<input type="text" id="js-search-box" class="search-box" placeholder="Search..."/>' +
                                 '</div>';
                 
