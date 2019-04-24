@@ -933,7 +933,7 @@ var cloudFileBrowser = (function() {
             }, callbackArgs);
         },
 
-        drawEl: function(data, element, path) {
+        drawEl: function(data, element, path, keywoard, filteredData) {
             // Clean up load screen
             cloudFileBrowser.hideLoading();
 
@@ -944,7 +944,7 @@ var cloudFileBrowser = (function() {
             $('.search-wrapper').remove();
 
             // Call for table from helper class
-            var tableHTML = this.buildTable(data, true, path, element);
+            var tableHTML = this.buildTable(data, true, path, element, keywoard, filteredData);
 
             // Append data returned and start screen adjustment via CSS3 class
             $(container + ' .' + element).addClass('provisioned').append(tableHTML);
@@ -957,7 +957,11 @@ var cloudFileBrowser = (function() {
             this.bindSearchBox(data, element, path);
         },
 
-        buildTable: function(data, isNew, path, element) {
+        buildTable: function(data, isNew, path, element, keywoard, filteredData) {
+            if (filteredData.length != 0) {
+                data = filteredData;
+            }
+
             if (isNew == true) {
 
                 var tableHTML = '',
@@ -968,6 +972,10 @@ var cloudFileBrowser = (function() {
                 tableHTML += '<div class="search-wrapper">' +
                                 '<input type="text" id="js-search-box" class="search-box" placeholder="Search..."/>' +
                                 '</div>';
+
+                if (keywoard) {
+                    $('#js-search-box').val(keywoard);
+                }
 
                 tableHTML += '<div class="breadcrumb"><ul>';
 
