@@ -477,7 +477,7 @@ var server = (function() {
             }
 
             _server.call('api-v2/hubs/documents/search', 'Get',
-                this.authHeader(CloudElements.getUTkn(), CloudElements.getOTkn, tkn), params, cb, cbArgs);
+                this.authHeader(CloudElements.getUTkn(), CloudElements.getOTkn(), tkn), params, cb, cbArgs);
         },
 
         _downloadCallback: function(data) {
