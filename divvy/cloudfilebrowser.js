@@ -727,7 +727,7 @@ var cloudFileBrowser = (function() {
             });
 
             console.log(newData);
-            cloudFileBrowser.drawEl(newData, element, path);
+            cloudFileBrowser.drawEl(data, element, path, keywoard, filteredData);
 
             // provision.getDocuments(element, '/', function(data, cbArgs) {
             //     cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path);
