@@ -670,6 +670,7 @@ var cloudFileBrowser = (function() {
 
             this.buildTabs();
             this.bindTabs();
+            this.buildSearchBox();
             this.bindProvisionButtons();
             this.initDragDropHandlers();
 
@@ -732,6 +733,16 @@ var cloudFileBrowser = (function() {
             // provision.getDocuments(element, '/', function(data, cbArgs) {
             //     cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path);
             // }, callbackArgs);
+        },
+
+        buildSearchBox: function() {
+            var searchBoxHTML = '';
+            
+            searchBoxHTML += '<div class="search-wrapper">' +
+                '<input type="text" id="js-search-box" class="search-box" placeholder="Search..."/>' +
+                '</div>';
+
+            $(container).append(searchBoxHTML);
         },
 
         bindSearchBox: function (data, element, path) {
@@ -961,10 +972,6 @@ var cloudFileBrowser = (function() {
                     trailingpath;
 
                 cloudFileBrowser.selectedFiles[element] = new Array();
-
-                tableHTML += '<div class="search-wrapper">' +
-                                '<input type="text" id="js-search-box" class="search-box" placeholder="Search..."/>' +
-                                '</div>';
 
                 tableHTML += '<div class="breadcrumb"><ul>';
 
