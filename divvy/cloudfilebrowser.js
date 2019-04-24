@@ -195,6 +195,10 @@ var provision = (function() {
             server.list(_provision.getTokenForElement(element), path, cb, cbArgs);
         },
 
+        searchDocuments: function(element, path, keywoard, cb, cbArgs) {
+            server.search(_provision.getTokenForElement(element), path, keywoard, cb, cbArgs);
+        },
+
         createInstance: function(element, cb, cbArgs) {
 
             //Step 1 : Check if the element token is present, if so list the documents
@@ -466,6 +470,16 @@ var server = (function() {
                 this.authHeader(CloudElements.getUTkn(), CloudElements.getOTkn(), tkn), params, cb, cbArgs);
         },
 
+        search: function(tkn, path, keywoard, cb, cbArgs) {
+            var params = {
+                'path': path,
+                'text': keywoard,
+            }
+
+            _server.call('api-v2/hubs/documents/search', 'Get',
+                this.authHeader(CloudElements.getUTkn(), CloudElements.getOTkn, tkn), params, cb, cbArgs);
+        },
+
         _downloadCallback: function(data) {
             var hiddenIFrameID = 'hiddenDownloader',
                 iframe = document.getElementById(hiddenIFrameID);
@@ -720,25 +734,24 @@ var cloudFileBrowser = (function() {
             }
         },
 
-        performSearch: function(keywoard, data, element, path) {
-            var newData = $.grep(data, function(file) {
-                var fileName = file.name.toLowerCase();
-                return fileName.indexOf(keywoard.toLowerCase()) !== -1;
-            });
-
-            console.log(newData);
-            cloudFileBrowser.drawEl(data, element, path, keywoard, filteredData);
-
-            // provision.getDocuments(element, '/', function(data, cbArgs) {
-            //     cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path);
-            // }, callbackArgs);
+        performSearch: function(keywoard, element, path) {
+            var callbackArgs = {
+                'element' : element,
+                'path' : '/'
+            };
+            
+            provision.searchDocuments(element, path, keywoard, function(data, cbArgs) {
+                cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path, keywoard);
+            }, callbackArgs);
         },
 
-        bindSearchBox: function (data, element, path) {
+        bindSearchBox: function(element, path) {
             var self = this;
-            $('#js-search-box').on('keyup', function() {
-                var keywoard = $(this).val();
-                self.performSearch(keywoard, data, element, path);
+            $('#js-search-box').on('keypress', function(event) {
+                if(event.keyCode === '13') {
+                    var keywoard = $(this).val();
+                    self.performSearch(keywoard, element, path);
+                }
             });
         },
 
@@ -933,7 +946,7 @@ var cloudFileBrowser = (function() {
             }, callbackArgs);
         },
 
-        drawEl: function(data, element, path, keywoard, filteredData) {
+        drawEl: function(data, element, path, keywoard) {
             // Clean up load screen
             cloudFileBrowser.hideLoading();
 
@@ -944,7 +957,7 @@ var cloudFileBrowser = (function() {
             $('.search-wrapper').remove();
 
             // Call for table from helper class
-            var tableHTML = this.buildTable(data, true, path, element, keywoard, filteredData);
+            var tableHTML = this.buildTable(data, true, path, element, keywoard);
 
             // Append data returned and start screen adjustment via CSS3 class
             $(container + ' .' + element).addClass('provisioned').append(tableHTML);
@@ -957,11 +970,7 @@ var cloudFileBrowser = (function() {
             this.bindSearchBox(data, element, path);
         },
 
-        buildTable: function(data, isNew, path, element, keywoard, filteredData) {
-            if (filteredData.length != 0) {
-                data = filteredData;
-            }
-
+        buildTable: function(data, isNew, path, element, keywoard) {
             if (isNew == true) {
 
                 var tableHTML = '',
@@ -972,10 +981,9 @@ var cloudFileBrowser = (function() {
                 tableHTML += '<div class="search-wrapper">' +
                                 '<input type="text" id="js-search-box" class="search-box" placeholder="Search..."/>' +
                                 '</div>';
-
-                if (keywoard) {
-                    $('#js-search-box').val(keywoard);
-                }
+                
+                // set keywoard value
+                $('#js-search-box').val(keywoard);
 
                 tableHTML += '<div class="breadcrumb"><ul>';
 
