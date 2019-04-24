@@ -720,15 +720,25 @@ var cloudFileBrowser = (function() {
             }
         },
 
-        performSearch: function(keywoard, data) {
-            console.log('Performing search' + keywoard + '' + data);
+        performSearch: function(keywoard, data, element, path) {
+            var newData = $.grep(data, function(file) {
+                var fileName = file.name.toLowerCase();
+                return fileName.indexOf(keywoard.toLowerCase()) !== -1;
+            });
+
+            console.log(newData);
+            cloudFileBrowser.drawEl(newData, element, path);
+
+            // provision.getDocuments(element, '/', function(data, cbArgs) {
+            //     cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path);
+            // }, callbackArgs);
         },
 
-        bindSearchBox: function () {
+        bindSearchBox: function (data, element, path) {
             var self = this;
             $('#js-search-box').on('keyup', function() {
                 var keywoard = $(this).val();
-                self.performSearch(keywoard, {});
+                self.performSearch(keywoard, data, element, path);
             });
         },
 
@@ -941,7 +951,7 @@ var cloudFileBrowser = (function() {
             this.bindAddFiles(element, path);
             this.bindBreadCrumbClick(element);
             this.bindFileInfo(element);
-            this.bindSearchBox(element);
+            this.bindSearchBox(data, element, path);
         },
 
         buildTable: function(data, isNew, path, element) {
