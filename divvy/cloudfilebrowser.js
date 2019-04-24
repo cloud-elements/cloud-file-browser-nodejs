@@ -720,6 +720,17 @@ var cloudFileBrowser = (function() {
             }
         },
 
+        performSearch: function (keywoard, data) {
+            console.log('Performing search' + keywoard + '' + data);
+        },
+
+        bindSearchBox: function () {
+            $('#js-search-box').on('keyup', function() {
+                var keywoard = $(this).val();
+                this.performSearch(keywoard, {});
+            });
+        },
+
         buildDomEls: function(selector, cb) {
 
             var HTML = '<section id="tab-container"><ul id="services-tabs"></ul><section id="services-containers"></section></section><section id="loading"><span><i></i></span></section><section id="error"></section>';
@@ -932,7 +943,6 @@ var cloudFileBrowser = (function() {
         },
 
         buildTable: function(data, isNew, path, element) {
-            debugger;
             if (isNew == true) {
 
                 var tableHTML = '',
