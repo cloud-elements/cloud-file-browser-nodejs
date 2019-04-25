@@ -762,7 +762,7 @@ var cloudFileBrowser = (function() {
             });
 
             $('#js-search-close').on('click', function() {
-                $('#js-search-box-form-wrapper').show();
+                $('#js-search-box-form-wrapper').hide();
                 $('#js-search-open').disabled = false;
             });
         },
@@ -969,10 +969,16 @@ var cloudFileBrowser = (function() {
             $('.search-wrapper').remove();
 
             // Call for table from helper class
-            var tableHTML = this.buildTable(data, true, path, element, keywoard);
+            var tableHTML = this.buildTable(data, true, path, element);
 
             // Append data returned and start screen adjustment via CSS3 class
             $(container + ' .' + element).addClass('provisioned').append(tableHTML);
+
+            if(keywoard !== '') {
+                $("#js-search-box-form-wrapper").show();
+                $("#js-search-open").disabled = true;
+                $('#js-search-box').val(keywoard);
+            }            
 
             this.animateTable(element);
             this.bindFileDragDrop(element, path);
@@ -982,7 +988,7 @@ var cloudFileBrowser = (function() {
             this.bindSearchBox(element, path);
         },
 
-        buildTable: function(data, isNew, path, element, keywoard) {
+        buildTable: function(data, isNew, path, element) {
             if (isNew == true) {
 
                 var tableHTML = '',
@@ -997,13 +1003,6 @@ var cloudFileBrowser = (function() {
                                 '<button id="js-search-close" class="search-close"><i class="fa fa-times-circle search-close" aria-hidden="true"></i></button>' +
                                 '</span>' +
                                 '</div>';
-                
-                // set keywoard value
-                if(keywoard !== '') {
-                    $("#js-search-box-form-wrapper").show();
-                    $("#js-search-open").disabled = true;
-                    $('#js-search-box').val(keywoard);
-                }
 
                 tableHTML += '<div class="breadcrumb"><ul>';
 
