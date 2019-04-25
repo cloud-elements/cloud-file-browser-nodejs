@@ -735,17 +735,22 @@ var cloudFileBrowser = (function() {
         },
 
         performSearch: function(keywoard, element, path) {
-            console.log("key " + keywoard);
             var callbackArgs = {
                 'element' : element,
                 'path' : '/'
             };
 
             cloudFileBrowser.showLoading();
-            
-            provision.searchDocuments(element, path, keywoard, function(data, cbArgs) {
-                cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path, keywoard);
-            }, callbackArgs);
+
+            if(keywoard === '' || keywoard === undefined) {
+                provision.getDocuments(element, '/', function(data, cbArgs) {
+                    cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path, keywoard);
+                }, callbackArgs);
+            } else {
+                provision.searchDocuments(element, path, keywoard, function(data, cbArgs) {
+                    cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path, keywoard);
+                }, callbackArgs);
+            }
         },
 
         bindSearchBox: function(element, path) {
@@ -765,6 +770,7 @@ var cloudFileBrowser = (function() {
             $('#js-search-close').on('click', function() {
                 $('#js-search-box-form-wrapper').hide();
                 $('#js-search-open').disabled = false;
+                self.performSearch('', element, path);
             });
         },
 
