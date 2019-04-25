@@ -753,11 +753,21 @@ var cloudFileBrowser = (function() {
             }
         },
 
+        disableSearchOpen: function() {
+            $('#js-search-open').disabled = true;
+            $('#js-search-open').css('cursor', 'default');
+        },
+
+        enableSearchOpen: function () {
+            $('#js-search-open').disabled = false;
+            $('#js-search-open').css('cursor', 'pointer');
+        },
+
         bindSearchBox: function(element, path) {
             var self = this;
             $('#js-search-open').on('click', function() {
                 $('#js-search-box-form-wrapper').show();
-                $(this).disabled = true;
+                self.disableSearchOpen();
             });
 
             $('#js-search-box').on('keypress', function(event) {
@@ -769,7 +779,7 @@ var cloudFileBrowser = (function() {
 
             $('#js-search-close').on('click', function() {
                 $('#js-search-box-form-wrapper').hide();
-                $('#js-search-open').disabled = false;
+                self.enableSearchOpen();
                 self.performSearch('', element, path);
             });
         },
@@ -982,8 +992,8 @@ var cloudFileBrowser = (function() {
             $(container + ' .' + element).addClass('provisioned').append(tableHTML);
 
             if(keywoard !== '' && keywoard !== undefined) {
+                this.disableSearchOpen();
                 $("#js-search-box-form-wrapper").show();
-                $("#js-search-open").disabled = true;
                 $('#js-search-box').val(keywoard);
             }            
 
