@@ -749,11 +749,21 @@ var cloudFileBrowser = (function() {
 
         bindSearchBox: function(element, path) {
             var self = this;
+            $('#js-search-open').on('click', function() {
+                $('#js-search-box-form-wrapper').show();
+                $(this).disabled = true;
+            });
+
             $('#js-search-box').on('keypress', function(event) {
                 if(event.keyCode === 13) {
                     var keywoard = $(this).val();
                     self.performSearch(keywoard, element, path);
                 }
+            });
+
+            $('#js-search-close').on('click', function() {
+                $('#js-search-box-form-wrapper').show();
+                $('#js-search-open').disabled = false;
             });
         },
 
@@ -981,9 +991,11 @@ var cloudFileBrowser = (function() {
                 cloudFileBrowser.selectedFiles[element] = new Array();
 
                 tableHTML += '<div class="search-wrapper">' +
-                                '<i class="fa fa-search fa-flip-horizontal" aria-hidden="true"></i>' +
+                                '<button id="js-search-open"><i class="fa fa-search fa-flip-horizontal search-open" aria-hidden="true"></i></button>' +
+                                '<span class="search-box-form-wrapper" id="js-search-box-wrapper">' +
                                 '<input type="text" id="js-search-box" class="search-box" placeholder="Search..."/>' +
-                                '<i class="fa fa-times-circle search-close" aria-hidden="true"></i>' +
+                                '<i class="fa fa-times-circle search-close search-close" id="js-search-close" aria-hidden="true"></i>' +
+                                '</span>' +
                                 '</div>';
                 
                 // set keywoard value
