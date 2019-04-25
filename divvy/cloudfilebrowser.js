@@ -975,7 +975,7 @@ var cloudFileBrowser = (function() {
             // Append data returned and start screen adjustment via CSS3 class
             $(container + ' .' + element).addClass('provisioned').append(tableHTML);
 
-            if(keywoard !== '' || keywoard !== undefined) {
+            if(keywoard !== '' && keywoard !== undefined) {
                 $("#js-search-box-form-wrapper").show();
                 $("#js-search-open").disabled = true;
                 $('#js-search-box').val(keywoard);
