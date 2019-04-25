@@ -417,8 +417,12 @@ the License.
             border: 0px;
             background: none;
             left: 0;
-            margin-left: 30px;
-            line-height: 19px;
+            margin-left: 24px;
+            line-height: 18px;
+        }
+
+        .search-box-form-wrapper {
+            display: none;
         }
 
         .search-close {
