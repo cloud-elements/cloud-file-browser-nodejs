@@ -739,6 +739,8 @@ var cloudFileBrowser = (function() {
                 'element' : element,
                 'path' : '/'
             };
+
+            cloudFileBrowser.showLoading();
             
             provision.searchDocuments(element, path, keywoard, function(data, cbArgs) {
                 cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path, keywoard);
