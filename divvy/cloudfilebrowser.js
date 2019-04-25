@@ -983,6 +983,7 @@ var cloudFileBrowser = (function() {
                 tableHTML += '<div class="search-wrapper">' +
                                 '<i class="fa fa-search fa-flip-horizontal" aria-hidden="true"></i>' +
                                 '<input type="text" id="js-search-box" class="search-box" placeholder="Search..."/>' +
+                                '<i class="fa fa-times-circle search-close" aria-hidden="true"></i>' +
                                 '</div>';
                 
                 // set keywoard value
