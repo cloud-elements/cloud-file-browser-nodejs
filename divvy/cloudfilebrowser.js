@@ -992,7 +992,7 @@ var cloudFileBrowser = (function() {
 
                 tableHTML += '<div class="search-wrapper">' +
                                 '<button id="js-search-open" class="search-open"><i class="fa fa-search fa-flip-horizontal" aria-hidden="true"></i></button>' +
-                                '<span class="search-box-form-wrapper" id="js-search-box-wrapper">' +
+                                '<span class="search-box-form-wrapper" id="js-search-box-form-wrapper">' +
                                 '<input type="text" id="js-search-box" class="search-box" placeholder="Search..."/>' +
                                 '<i class="fa fa-times-circle search-close search-close" id="js-search-close" aria-hidden="true"></i>' +
                                 '</span>' +
