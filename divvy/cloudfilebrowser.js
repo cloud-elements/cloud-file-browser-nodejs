@@ -734,6 +734,10 @@ var cloudFileBrowser = (function() {
             }
         },
 
+        escapeApostrophe: function(keyword) {
+            keyword.replace('\'','/\'');
+        },
+
         performSearch: function(keyword, element, path) {
             var callbackArgs = {
                 'element' : element,
@@ -754,7 +758,7 @@ var cloudFileBrowser = (function() {
                     cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path, keyword);
                 }, callbackArgs);
             } else {
-                provision.searchDocuments(element, path, keyword, function(data, cbArgs) {
+                provision.searchDocuments(element, path, this.escapeApostrophe(keyword), function(data, cbArgs) {
                     cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path, keyword);
                 }, callbackArgs);
             }
