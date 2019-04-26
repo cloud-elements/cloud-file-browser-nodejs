@@ -195,8 +195,8 @@ var provision = (function() {
             server.list(_provision.getTokenForElement(element), path, cb, cbArgs);
         },
 
-        searchDocuments: function(element, path, keywoard, cb, cbArgs) {
-            server.search(_provision.getTokenForElement(element), path, keywoard, cb, cbArgs);
+        searchDocuments: function(element, path, keyword, cb, cbArgs) {
+            server.search(_provision.getTokenForElement(element), path, keyword, cb, cbArgs);
         },
 
         createInstance: function(element, cb, cbArgs) {
@@ -470,10 +470,10 @@ var server = (function() {
                 this.authHeader(CloudElements.getUTkn(), CloudElements.getOTkn(), tkn), params, cb, cbArgs);
         },
 
-        search: function(tkn, path, keywoard, cb, cbArgs) {
+        search: function(tkn, path, keyword, cb, cbArgs) {
             var params = {
                 'path': path,
-                'text': keywoard,
+                'text': keyword,
             }
 
             _server.call('api-v2/hubs/documents/search', 'Get',
@@ -734,7 +734,7 @@ var cloudFileBrowser = (function() {
             }
         },
 
-        performSearch: function(keywoard, element, path) {
+        performSearch: function(keyword, element, path) {
             var callbackArgs = {
                 'element' : element,
                 'path' : '/'
@@ -742,13 +742,20 @@ var cloudFileBrowser = (function() {
 
             cloudFileBrowser.showLoading();
 
-            if(keywoard === '' || keywoard === undefined) {
+            // when there are no keywords or if its undefined
+            // the default operation would be to display the documents
+            // inside the root path
+            // In most cases, when searching is not performed keyword is undefined.
+            // The user might be able to press enter and search for a blank keyword for ex: ''
+            // For that we still display the documents inside root path
+
+            if(keyword === undefined || keyword === '') {
                 provision.getDocuments(element, '/', function(data, cbArgs) {
-                    cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path, keywoard);
+                    cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path, keyword);
                 }, callbackArgs);
             } else {
-                provision.searchDocuments(element, path, keywoard, function(data, cbArgs) {
-                    cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path, keywoard);
+                provision.searchDocuments(element, path, keyword, function(data, cbArgs) {
+                    cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path, keyword);
                 }, callbackArgs);
             }
         },
@@ -771,9 +778,10 @@ var cloudFileBrowser = (function() {
             });
 
             $('#js-search-box').on('keypress', function(event) {
+                // 13 is keyCode for enter
                 if(event.keyCode === 13) {
-                    var keywoard = $(this).val();
-                    self.performSearch(keywoard, element, path);
+                    var keyword = $(this).val();
+                    self.performSearch(keyword, element, path);
                 }
             });
 
@@ -975,7 +983,7 @@ var cloudFileBrowser = (function() {
             }, callbackArgs);
         },
 
-        drawEl: function(data, element, path, keywoard) {
+        drawEl: function(data, element, path, keyword) {
             // Clean up load screen
             cloudFileBrowser.hideLoading();
 
@@ -991,10 +999,10 @@ var cloudFileBrowser = (function() {
             // Append data returned and start screen adjustment via CSS3 class
             $(container + ' .' + element).addClass('provisioned').append(tableHTML);
 
-            if(keywoard !== '' && keywoard !== undefined) {
+            if(keyword !== '' && keyword !== undefined) {
                 this.disableSearchOpen();
                 $("#js-search-box-form-wrapper").show();
-                $('#js-search-box').val(keywoard);
+                $('#js-search-box').val(keyword);
             }            
 
             this.animateTable(element);
