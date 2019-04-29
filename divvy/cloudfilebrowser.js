@@ -1026,13 +1026,21 @@ var cloudFileBrowser = (function() {
 
                 cloudFileBrowser.selectedFiles[element] = new Array();
 
-                tableHTML += '<div class="search-wrapper">' +
-                                '<button id="js-search-open" class="search-open"><i class="fa fa-search fa-flip-horizontal" aria-hidden="true"></i></button>' +
-                                '<span class="search-box-form-wrapper" id="js-search-box-form-wrapper">' +
+                // tableHTML += '<div class="search-wrapper">' +
+                //                 '<button id="js-search-open" class="search-open"><i class="fa fa-search fa-flip-horizontal" aria-hidden="true"></i></button>' +
+                //                 '<span class="search-box-form-wrapper" id="js-search-box-form-wrapper">' +
+                //                 '<input type="text" id="js-search-box" class="search-box" placeholder="Search..."/>' +
+                //                 '<button id="js-search-close" class="search-close"><i class="fa fa-times-circle search-close" aria-hidden="true"></i></button>' +
+                //                 '</span>' +
+                //                 '</div>';
+
+                tableHTML += '<div class="search-wrappper">' +
+                                '<form class="search-wrapper-form">' +
+                                '<div class="input-group">' +
                                 '<input type="text" id="js-search-box" class="search-box" placeholder="Search..."/>' +
-                                '<button id="js-search-close" class="search-close"><i class="fa fa-times-circle search-close" aria-hidden="true"></i></button>' +
-                                '</span>' +
-                                '</div>';
+                                '<i class="fa fa-search fa-flip-horizontal" aria-hidden="true"></i>' +
+                                '<i class="fa fa-times-circle search-close" aria-hidden="true"></i>' +
+                                '</div></form>';
 
                 tableHTML += '<div class="breadcrumb"><ul>';
 
