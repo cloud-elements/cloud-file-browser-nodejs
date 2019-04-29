@@ -735,6 +735,7 @@ var cloudFileBrowser = (function() {
         },
 
         escapeApostrophe: function(keyword) {
+            debugger;
             keyword.replace('\'','/\'');
         },
 
