@@ -409,11 +409,11 @@ the License.
     #services-containers > div.provisioned > div.search-wrapper {
         height: 38px;
         position: relative;
-        top: 42px;
-        width: 100%;
+        top: 43px;
+        width: 44%;
 
         .search-open {
-            position: absolute;            
+            position: absolute;
             border: 0px;
             background: none;
             left: 0;
@@ -428,13 +428,13 @@ the License.
         .search-close {
             position: absolute;
             border: 0px;
-            background: none;            
-            left: 0;
-            margin-left: 95px;
-            line-height: 20px;
+            background: none;
+            line-height: 18px;
+            float: right;
         }
 
         .search-box {
+            width: 255px;
             position: absolute;
             left: 0;
             margin-left: 45px;
