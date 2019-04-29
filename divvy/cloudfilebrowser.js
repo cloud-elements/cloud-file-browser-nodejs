@@ -196,6 +196,7 @@ var provision = (function() {
         },
 
         searchDocuments: function(element, path, keyword, cb, cbArgs) {
+            debugger;
             server.search(_provision.getTokenForElement(element), path, keyword, cb, cbArgs);
         },
 
