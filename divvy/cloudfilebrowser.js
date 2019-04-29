@@ -1034,7 +1034,7 @@ var cloudFileBrowser = (function() {
                 //                 '</span>' +
                 //                 '</div>';
 
-                tableHTML += '<div class="search-wrappper">' +
+                tableHTML += '<div class="search-wrapper">' +
                                 '<form class="search-wrapper-form">' +
                                 '<div class="input-group">' +
                                 '<input type="text" id="js-search-box" class="search-box" placeholder="Search..."/>' +
