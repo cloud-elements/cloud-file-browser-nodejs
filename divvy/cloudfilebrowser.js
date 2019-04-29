@@ -759,7 +759,8 @@ var cloudFileBrowser = (function() {
                     cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path, keyword);
                 }, callbackArgs);
             } else {
-                provision.searchDocuments(element, path, this.escapeApostrophe(keyword), function(data, cbArgs) {
+                var escapedKeyword = this.escapeApostrophe(keyword);
+                provision.searchDocuments(element, path, escapedKeyword, function(data, cbArgs) {
                     cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path, keyword);
                 }, callbackArgs);
             }
