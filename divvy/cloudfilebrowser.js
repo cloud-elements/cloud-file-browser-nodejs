@@ -196,7 +196,6 @@ var provision = (function() {
         },
 
         searchDocuments: function(element, path, keyword, cb, cbArgs) {
-            debugger;
             server.search(_provision.getTokenForElement(element), path, keyword, cb, cbArgs);
         },
 
@@ -760,7 +759,6 @@ var cloudFileBrowser = (function() {
                 }, callbackArgs);
             } else {
                 var escapedKeyword = this.escapeApostrophe(keyword);
-                debugger;
                 provision.searchDocuments(element, path, escapedKeyword, function(data, cbArgs) {
                     cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path, keyword);
                 }, callbackArgs);
