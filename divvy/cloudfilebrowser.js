@@ -735,8 +735,7 @@ var cloudFileBrowser = (function() {
         },
 
         escapeApostrophe: function(keyword) {
-            debugger;
-            keyword.replace('\'','/\'');
+            return keyword.replace('\'','/\'');
         },
 
         performSearch: function(keyword, element, path) {
@@ -760,6 +759,7 @@ var cloudFileBrowser = (function() {
                 }, callbackArgs);
             } else {
                 var escapedKeyword = this.escapeApostrophe(keyword);
+                debugger;
                 provision.searchDocuments(element, path, escapedKeyword, function(data, cbArgs) {
                     cloudFileBrowser.drawEl(data, cbArgs.element, cbArgs.path, keyword);
                 }, callbackArgs);
