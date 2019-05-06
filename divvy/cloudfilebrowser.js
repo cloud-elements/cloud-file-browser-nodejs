@@ -792,6 +792,7 @@ var cloudFileBrowser = (function() {
 
             $('#js-search-close').on('click', function() {
                 $('#js-search-box-form-wrapper').hide();
+                $('#js-search-box').val('');
                 self.enableSearchOpen();
             });
         },
