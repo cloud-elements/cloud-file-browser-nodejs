@@ -586,10 +586,12 @@ var server = (function() {
                 'elementKeyOrId': element,
                 'apiKey' : apiKey,
                 'apiSecret': apiSec,
-                'callbackUrl': callbackUrl
+                'callbackUrl': callbackUrl,
             };
 
-
+            if (element === 'onedrivebusiness') {
+                parameters.siteAddress = '';
+            }
 
             _server.call('api-v2/elements/'+element+'/oauth/url', 'Get',
                 this.authHeader(CloudElements.getUTkn(), CloudElements.getOTkn(), null), parameters, cb, cbArgs);
