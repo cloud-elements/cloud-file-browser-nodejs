@@ -343,11 +343,13 @@ var server = (function() {
                 contentType: 'application/json'
             })
             .done(function(data) {
-                if(server.isNullAndUndef(data.results))
+                if(server.isNullAndUndef(data.results)){
+                    debugger;
                     cb(data, cbArgs);
-                else
+                }
+                else {
                     cb(data.results, cbArgs);
-
+                }
             })
             .fail(function(data){
                 _server.handleFailure(data, cb, cbArgs);
@@ -598,7 +600,6 @@ var server = (function() {
         },
 
         createInstance: function(element, code, apiKey, apiSec, callbackUrl, cb, cbArgs) {
-
             var elementProvision = {
                 'configuration': {
                     'oauth.api.key' : apiKey,
