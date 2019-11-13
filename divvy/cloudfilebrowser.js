@@ -592,7 +592,7 @@ var server = (function() {
             };
 
             if (element === 'onedrivebusiness') {
-                parameters.siteAddress = 'divvyhqdev.onmicrosoft.com';
+                parameters.siteAddress = 'api://bb72503e-3a32-417a-a1cc-767d5536feab';
             }
 
             _server.call('api-v2/elements/'+element+'/oauth/url', 'Get',
