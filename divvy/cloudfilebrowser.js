@@ -600,6 +600,7 @@ var server = (function() {
         },
 
         createInstance: function(element, code, apiKey, apiSec, callbackUrl, cb, cbArgs) {
+            debugger;
             var elementProvision = {
                 'configuration': {
                     'oauth.api.key' : apiKey,
