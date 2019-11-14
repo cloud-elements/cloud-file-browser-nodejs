@@ -343,13 +343,10 @@ var server = (function() {
                 contentType: 'application/json'
             })
             .done(function(data) {
-                if(server.isNullAndUndef(data.results)){
-                    debugger;
+                if(server.isNullAndUndef(data.results))
                     cb(data, cbArgs);
-                }
-                else {
+                else
                     cb(data.results, cbArgs);
-                }
             })
             .fail(function(data){
                 _server.handleFailure(data, cb, cbArgs);
@@ -591,8 +588,8 @@ var server = (function() {
                 'callbackUrl': callbackUrl,
             };
 
-            if (element === 'onedrivebusiness') {
-                parameters.siteAddress = 'divvyhqdev.sharepoint.com';
+            if (element === 'onedrivev2') {
+                parameters.scope = 'Files.ReadWrite.All,Sites.ReadWrite.All offline_access';
             }
 
             _server.call('api-v2/elements/'+element+'/oauth/url', 'Get',
@@ -600,7 +597,6 @@ var server = (function() {
         },
 
         createInstance: function(element, code, apiKey, apiSec, callbackUrl, cb, cbArgs) {
-            debugger;
             var elementProvision = {
                 'configuration': {
                     'oauth.api.key' : apiKey,
@@ -615,6 +611,10 @@ var server = (function() {
                 },
                 'name': element
             };
+
+            if (element === 'onedrivev2') {
+                elementProvision.configuration.converged_app = true;
+            }
 
             _server.call('api-v2/instances', 'POST',
                 this.authHeader(CloudElements.getUTkn(), CloudElements.getOTkn(), null), JSON.stringify(elementProvision), cb, cbArgs);
