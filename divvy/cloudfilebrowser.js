@@ -465,10 +465,11 @@ var server = (function() {
 
         list: function(tkn, path, cb, cbArgs) {
             var params = {
-                'path' : path
+                'path' : path,
+                'orderBy': 'modifiedDate desc'
             }
 
-            _server.call('api-v2/folders/contents', 'Get',
+            _server.call('api-v2/hubs/documents/folders/contents', 'Get',
                 this.authHeader(CloudElements.getUTkn(), CloudElements.getOTkn(), tkn), params, cb, cbArgs);
         },
 
