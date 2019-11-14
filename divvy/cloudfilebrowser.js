@@ -333,7 +333,6 @@ var server = (function() {
 
             if(server.isNullAndUndef(methodtype))
                 methodtype = 'Get';
-            debugger;
             var proxy = $.ajax({
                 url: server.getUrl(path),
                 type: methodtype,
@@ -343,14 +342,10 @@ var server = (function() {
                 contentType: 'application/json'
             })
             .done(function(data) {
-                if(server.isNullAndUndef(data.results)){
-                    debugger;
+                if(server.isNullAndUndef(data.results))
                     cb(data, cbArgs);
-                }
-                else {
-                    debugger;
+                else
                     cb(data.results, cbArgs);
-                }
             })
             .fail(function(data){
                 _server.handleFailure(data, cb, cbArgs);
@@ -592,10 +587,6 @@ var server = (function() {
                 'callbackUrl': callbackUrl,
             };
 
-            // if (element === 'onedrivev2') {
-            //     parameters.scope = 'Files.ReadWrite,Files.ReadWrite.All,Sites.ReadWrite.All offline_access';
-            // }
-
             if (element === 'onedrivebusiness') {
                 parameters.siteAddress = 'divvyhqdev-my.sharepoint.com';
             }
@@ -620,17 +611,11 @@ var server = (function() {
                 'name': element
             };
 
-            if (element === 'onedrivev2') {
-                elementProvision.configuration.converged_app = true;
-            }
-
             if (element === 'onedrivebusiness') {
                 elementProvision.configuration["document.tagging"] = false;
                 elementProvision.configuration["filter.response.nulls"] = true;
                 elementProvision.configuration["onedrivebusiness.site.address"] = "https://divvyhqdev-my.sharepoint.com";
             }
-
-            debugger;
 
             _server.call('api-v2/instances', 'POST',
                 this.authHeader(CloudElements.getUTkn(), CloudElements.getOTkn(), null), JSON.stringify(elementProvision), cb, cbArgs);
