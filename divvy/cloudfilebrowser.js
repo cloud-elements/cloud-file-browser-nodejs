@@ -465,7 +465,7 @@ var server = (function() {
 
         list: function(tkn, path, cb, cbArgs) {
             var params = {
-                'path' : '/Documents',
+                'path' : path,
                 'orderBy' : 'modifiedDate desc'
             }
 
