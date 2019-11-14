@@ -342,6 +342,7 @@ var server = (function() {
                 contentType: 'application/json'
             })
             .done(function(data) {
+                debugger;
                 if(server.isNullAndUndef(data.results))
                     cb(data, cbArgs);
                 else
@@ -587,15 +588,18 @@ var server = (function() {
                 'callbackUrl': callbackUrl,
             };
 
-            if (element === 'onedrivebusiness') {
-                parameters.siteAddress = 'divvyhqdev-my.sharepoint.com';
-            }
+            // if (element === 'onedrivebusiness') {
+            //     // We get the siteAddress from element detail
+            //     // after provisioning
+            //     parameters.siteAddress = cbArgs.elementDetails.siteAddress;
+            // }
 
             _server.call('api-v2/elements/'+element+'/oauth/url', 'Get',
                 this.authHeader(CloudElements.getUTkn(), CloudElements.getOTkn(), null), parameters, cb, cbArgs);
         },
 
         createInstance: function(element, code, apiKey, apiSec, callbackUrl, cb, cbArgs) {
+            debugger;
             var elementProvision = {
                 'configuration': {
                     'oauth.api.key' : apiKey,
