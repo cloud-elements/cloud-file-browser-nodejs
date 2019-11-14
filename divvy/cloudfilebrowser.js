@@ -597,7 +597,7 @@ var server = (function() {
             // }
 
             if (element === 'onedrivebusiness') {
-                parameters.siteAddress = 'divvyhqdev.onmicrosoft.com';
+                parameters.siteAddress = 'divvyhqdev.microsoft.com';
             }
 
             _server.call('api-v2/elements/'+element+'/oauth/url', 'Get',
@@ -605,6 +605,7 @@ var server = (function() {
         },
 
         createInstance: function(element, code, apiKey, apiSec, callbackUrl, cb, cbArgs) {
+            debugger;
             var elementProvision = {
                 'configuration': {
                     'oauth.api.key' : apiKey,
