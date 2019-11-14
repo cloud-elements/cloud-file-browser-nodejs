@@ -465,8 +465,7 @@ var server = (function() {
 
         list: function(tkn, path, cb, cbArgs) {
             var params = {
-                'path' : path,
-                'orderBy' : 'modifiedDate desc'
+                'path' : path
             }
 
             _server.call('api-v2/hubs/documents/folders/contents', 'Get',
