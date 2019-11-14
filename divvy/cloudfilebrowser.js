@@ -625,7 +625,8 @@ var server = (function() {
             }
 
             if (element === 'onedrivebusiness') {
-                elementProvision.configuration["document.tagging"] = true;
+                elementProvision.configuration["document.tagging"] = false;
+                elementProvision.configuration["filter.response.nulls"] = true;
             }
 
             _server.call('api-v2/instances', 'POST',
