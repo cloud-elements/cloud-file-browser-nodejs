@@ -343,14 +343,14 @@ var server = (function() {
                 contentType: 'application/json'
             })
             .done(function(data) {
-                debugger;
-                if(server.isNullAndUndef(data.results))
+                if(server.isNullAndUndef(data.results)){
                     cb(data, cbArgs);
-                else
+                }
+                else {
                     cb(data.results, cbArgs);
+                }
             })
             .fail(function(data){
-                debugger;
                 _server.handleFailure(data, cb, cbArgs);
             });
         },
