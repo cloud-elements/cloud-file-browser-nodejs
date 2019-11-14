@@ -333,7 +333,7 @@ var server = (function() {
 
             if(server.isNullAndUndef(methodtype))
                 methodtype = 'Get';
-
+            debugger;
             var proxy = $.ajax({
                 url: server.getUrl(path),
                 type: methodtype,
