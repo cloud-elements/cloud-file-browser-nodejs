@@ -597,7 +597,7 @@ var server = (function() {
             // }
 
             if (element === 'onedrivebusiness') {
-                parameters.siteAddress = 'divvyhqdev.microsoft.com';
+                parameters.siteAddress = 'divvyhqdev-my.sharepoint.com';
             }
 
             _server.call('api-v2/elements/'+element+'/oauth/url', 'Get',
