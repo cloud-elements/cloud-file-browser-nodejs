@@ -592,8 +592,12 @@ var server = (function() {
                 'callbackUrl': callbackUrl,
             };
 
-            if (element === 'onedrivev2') {
-                parameters.scope = 'Files.ReadWrite,Files.ReadWrite.All,Sites.ReadWrite.All offline_access';
+            // if (element === 'onedrivev2') {
+            //     parameters.scope = 'Files.ReadWrite,Files.ReadWrite.All,Sites.ReadWrite.All offline_access';
+            // }
+
+            if (element === 'onedrivebusiness') {
+                parameters.siteAddress = 'divvyhqdev.onmicrosoft.com';
             }
 
             _server.call('api-v2/elements/'+element+'/oauth/url', 'Get',
@@ -618,6 +622,10 @@ var server = (function() {
 
             if (element === 'onedrivev2') {
                 elementProvision.configuration.converged_app = true;
+            }
+
+            if (element === 'onedrivebusiness') {
+                elementProvision.configuration["document.tagging"] = true;
             }
 
             _server.call('api-v2/instances', 'POST',
