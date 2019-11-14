@@ -468,7 +468,7 @@ var server = (function() {
                 'path' : path
             }
 
-            _server.call('api-v2/hubs/documents/folders/contents', 'Get',
+            _server.call('api-v2/folders/contents', 'Get',
                 this.authHeader(CloudElements.getUTkn(), CloudElements.getOTkn(), tkn), params, cb, cbArgs);
         },
 
