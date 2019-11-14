@@ -604,7 +604,6 @@ var server = (function() {
         },
 
         createInstance: function(element, code, apiKey, apiSec, callbackUrl, cb, cbArgs) {
-            debugger;
             var elementProvision = {
                 'configuration': {
                     'oauth.api.key' : apiKey,
@@ -627,7 +626,10 @@ var server = (function() {
             if (element === 'onedrivebusiness') {
                 elementProvision.configuration["document.tagging"] = false;
                 elementProvision.configuration["filter.response.nulls"] = true;
+                elementProvision.configuration["onedrivebusiness.site.address"] = "https://divvyhqdev-my.sharepoint.com";
             }
+
+            debugger;
 
             _server.call('api-v2/instances', 'POST',
                 this.authHeader(CloudElements.getUTkn(), CloudElements.getOTkn(), null), JSON.stringify(elementProvision), cb, cbArgs);
