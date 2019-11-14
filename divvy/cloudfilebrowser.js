@@ -343,12 +343,14 @@ var server = (function() {
                 contentType: 'application/json'
             })
             .done(function(data) {
+                debugger;
                 if(server.isNullAndUndef(data.results))
                     cb(data, cbArgs);
                 else
                     cb(data.results, cbArgs);
             })
             .fail(function(data){
+                debugger;
                 _server.handleFailure(data, cb, cbArgs);
             });
         },
@@ -589,7 +591,7 @@ var server = (function() {
             };
 
             if (element === 'onedrivev2') {
-                parameters.scope = 'Files.ReadWrite.All,Sites.ReadWrite.All offline_access';
+                parameters.scope = 'Files.ReadWrite,Files.ReadWrite.All,Sites.ReadWrite.All offline_access';
             }
 
             _server.call('api-v2/elements/'+element+'/oauth/url', 'Get',
