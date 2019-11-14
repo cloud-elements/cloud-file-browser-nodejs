@@ -231,7 +231,7 @@ var provision = (function() {
 
         handleOnGetOAuthUrl: function(data, cbArgs) {
             lastCallbackArgs = cbArgs;
-            cbArgs.win.location.href = data.oauthUrl;
+            cbArgs.win.location.href = `${data.oauthUrl}&prompt=consent`;
         },
 
         processNextOnCallback: function(queryparams) {
@@ -588,11 +588,11 @@ var server = (function() {
                 'callbackUrl': callbackUrl,
             };
 
-            // if (element === 'onedrivebusiness') {
-            //     // We get the siteAddress from element detail
-            //     // after provisioning
-            //     parameters.siteAddress = cbArgs.elementDetails.siteAddress;
-            // }
+            if (element === 'onedrivebusiness') {
+                // We get the siteAddress from element detail
+                // after provisioning
+                parameters.siteAddress = cbArgs.elementDetails.siteAddress;
+            }
 
             _server.call('api-v2/elements/'+element+'/oauth/url', 'Get',
                 this.authHeader(CloudElements.getUTkn(), CloudElements.getOTkn(), null), parameters, cb, cbArgs);
