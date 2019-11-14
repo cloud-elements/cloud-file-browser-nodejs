@@ -344,9 +344,11 @@ var server = (function() {
             })
             .done(function(data) {
                 if(server.isNullAndUndef(data.results)){
+                    debugger;
                     cb(data, cbArgs);
                 }
                 else {
+                    debugger;
                     cb(data.results, cbArgs);
                 }
             })
