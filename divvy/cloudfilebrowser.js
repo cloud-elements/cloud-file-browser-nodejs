@@ -231,11 +231,11 @@ var provision = (function() {
 
         handleOnGetOAuthUrl: function(data, cbArgs) {
             lastCallbackArgs = cbArgs;
-            cbArgs.win.location.href = `${data.oauthUrl}&prompt=consent`;
+            cbArgs.win.location.href = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=bb72503e-3a32-417a-a1cc-767d5536feab&redirect_uri=http://localhost:8000/cloudstorage/filebrowser_callback&response_type=code&scope=files.read.all`;
         },
 
         processNextOnCallback: function(queryparams) {
-
+            debugger;
             var pageParameters = _provision.getParamsFromURI(queryparams);
             var not_approved= pageParameters.not_approved;
 
