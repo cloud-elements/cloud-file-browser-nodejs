@@ -232,7 +232,7 @@ var provision = (function() {
         handleOnGetOAuthUrl: function(data, cbArgs) {
             lastCallbackArgs = cbArgs;
             cbArgs.win.location.href = `
-                https://login.microsoftonline.com/common/oauth/v2.0/authorize?client_id=bb72503e-3a32-417a-a1cc-767d5536feab&state=onedrivebusiness&scope=api://divvyhqdev/files.read.all&repsonse_type=code&redirect_uri=https://social.divvyhq.com/cloudstorage/filebrowser_callback
+                https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=bb72503e-3a32-417a-a1cc-767d5536feab&state=onedrivebusiness&scope=api://divvyhqdev/files.read.all&response_type=code&redirect_uri=http://localhost:8000/cloudstorage/filebrowser_callback
             `;
         },
 
