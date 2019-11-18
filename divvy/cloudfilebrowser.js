@@ -602,7 +602,7 @@ var server = (function() {
             if (element === 'onedrivebusiness') {
                 // We get the siteAddress from element detail
                 // after provisioning
-                parameters.siteAddress = cbArgs.elementDetails.siteAddress;
+                parameters.siteAddress = 'divvyhqdev-my.sharepoint.com';
             }
 
             _server.call('api-v2/elements/'+element+'/oauth/url', 'Get',
@@ -629,7 +629,7 @@ var server = (function() {
                 debugger;
                 elementProvision.configuration["document.tagging"] = false;
                 elementProvision.configuration["filter.response.nulls"] = true;
-                elementProvision.configuration["onedrivebusiness.site.address"] = cbArgs.elementDetails.siteAddress;
+                elementProvision.configuration["onedrivebusiness.site.address"] = "https://divvyhqdev-my.sharepoint.com";
             }
 
             _server.call('api-v2/instances', 'POST',
