@@ -231,15 +231,17 @@ var provision = (function() {
 
         handleOnGetOAuthUrl: function(data, cbArgs) {
             lastCallbackArgs = cbArgs;
+            debugger;
             if (cbArgs.element === 'onedrivebusiness') {
                 var elementDetails = cbArgs.elementDetails;
                 // Authenticate with common OAuth Endpoint
                 var commonEndpoint = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize';
                 // The scope we want the users to consent
-                var scope = 'Https://graph.microsoft.com/Files.Read.All';
-                var params = `?client_id=${elementDetails.apiKey}&response_type=code&redirect_uri=${elementDetails.callbackUrl}&response_mode=query&scope=${scope}`;
+                var scope = 'wl.signin wl.offline_access onedrive.readwrite';
+                var params = `?client_id=${elementDetails.apiKey}&response_type=code&redirect_uri=${elementDetails.callbackUrl}&response_mode=query&scope=${scope}&prompt=consent`;
                 var oAuthEnpoint = `${commonEndpoint}${params}`;
                 cbArgs.win.location.href = oAuthEnpoint;
+                debugger;
             } else {
                 cbArgs.win.location.href = data.oauthUrl;
             }
