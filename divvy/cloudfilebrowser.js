@@ -222,20 +222,8 @@ var provision = (function() {
                     'elementDetails': elementDetails
                 }
 
-                if (element !== 'onedrivebusiness') {
-                    server.getOAuthUrlOnAPIKey(element, elementDetails.apiKey, elementDetails.apiSecret,
-                        elementDetails.callbackUrl, provision.handleOnGetOAuthUrl, callbackArgs);
-                } else {
-                    // Authenticate with common OAuth Endpoint
-                    var commonEndpoint = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize';
-                    // The scope we want the users to consent
-                    var scope = 'Https://graph.microsoft.com/Files.Read.All';
-                    var params = `
-                        ?client_id=${elementDetails.apiKey}&response_type=code&redirect_uri=${elementDetails.callbackUrl}&response_mode=query&scope=${scope}
-                    `
-                    var oAuthEnpoint = `${commonEndpoint}${params}`;
-                    win.location.href = oAuthEnpoint;
-                }
+                server.getOAuthUrlOnAPIKey(element, elementDetails.apiKey, elementDetails.apiSecret,
+                    elementDetails.callbackUrl, provision.handleOnGetOAuthUrl, callbackArgs);
 
                 return;
             }
@@ -243,10 +231,22 @@ var provision = (function() {
 
         handleOnGetOAuthUrl: function(data, cbArgs) {
             lastCallbackArgs = cbArgs;
-            cbArgs.win.location.href = data.oauthUrl;
+            if (cbArgs.element === 'onedrivebusiness') {
+                var elementDetails = cbArgs.elementDetails;
+                // Authenticate with common OAuth Endpoint
+                var commonEndpoint = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize';
+                // The scope we want the users to consent
+                var scope = 'Https://graph.microsoft.com/Files.Read.All';
+                var params = `?client_id=${elementDetails.apiKey}&response_type=code&redirect_uri=${elementDetails.callbackUrl}&response_mode=query&scope=${scope}`;
+                var oAuthEnpoint = `${commonEndpoint}${params}`;
+                cbArgs.win.location.href = oAuthEnpoint;
+            } else {
+                cbArgs.win.location.href = data.oauthUrl;
+            }
         },
 
         processNextOnCallback: function(queryparams) {
+            debugger;
             var pageParameters = _provision.getParamsFromURI(queryparams);
             var not_approved= pageParameters.not_approved;
 
