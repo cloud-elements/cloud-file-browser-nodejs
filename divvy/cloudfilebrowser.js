@@ -629,7 +629,7 @@ var server = (function() {
                 debugger;
                 elementProvision.configuration["document.tagging"] = false;
                 elementProvision.configuration["filter.response.nulls"] = true;
-                elementProvision.configuration["onedrivebusiness.site.address"] = "https://divvyhqdev-my.sharepoint.com";
+                elementProvision.configuration["onedrivebusiness.site.address"] = "divvyhqdev-my.sharepoint.com";
             }
 
             _server.call('api-v2/instances', 'POST',
