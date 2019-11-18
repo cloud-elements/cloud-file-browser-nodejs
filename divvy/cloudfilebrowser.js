@@ -213,6 +213,15 @@ var provision = (function() {
             if(elementDetails != null && elementDetails != undefined) {
 
                 var win = window.open('', '_target');
+                // if onedrivebusiness
+                if (element === 'onedrivebusiness') {
+                    var siteAddress = prompt('Please enter OneDrive URL(ex:xxxxx-my.sharepoint.com)');
+                    if (siteAddress == null || siteAddress == "") {
+                        return
+                    } else {
+                        elementDetails.siteAddress = siteAddress;
+                    }
+                }
 
                 var callbackArgs = {
                     'cbFun' : cb,
@@ -231,20 +240,7 @@ var provision = (function() {
 
         handleOnGetOAuthUrl: function(data, cbArgs) {
             lastCallbackArgs = cbArgs;
-            debugger;
-            if (cbArgs.element === 'onedrivebusiness') {
-                var elementDetails = cbArgs.elementDetails;
-                // Authenticate with common OAuth Endpoint
-                var commonEndpoint = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize';
-                // The scope we want the users to consent
-                var scope = 'offline_access files.readwrite.all';
-                var params = `?client_id=${elementDetails.apiKey}&response_type=code&redirect_uri=${elementDetails.callbackUrl}&response_mode=query&scope=${scope}&prompt=consent`;
-                var oAuthEnpoint = `${commonEndpoint}${params}`;
-                cbArgs.win.location.href = oAuthEnpoint;
-                debugger;
-            } else {
-                cbArgs.win.location.href = data.oauthUrl;
-            }
+            cbArgs.win.location.href = data.oauthUrl;
         },
 
         processNextOnCallback: function(queryparams) {
@@ -627,11 +623,11 @@ var server = (function() {
                 'name': element
             };
 
-            if (element === 'onedrivegraph') {
+            if (element === 'onedrivebusiness') {
                 debugger;
                 elementProvision.configuration["document.tagging"] = false;
                 elementProvision.configuration["filter.response.nulls"] = true;
-                elementProvision.configuration["onedrivebusiness.site.address"] = "https://divvyhqdev-my.sharepoint.com";
+                elementProvision.configuration["onedrivebusiness.site.address"] = `https://${cbArgs.elementDetails.siteAddress}`;
             }
 
             _server.call('api-v2/instances', 'POST',
