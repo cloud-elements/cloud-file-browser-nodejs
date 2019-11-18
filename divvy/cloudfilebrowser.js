@@ -212,7 +212,6 @@ var provision = (function() {
             var elementDetails = _provision.getElementDetails(element);
             if(elementDetails != null && elementDetails != undefined) {
 
-                var win = window.open('', '_target');
                 // if onedrivebusiness
                 if (element === 'onedrivebusiness') {
                     var siteAddress = prompt('Please enter OneDrive URL(ex:xxxxx-my.sharepoint.com)');
@@ -222,6 +221,8 @@ var provision = (function() {
                         elementDetails.siteAddress = siteAddress;
                     }
                 }
+                
+                var win = window.open('', '_target');
 
                 var callbackArgs = {
                     'cbFun' : cb,
@@ -258,7 +259,8 @@ var provision = (function() {
             var cbArgs = {
                 'element' : ele,
                 'cbFun'   : lastCallbackArgs.cbFun,
-                'cbArgs'  : lastCallbackArgs.cbArgs
+                'cbArgs'  : lastCallbackArgs.cbArgs,
+                'elementDetails': lastCallbackArgs.elementDetails
             };
 
             //Provision the element and get elementToken
