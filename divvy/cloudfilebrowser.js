@@ -629,7 +629,7 @@ var server = (function() {
                 debugger;
                 elementProvision.configuration["document.tagging"] = false;
                 elementProvision.configuration["filter.response.nulls"] = true;
-                elementProvision.configuration["onedrivebusiness.site.address"] = `https://${cbArgs.elementDetails.siteAddress}`;
+                elementProvision.configuration["onedrivebusiness.site.address"] = cbArgs.elementDetails.siteAddress;
             }
 
             _server.call('api-v2/instances', 'POST',
