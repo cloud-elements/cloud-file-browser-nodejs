@@ -627,7 +627,8 @@ var server = (function() {
                 'name': element
             };
 
-            if (element === 'onedrivebusiness') {
+            if (element === 'onedrivegraph') {
+                debugger;
                 elementProvision.configuration["document.tagging"] = false;
                 elementProvision.configuration["filter.response.nulls"] = true;
                 elementProvision.configuration["onedrivebusiness.site.address"] = "https://divvyhqdev-my.sharepoint.com";
