@@ -214,9 +214,8 @@ var provision = (function() {
 
                 // if onedrivebusiness
                 if (element === 'onedrivebusiness') {
-                    debugger;
-                    var siteAddress = $(container).find('');
-                    if (siteAddress == null || siteAddress == "") {
+                    var siteAddress = cbArgs.siteAddress;
+                    if (siteAddress === null || siteAddress === "") {
                         return
                     } else {
                         elementDetails.siteAddress = siteAddress;
@@ -857,7 +856,7 @@ var cloudFileBrowser = (function() {
         initElement: function(element) {
             var callbackArgs = {
                 'element' : element,
-                'container': $(container)
+                'siteAddress': $(container).find('input').val()
             };
 
             if (provision.isAuthorized(element)) {
@@ -1001,9 +1000,8 @@ var cloudFileBrowser = (function() {
 
             var callbackArgs = {
                 'element' : element,
-                'container': $(container)
+                'siteAddress': $(container).find('input').val()
             };
-            debugger;
             provision.createInstance(element, cloudFileBrowser.handleOnProvision, callbackArgs);
         },
 
