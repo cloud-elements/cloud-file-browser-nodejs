@@ -832,11 +832,21 @@ var cloudFileBrowser = (function() {
 
             for (var i=0; i<services.length; i++) {
                 tabsHTML += '<li class="' + services[i] + (i == 0 ? ' on' : '' )+ '"><img src="' + servicesImages[i] + '">' + servicesDisplay[i] + '</li>';
-                containerHTML +=    '<div class="' + services[i] + (i == 0 ? ' on' : '' ) + ' drop-zone" aria-element="' + services[i] + '">'+
-                                    '<h2></h2>' +
-                                    '<h2><img src="' + servicesImages[i] + '"></h2>' +
-                                    '<a href="#" class="provision" aria-element="' + services[i] + '">Connect to your ' + servicesDisplay[i] + ' account</a>' +
-                                    '</div>';
+                if (services[i] !== 'onedrivebusiness') {
+                    containerHTML +=    '<div class="' + services[i] + (i == 0 ? ' on' : '' ) + ' drop-zone" aria-element="' + services[i] + '">'+
+                    '<h2></h2>' +
+                    '<h2><img src="' + servicesImages[i] + '"></h2>' +
+                    '<a href="#" class="provision" aria-element="' + services[i] + '">Connect to your ' + servicesDisplay[i] + ' account</a>' +
+                    '</div>';
+                } else {
+                    containerHTML +=    '<div class="' + services[i] + (i == 0 ? ' on' : '' ) + ' drop-zone" aria-element="' + services[i] + '">'+
+                    '<h2></h2>' +
+                    '<h2><img src="' + servicesImages[i] + '"></h2>' +
+                    '<div class="site-address-wrap"><p>OneDrive Business Site Addresss (domain-my.sharepoint.com)</p>' +
+                    '<input type="text" id="site-address"/></div>' +
+                    '<a href="#" class="provision" aria-element="' + services[i] + '">Connect to your ' + servicesDisplay[i] + ' account</a>' +
+                    '</div>';
+                }
             }
 
             $(tabs).append(tabsHTML);
