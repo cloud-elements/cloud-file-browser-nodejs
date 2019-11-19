@@ -856,7 +856,8 @@ var cloudFileBrowser = (function() {
 
         initElement: function(element) {
             var callbackArgs = {
-                'element' : element
+                'element' : element,
+                'container': $(container)
             };
 
             if (provision.isAuthorized(element)) {
