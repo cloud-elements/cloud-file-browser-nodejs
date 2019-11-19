@@ -56,8 +56,24 @@ the License.
         margin-top: 65px;
         padding: 7px 14px;
         text-decoration: none;
-        top: 50%;
+        top: 58%;
         width: 210px;
+    }
+
+    a[aria-element="onedrivebusiness"] {
+        top: 58%;
+    }
+
+    div#site-address-wrap {
+        position: absolute;
+        display: inline-block;
+        left: 50%;
+        margin-left: -120px;
+        margin-top: 36px;
+        padding: 7px 14px;
+        text-decoration: none;
+        top: 47%;
+        width: 247px;
     }
 
     .disable-element {
