@@ -862,7 +862,6 @@ var cloudFileBrowser = (function() {
 
             if (provision.isAuthorized(element)) {
                 cloudFileBrowser.showLoading();
-                debugger;
                 provision.createInstance(element, cloudFileBrowser.handleOnProvision, callbackArgs);
             }
         },
@@ -1001,8 +1000,10 @@ var cloudFileBrowser = (function() {
             cloudFileBrowser.showLoading();
 
             var callbackArgs = {
-                'element' : element
+                'element' : element,
+                'container': $(container)
             };
+            debugger;
             provision.createInstance(element, cloudFileBrowser.handleOnProvision, callbackArgs);
         },
 
