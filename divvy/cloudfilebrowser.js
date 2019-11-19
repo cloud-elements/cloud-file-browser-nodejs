@@ -214,7 +214,8 @@ var provision = (function() {
 
                 // if onedrivebusiness
                 if (element === 'onedrivebusiness') {
-                    var siteAddress = prompt('Please enter OneDrive URL(ex:xxxxx-my.sharepoint.com)');
+                    debugger;
+                    var siteAddress = $(container).find('');
                     if (siteAddress == null || siteAddress == "") {
                         return
                     } else {
