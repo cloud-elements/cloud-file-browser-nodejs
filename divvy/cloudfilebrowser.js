@@ -245,7 +245,6 @@ var provision = (function() {
         },
 
         processNextOnCallback: function(queryparams) {
-            debugger;
             var pageParameters = _provision.getParamsFromURI(queryparams);
             var not_approved= pageParameters.not_approved;
 
@@ -353,7 +352,6 @@ var server = (function() {
                 contentType: 'application/json'
             })
             .done(function(data) {
-                debugger;
                 if(server.isNullAndUndef(data.results))
                     cb(data, cbArgs);
                 else
