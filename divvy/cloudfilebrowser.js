@@ -862,6 +862,7 @@ var cloudFileBrowser = (function() {
 
             if (provision.isAuthorized(element)) {
                 cloudFileBrowser.showLoading();
+                debugger;
                 provision.createInstance(element, cloudFileBrowser.handleOnProvision, callbackArgs);
             }
         },
